@@ -26,11 +26,9 @@ public class Player : ACacheMonoBehauviour
     [SerializeField] private float gravityScale;
     [SerializeField] private float speedSlip;
     [SerializeField] private Button jumpButton;
-    [SerializeField] private Button sprintButton;
     public bool isSprint;
     private string currentAnim;
     private float speed;
-    public FixedJoystick joystick;
     private float turnToSmoothTime = 0.1f;
     private float speedFall = 0;
     private Vector3 dirSlip = Vector3.zero;
@@ -40,18 +38,15 @@ public class Player : ACacheMonoBehauviour
     public JumpState jumpState = new JumpState();
     public SlipState slipState = new SlipState();
     public FallState fallState = new FallState();
-    
+
+    private void Awake()
+    {
+        InputManager.Instance.OnClickBtnJump += this.CheckChangeStateJump;
+    }
+
     private void Start()
     {
         this.ChangeState(idleState);
-        jumpButton.onClick.AddListener(() =>
-        {
-            if (stateMachine.CompareCurrentState(idleState) || stateMachine.CompareCurrentState(moveState))
-            {
-                this.ChangeState(jumpState);
-            }
-        });
-        
     }   
 
     private void Update()
@@ -75,7 +70,7 @@ public class Player : ACacheMonoBehauviour
     }
     public Vector3 GetMoveDirection()
     {
-        return new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+        return InputManager.Instance.GetMoveDirection();
     }
 
     public void SetupSpeed(TypeOfMove type)
@@ -154,6 +149,14 @@ public class Player : ACacheMonoBehauviour
         {
             speed = speedWalk;
             this.ChangeAnim(Constant.ANIM_WALK_STRING);
+        }
+    }
+
+    public void CheckChangeStateJump()
+    {
+        if (stateMachine.CompareCurrentState(idleState) || stateMachine.CompareCurrentState(moveState))
+        {
+            this.ChangeState(jumpState);
         }
     }
     public void CheckFall()

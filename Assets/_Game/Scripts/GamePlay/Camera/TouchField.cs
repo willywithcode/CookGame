@@ -8,20 +8,19 @@ public class TouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [HideInInspector]
     public Vector2 PointerOld;
     [HideInInspector]
-    protected int PointerId;
+    protected int pointerId;
     [HideInInspector]
     public bool Pressed;
 
 
-    // Update is called once per frame
     void Update()
     {
         if (Pressed)
         {
-            if (PointerId >= 0 && PointerId < Input.touches.Length)
+            if (pointerId >= 0 && pointerId < Input.touches.Length)
             {
-                TouchDist = Input.touches[PointerId].position - PointerOld;
-                PointerOld = Input.touches[PointerId].position;
+                TouchDist = Input.touches[pointerId].position - PointerOld;
+                PointerOld = Input.touches[pointerId].position;
             }
             else
             {
@@ -38,7 +37,7 @@ public class TouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         Pressed = true;
-        PointerId = eventData.pointerId;
+        pointerId = eventData.pointerId;
         PointerOld = eventData.position;
     }
 
