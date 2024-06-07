@@ -16,4 +16,6 @@ MonoBehaviour:
   m_MainSpriteAsset: {fileID: 0}
   m_MainTextStyleSheet: {fileID: 0}
   TextPresets: []
-  ButtonPresets: []
+  ButtonPresets:
+  - m_presetName: Middle Size
+    m_PresetSize: {x: 160, y: 160}

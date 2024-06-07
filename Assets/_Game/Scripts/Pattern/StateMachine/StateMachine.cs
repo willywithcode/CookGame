@@ -35,4 +35,9 @@ public class StateMachine<T> where T : class
             currentState.Execute(owner);
         }
     }
+    public bool CompareCurrentState(IState<T> state)
+    {
+        return currentState == state;
+    }
+    
 }

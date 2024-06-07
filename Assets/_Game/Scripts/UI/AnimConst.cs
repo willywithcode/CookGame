@@ -22,4 +22,5 @@ public static class AnimConst
 
     public static Vector3 SIZE_SACLE_ITEM = Vector3.one * 0.9f;
     public static float TIME_SACLE_ITEM = 0.1f;
+    
 }

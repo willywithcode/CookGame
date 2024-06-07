@@ -43,7 +43,7 @@ public class UIPresetGlobalConfig : GlobalConfig<UIPresetGlobalConfig>
     {
         return new TextPreset()
         {
-            m_presetName = "text preset name",
+            m_presetName = "Text",
             m_presetSize = 20,
             m_OverrideTextFontAsset = m_MainTextFontAsset,
             m_OverrideTextSpriteAsset = m_MainSpriteAsset,
