@@ -6,16 +6,20 @@ public class FallState : IState<Player>
 {
     public void EnterState(Player owner)
     {
-        owner.StartFall();
+        owner.ChangeAnim(owner.characterData.fall);
     }
 
     public void Execute(Player owner)
     {
-        owner.Fall();
-        owner.Rotate();
+        owner.character.SetMovementDirection(Vector3.zero);
+        if (owner.character.IsGrounded())
+        {
+            owner.ChangeState(owner.landState);
+        }
     }
 
     public void ExitState(Player owner)
     {
+        
     }
 }

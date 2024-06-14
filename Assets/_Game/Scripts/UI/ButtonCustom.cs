@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonCustom : MonoBehaviour
+public class ButtonCustom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] public Button button;
     public Button Btn => button;
-    public UnityAction customeButton;
+    public UnityAction customButtonOnClick;
+    public UnityAction customButtonUp;
+    public UnityAction customButtonDown;
     private RectTransform tf;
     public RectTransform TF
     {
@@ -23,8 +26,19 @@ public class ButtonCustom : MonoBehaviour
     {
         button?.onClick.AddListener(() =>
         {
-            customeButton?.Invoke();
+            customButtonOnClick?.Invoke();
         });
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        customButtonDown?.Invoke();
+        Debug.Log("OnPointerDown");
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        customButtonUp?.Invoke();
+        Debug.Log("OnPointerUp");
     }
 #if UNITY_EDITOR
 
@@ -38,4 +52,5 @@ public class ButtonCustom : MonoBehaviour
         }
     }
 #endif
+    
 }

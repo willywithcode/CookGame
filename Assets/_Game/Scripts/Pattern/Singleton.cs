@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,4 +22,14 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                 return instance;
             }
         }
+
+        public virtual void Awake()
+        {
+            if (instance != null)
+            {
+                if (instance != this)
+                    Destroy(this);
+            }
+        }
+
 }

@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private GameObject cameraRoot;
 
-    public TouchField Touchfield;
+    [HideInInspector] public TouchField Touchfield;
 
     private float xInput;
     private float yInput;
@@ -28,14 +28,12 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         if (Touchfield == null) return;
-        xInput += Touchfield.TouchDist.x * sensitivity;
-        yInput += Touchfield.TouchDist.y * -sensitivity;
-
-        
-
+        if(Touchfield.TouchDist.SqrMagnitude() <= 0.1) return;
+        xInput += Touchfield.TouchDist.x * Time.deltaTime * sensitivity;
+        yInput -= Touchfield.TouchDist.y * Time.deltaTime * sensitivity;
+        xInput = Mathf.Repeat(xInput, 360f);
         yInput = Mathf.Clamp(yInput, minX, maxX);
-
-        cameraRoot.transform.rotation = Quaternion.Euler(yInput * sensitivity , xInput * sensitivity, 0f);
+        cameraRoot.transform.rotation = Quaternion.Euler(yInput, xInput, 0f);
     }
     
 }
