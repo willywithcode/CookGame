@@ -13,8 +13,11 @@ public class CharacterDataSO : ScriptableObject
     public ClipTransition walk;
     public ClipTransition run;
     public ClipTransition jump;
-    public ClipTransition fall;
-    public ClipTransition land;
+    public ClipTransition jumpRolling;
+    public ClipTransition fallNormal;
+    public ClipTransition fallRolling;
+    public ClipTransition landNormal;
+    public ClipTransition landRolling;
     public ClipTransition jog;
     public ClipTransition stopRunning;
     public ClipTransition stopWalking;

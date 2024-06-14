@@ -48,22 +48,49 @@ MonoBehaviour:
     _Clip: {fileID: 7400000, guid: 9d1ac9c876ad0a548b3b8bbe98d5b5c5, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
-  fall:
+  jumpRolling:
     _FadeDuration: 0.25
     _Events:
       _NormalizedTimes: []
       _Callbacks: []
       _Names: []
-    _Clip: {fileID: 7400000, guid: 1f7a93442b82e564ab956b4cd8a0bc07, type: 3}
+    _Clip: {fileID: 7400000, guid: 4045ee59cfa3ba141b826ff61cb39837, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
-  land:
+  fallNormal:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: c798d30820f9934459473492ec371e74, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  fallRolling:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: 722b2dbbfd905d749ac9f77c08a27d4a, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  landNormal:
     _FadeDuration: 0.25
     _Events:
       _NormalizedTimes: []
       _Callbacks: []
       _Names: []
     _Clip: {fileID: 7400000, guid: c6272b90eb4fa5446b4f925cbd211b1a, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  landRolling:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: e69d85be6c09de34183c11cdb08ad27d, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
   jog:

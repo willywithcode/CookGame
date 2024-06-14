@@ -33,7 +33,7 @@ public class InputManager : Singleton<InputManager>
     public bool IsSprint()
     {
 #if UNITY_EDITOR
-        return Input.GetKey(KeyCode.R);
+        return Input.GetKey(KeyCode.E);
 #endif
         return isSprint;
     }

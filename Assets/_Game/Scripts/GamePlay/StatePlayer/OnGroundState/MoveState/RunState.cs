@@ -10,7 +10,8 @@ public class RunState : MoveState
         owner.ChangeSpeed(owner.characterData.runSpeed);
     }
     public override void Execute(Player owner)
-    {if(Vector3.Distance(InputManager.Instance.GetMoveDirection(), Vector3.zero) <= 0.1f) 
+    {
+        if(Vector3.Distance(InputManager.Instance.GetMoveDirection(), Vector3.zero) <= 0.1f) 
         {
             owner.stateMachine.ChangeState(owner.stateMachine.stopRunningState);
             return;

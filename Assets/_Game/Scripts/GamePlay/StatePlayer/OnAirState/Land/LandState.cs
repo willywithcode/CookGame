@@ -6,11 +6,9 @@ using UnityEngine;
 
 public class LandState : OnAirState
 {
-    private AnimancerState stateAnim;
-    public override void EnterState(Player owner)
+    public void OnEndLand(Player owner, ClipTransition clipTransition)
     {
-        stateAnim = owner.ChangeAnim(owner.characterData.land);
-        stateAnim.Events.OnEnd = () =>
+        owner.ChangeAnim(clipTransition).Events.OnEnd = () =>
         {
             this.SwitchOnGround(owner);
         };

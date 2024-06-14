@@ -8,7 +8,7 @@ public class OnGroundState : BaseState<Player>
     {
         if (!owner.character.IsGrounded())
         {
-            owner.stateMachine.ChangeState(owner.stateMachine.fallState);
+            owner.stateMachine.ChangeState(owner.stateMachine.fallNormalState);
             return;
         }
         if(InputManager.Instance.IsJump())

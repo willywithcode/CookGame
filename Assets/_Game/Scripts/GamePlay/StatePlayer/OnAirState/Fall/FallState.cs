@@ -8,7 +8,6 @@ public class FallState : OnAirState
     private float highestHeightFall;
     public override void EnterState(Player owner)
     {
-        owner.ChangeAnim(owner.characterData.fall);
         isHighEnough = false;
         highestHeightFall = 0;
     }
@@ -17,15 +16,6 @@ public class FallState : OnAirState
     {
         owner.character.SetMovementDirection(Vector3.zero);
         isHighEnough = CalculateHeightFall(owner) >= owner.characterData.heightEnoughForLanding;
-        if (owner.character.IsGrounded())
-        {
-            if (isHighEnough)
-            {
-                owner.stateMachine.ChangeState(owner.stateMachine.landState);
-                return;
-            }
-            this.SwitchOnGround(owner);
-        }
     }
     public float CalculateHeightFall(Player owner)
     {
@@ -38,5 +28,18 @@ public class FallState : OnAirState
             }
         }
         return highestHeightFall;
+    }
+
+    public void CheckCanLand(Player owner, LandState landState)
+    {
+        if (owner.character.IsGrounded())
+        {
+            if (isHighEnough)
+            {
+                owner.stateMachine.ChangeState(landState);
+                return;
+            }
+            this.SwitchOnGround(owner);
+        }
     }
 }
