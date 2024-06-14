@@ -11,32 +11,15 @@ using UnityEngine.UI;
 public class Player : ACacheMonoBehauviour
 {
     public Character character;
-    public CapsuleCollider capsuleCollider;
     public CharacterDataSO characterData;
+    public FSTPlayer stateMachine;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private AnimancerComponent anim;
-    [SerializeField] private StateMachine<Player> stateMachine;
-    private string currentAnim;
     private float turnToSmoothTime = 0.1f;
-    private Vector3 dirSlip = Vector3.zero;
-    // Defind states 
-    public IdleState idleState = new IdleState();
-    public MoveState moveState = new MoveState();
-    public JumpState jumpState = new JumpState();
-    public FallState fallState = new FallState();
-    public StopMoveState stopMoveState = new StopMoveState();
-    public LandState landState = new LandState();
-
     private void Start()
     {
-        this.ChangeState(idleState);
+        stateMachine.ChangeState(stateMachine.idleState);
     }   
-
-    private void Update()
-    {
-        stateMachine.ExecuteState();
-    }
-
     public AnimancerState ChangeAnim(ClipTransition nextAnim)
     {
         return anim.Play(nextAnim);
@@ -45,11 +28,6 @@ public class Player : ACacheMonoBehauviour
     {
         return anim.Play(nextAnim, transitionDuration);
     }
-    public void ChangeState(IState<Player> newState)
-    {
-        stateMachine.ChangeState(newState);
-    }
-
     public void ChangeSpeed(float speed)
     {
         character.maxWalkSpeed = speed;

@@ -3,41 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [Serializable]
-public class StateMachine<T> where T : class
+public class StateMachine<T> : MonoBehaviour where T : class
 {
     [SerializeField] private T owner;
-    private IState<T> previousState;
-    private IState<T> currentState;
+    private BaseState<T> previousBaseState;
+    private BaseState<T> currentBaseState;
 
-    public StateMachine(T owner)
+    private void Update()
     {
-        this.owner = owner;
-        currentState = null;
+        ExecuteState();
     }
-    public void ChangeState(IState<T> newState)
+
+    public void ChangeState(BaseState<T> newBaseState)
     {
-        if (currentState != null)
+        if (currentBaseState != null)
         {
-            previousState = currentState;
-            currentState.ExitState(owner);
+            previousBaseState = currentBaseState;
+            currentBaseState.ExitState(owner);
         }
-        currentState = newState;
-        currentState.EnterState(owner);
+        currentBaseState = newBaseState;
+        currentBaseState.EnterState(owner);
     }
     public void RevertToPreviousState()
     {
-        ChangeState(previousState);
+        ChangeState(previousBaseState);
     }
     public void ExecuteState()
     {
-        if (currentState != null)
+        if (currentBaseState != null)
         {
-            currentState.Execute(owner);
+            currentBaseState.Execute(owner);
         }
     }
-    public bool CompareCurrentState(IState<T> state)
+    public bool CompareCurrentState(BaseState<T> baseState)
     {
-        return currentState == state;
+        return currentBaseState == baseState;
+    }
+    public bool ComparePreviousState(BaseState<T> baseState)
+    {
+        return previousBaseState == baseState;
     }
     
 }

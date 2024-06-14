@@ -2,35 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : IState<Player>
+public class IdleState : BaseState<Player>
 {
-    public void EnterState(Player owner)
+    public override void EnterState(Player owner)
     {
         owner.ChangeAnim(owner.characterData.idle);
     }
 
-    public void Execute(Player owner)
+    public override void Execute(Player owner)
     {
         owner.character.SetMovementDirection(Vector3.zero);
         if (Vector3.Distance(owner.GetMoveDirection(), Vector3.zero) >= 0.1f)
         {
-            owner.ChangeState(owner.moveState);
+            owner.stateMachine.ChangeState(owner.stateMachine.moveState);
             return;
         }
         if(!owner.character.IsGrounded())
         {
-            owner.ChangeState(owner.fallState);
+            owner.stateMachine.ChangeState(owner.stateMachine.fallState);
             return;
         }
 
         if (InputManager.Instance.IsJump())
         {
-            owner.ChangeState(owner.jumpState);
+            owner.stateMachine.ChangeState(owner.stateMachine.jumpState);
             return;
         }
     }
 
-    public void ExitState(Player owner)
+    public override void ExitState(Player owner)
     {
         
     }

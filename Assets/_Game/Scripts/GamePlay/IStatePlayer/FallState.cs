@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallState : IState<Player>
+public class FallState : BaseState<Player>
 {
-    public void EnterState(Player owner)
+    public override void EnterState(Player owner)
     {
         owner.ChangeAnim(owner.characterData.fall);
     }
 
-    public void Execute(Player owner)
+    public override void Execute(Player owner)
     {
         owner.character.SetMovementDirection(Vector3.zero);
         if (owner.character.IsGrounded())
         {
-            owner.ChangeState(owner.landState);
+            owner.stateMachine.ChangeState(owner.stateMachine.landState);
         }
     }
 
-    public void ExitState(Player owner)
+    public override void ExitState(Player owner)
     {
         
     }

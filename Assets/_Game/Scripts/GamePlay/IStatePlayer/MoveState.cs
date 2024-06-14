@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveState : IState<Player>
+public class MoveState : BaseState<Player>
 {
-    public void EnterState(Player owner)
+    public override void EnterState(Player owner)
     {
         if (InputManager.Instance.IsSprint())
         {
@@ -26,29 +26,29 @@ public class MoveState : IState<Player>
         }
     }
 
-    public void Execute(Player owner)
+    public override void Execute(Player owner)
     {
         owner.Rotate();
         owner.character.SetMovementDirection(owner.GetDirectionLocal().Item1);
         this.CheckTypeOfMove(owner);
         if(Vector3.Distance(owner.GetMoveDirection(), Vector3.zero) <= 0.1f) 
         {
-            owner.ChangeState(InputManager.Instance.IsSprint() ? owner.stopMoveState : owner.idleState);
+            owner.stateMachine.ChangeState(InputManager.Instance.IsSprint() ? owner.stateMachine.stopMoveState : owner.stateMachine.idleState);
             return;
         }
         if (!owner.character.IsGrounded())
         {
-            owner.ChangeState(owner.fallState);
+            owner.stateMachine.ChangeState(owner.stateMachine.fallState);
             return;
         }
         if(InputManager.Instance.IsJump())
         {
-            owner.ChangeState(owner.jumpState);
+            owner.stateMachine.ChangeState(owner.stateMachine.jumpState);
             return;
         }
     }
 
-    public void ExitState(Player owner)
+    public override void ExitState(Player owner)
     {
         
     }
