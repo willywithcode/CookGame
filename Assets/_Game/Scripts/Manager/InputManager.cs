@@ -12,11 +12,12 @@ public class InputManager : Singleton<InputManager>
     public bool isJump = false;
     public Vector3 GetMoveDirection()
     {
-#if UNITY_EDITOR
-        return new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-#endif
         return UIManager.Instance.GetUI<UIGamePlay>().GetMoveDirection();
     } 
+    public Vector3 GetPreviousMoveDirection()
+    {
+        return UIManager.Instance.GetUI<UIGamePlay>().GetPreviousMoveDirection();
+    }
     public bool IsJump()
     {
 #if UNITY_EDITOR

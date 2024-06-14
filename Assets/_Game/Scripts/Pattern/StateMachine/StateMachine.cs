@@ -37,11 +37,11 @@ public class StateMachine<T> : MonoBehaviour where T : class
     }
     public bool CompareCurrentState(BaseState<T> baseState)
     {
-        return currentBaseState == baseState;
+        return baseState.GetType() == currentBaseState.GetType();
     }
     public bool ComparePreviousState(BaseState<T> baseState)
     {
-        return previousBaseState == baseState;
+        return previousBaseState.GetType() == baseState.GetType();
     }
     
 }

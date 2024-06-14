@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class UIGamePlay : UICanvas
     [SerializeField] private ButtonCustom jumpButton;
     [SerializeField] private ButtonCustom sprintButton;
     [SerializeField] private TouchField touchField;
+    private Vector3 moveDirection;
+    private Vector3 previousMoveDirection;
     public override void Setup()
     {
         base.Setup();
@@ -43,9 +46,24 @@ public class UIGamePlay : UICanvas
 #endif
     }
 
+    private void Update()
+    {
+        previousMoveDirection = moveDirection;
+#if UNITY_EDITOR
+        moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+#endif
+#if UNITY_ANDROID && !UNITY_EDITOR
+        moveDirection = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+#endif
+    }
+
     public Vector3 GetMoveDirection()
     {
-        return new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+        return moveDirection;
+    }
+    public Vector3 GetPreviousMoveDirection()
+    {
+        return previousMoveDirection;
     }
     
 }

@@ -74,7 +74,6 @@ public class TouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("OnPointerUp : 1.2.7");
 #if UNITY_ANDROID 
         for (int i = 0; i < Input.touches.Length;i ++)
         {

@@ -8,6 +8,11 @@ public class FSTPlayer : StateMachine<Player>
     public MoveState moveState = new MoveState();
     public JumpState jumpState = new JumpState();
     public FallState fallState = new FallState();
-    public StopMoveState stopMoveState = new StopMoveState();
+    public StopRunningState stopRunningState = new StopRunningState();
+    public StopWalkingState stopWalkingState = new StopWalkingState();
+    public StopJoggingState stopJoggingState = new StopJoggingState();
     public LandState landState = new LandState();
+    public RunState runState = new RunState();
+    public WalkState walkState = new WalkState();
+    public JogState jogState = new JogState();
 }
