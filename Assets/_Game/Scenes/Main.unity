@@ -123,6 +123,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &87781380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87781381}
+  - component: {fileID: 87781382}
+  m_Layer: 0
+  m_Name: ActionStateMachine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &87781381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87781380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 317010343}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &87781382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87781380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19dff68c7ceefe4eaf6ac9d1213ee61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 317010345}
 --- !u!1 &181823602
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,6 +814,7 @@ Transform:
   - {fileID: 1312547969}
   - {fileID: 1779384210}
   - {fileID: 2139103800}
+  - {fileID: 87781381}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &317010344
@@ -803,8 +849,9 @@ MonoBehaviour:
   character: {fileID: 317010339}
   characterData: {fileID: 11400000, guid: bb1399b6d7dc9c547bbc0f662fdd4931, type: 2}
   stateMachine: {fileID: 1312547970}
+  actionStateMachine: {fileID: 87781382}
+  characterAnim: {fileID: 1779384213}
   playerTransform: {fileID: 1779384210}
-  anim: {fileID: 1779384212}
 --- !u!1 &345001512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1895,6 +1942,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100016, guid: d917c7129a9e4c74e84188b278d96de7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1779384212}
+    - targetCorrespondingSourceObject: {fileID: 100016, guid: d917c7129a9e4c74e84188b278d96de7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1779384213}
   m_SourcePrefab: {fileID: 100100000, guid: d917c7129a9e4c74e84188b278d96de7, type: 3}
 --- !u!1001 &915237236
 PrefabInstance:
@@ -3078,7 +3128,7 @@ GameObject:
   - component: {fileID: 1312547969}
   - component: {fileID: 1312547970}
   m_Layer: 0
-  m_Name: StateMachine
+  m_Name: MovementStateMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3369,6 +3419,7 @@ MonoBehaviour:
   isSprint: 0
   canPressJumpBtn: 1
   isJump: 0
+  isAttack: 0
 --- !u!1 &1340206761
 GameObject:
   m_ObjectHideFlags: 0
@@ -4174,6 +4225,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Animator: {fileID: 1779384211}
   _ActionOnDisable: 0
+--- !u!114 &1779384213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779384209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbee931cf1cf474ea45c5df888e7619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1779384212}
+  actionMask: {fileID: 31900000, guid: 1b647fdfefeb6ca4ebc9b5993f62526d, type: 2}
+  actionFadeDuration: 0.25
 --- !u!1 &1791220457
 GameObject:
   m_ObjectHideFlags: 0

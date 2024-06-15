@@ -48,7 +48,7 @@ public class UIGamePlay : UICanvas
 
     private void Update()
     {
-        previousMoveDirection = moveDirection;
+        if(Vector3.Distance(moveDirection, Vector3.zero) >= 0.01f) previousMoveDirection = moveDirection;
 #if UNITY_EDITOR
         moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 #endif

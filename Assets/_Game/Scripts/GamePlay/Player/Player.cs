@@ -13,26 +13,15 @@ public class Player : ACacheMonoBehauviour
     public Character character;
     public CharacterDataSO characterData;
     public FSTPlayer stateMachine;
+    public FSTActionPlayer actionStateMachine;
+    public CharacterAnim characterAnim;
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private AnimancerComponent anim;
     private float turnToSmoothTime = 0.1f;
-    private void Start()
-    {
-        stateMachine.ChangeState(stateMachine.idleState);
-    }   
-    public AnimancerState ChangeAnim(ClipTransition nextAnim)
-    {
-        return anim.Play(nextAnim);
-    }
-    public AnimancerState ChangeAnim(ClipTransition nextAnim, float transitionDuration)
-    {
-        return anim.Play(nextAnim, transitionDuration);
-    }
+
     public void ChangeSpeed(float speed)
     {
         character.maxWalkSpeed = speed;
     }
-
     public void Rotate()
     {
         Tuple<Vector3, float> directionLocal = this.GetCurrentDirectionLocal();

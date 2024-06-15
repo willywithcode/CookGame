@@ -9,21 +9,30 @@ using UnityEngine.Serialization;
 public class CharacterDataSO : ScriptableObject
 {
     [Title("Animation of Player")]
-    public ClipTransition idle;
-    public ClipTransition walk;
-    public ClipTransition run;
-    public ClipTransition jump;
-    public ClipTransition jumpRolling;
-    public ClipTransition fallNormal;
-    public ClipTransition fallRolling;
-    public ClipTransition landNormal;
-    public ClipTransition landRolling;
-    public ClipTransition jog;
-    public ClipTransition stopRunning;
-    public ClipTransition stopWalking;
-    public ClipTransition stopJogging;
-    [BoxGroup("Speed")] public float walkSpeed = 5;
-    [BoxGroup("Speed")] public float runSpeed = 10;
-    [BoxGroup("Speed")] public float jogSpeed = 7;
+    [FoldoutGroup("Idle")] public ClipTransition idle_1;
+    [FoldoutGroup("Idle")] public ClipTransition idle_2;
+    [FoldoutGroup("Idle")] public ClipTransition idle_3;
+    [FoldoutGroup("Move")] public ClipTransition walk;
+    [FoldoutGroup("Move")] public ClipTransition run;
+    [FoldoutGroup("Jump")] public ClipTransition jump;
+    [FoldoutGroup("Jump")] public ClipTransition jumpRolling;
+    [FoldoutGroup("Fall")] public ClipTransition fallNormal;
+    [FoldoutGroup("Fall")] public ClipTransition fallRolling;
+    [FoldoutGroup("Land")] public ClipTransition landNormal;
+    [FoldoutGroup("Land")] public ClipTransition landRolling;
+    [FoldoutGroup("Move")] public ClipTransition jog;
+    [FoldoutGroup("StopRun")] public ClipTransition stopRunning;
+    [FoldoutGroup("StopRun")] public ClipTransition stopWalking;
+    [FoldoutGroup("StopRun")] public ClipTransition stopJogging;
+    [FoldoutGroup("Punch Attack")] public ClipTransition punchRightAttack;
+    [FoldoutGroup("Punch Attack")] public ClipTransition punchLeftAttack;
+    [FoldoutGroup("Kick Attack")] public ClipTransition kickAttack_1;
+    [FoldoutGroup("Kick Attack")] public ClipTransition kickAttack_2;
+    [FoldoutGroup("Kick Attack")] public ClipTransition kickAttack_3;
+    
+    [Title("Speed")]
+    public float walkSpeed = 5;
+    public float runSpeed = 10;
+    public float jogSpeed = 7;
     public float heightEnoughForLanding = 4;
 }

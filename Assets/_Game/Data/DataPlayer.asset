@@ -12,13 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5d1dba555f9574e97d72b5fe7aafef, type: 3}
   m_Name: DataPlayer
   m_EditorClassIdentifier: 
-  idle:
+  idle_1:
     _FadeDuration: 0.25
     _Events:
       _NormalizedTimes: []
       _Callbacks: []
       _Names: []
     _Clip: {fileID: 7400000, guid: 4f9b2cc802bffcd468bf59be5599a8d1, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  idle_2:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: 57ba4920ed5811e4ea680744879a1c3a, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  idle_3:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: b9f1bbc832c544e40a9ab65baf558358, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
   walk:
@@ -94,7 +112,7 @@ MonoBehaviour:
     _Speed: 1
     _NormalizedStartTime: NaN
   jog:
-    _FadeDuration: 0.25
+    _FadeDuration: 0.5
     _Events:
       _NormalizedTimes: []
       _Callbacks: []
@@ -127,6 +145,51 @@ MonoBehaviour:
       _Callbacks: []
       _Names: []
     _Clip: {fileID: 7400000, guid: 6b90c9bd5fe345147a928d2be24c7804, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  punchRightAttack:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: c2976fa7ea9c6844ca1d7042aef0a731, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  punchLeftAttack:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: c62dd38c11e60514cbfbd75556f131da, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  kickAttack_1:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: 38587c17cd6cfdd4b8e25d3326747748, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  kickAttack_2:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: f410764517d98c547a4ed42923ac30f3, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  kickAttack_3:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: f91caa5c21f5a6e46831a3a0e68b30dc, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
   walkSpeed: 5

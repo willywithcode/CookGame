@@ -10,6 +10,7 @@ public class InputManager : Singleton<InputManager>
     public bool isSprint = false;
     public bool canPressJumpBtn = true;
     public bool isJump = false;
+    public bool isAttack = false;
     public Vector3 GetMoveDirection()
     {
         return UIManager.Instance.GetUI<UIGamePlay>().GetMoveDirection();
@@ -37,4 +38,13 @@ public class InputManager : Singleton<InputManager>
 #endif
         return isSprint;
     }
+
+    public bool IsAttack()
+    {
+#if UNITY_EDITOR
+        return Input.GetKey(KeyCode.R);
+#endif
+        return isAttack;
+    }
+    
 }

@@ -8,7 +8,7 @@ public class LandState : OnAirState
 {
     public void OnEndLand(Player owner, ClipTransition clipTransition)
     {
-        owner.ChangeAnim(clipTransition).Events.OnEnd = () =>
+        owner.characterAnim.PlayBase(clipTransition).Events.OnEnd = () =>
         {
             this.SwitchOnGround(owner);
         };

@@ -37,11 +37,23 @@ public class StateMachine<T> : MonoBehaviour where T : class
     }
     public bool CompareCurrentState(BaseState<T> baseState)
     {
+        if(currentBaseState == null) return false;
         return baseState.GetType() == currentBaseState.GetType();
     }
     public bool ComparePreviousState(BaseState<T> baseState)
     {
+        if(previousBaseState == null) return false;
         return previousBaseState.GetType() == baseState.GetType();
+    }
+    public bool CompareCurrentStateIsOrTypeOf(BaseState<T> baseState)
+    {
+        if (currentBaseState == null) return false;
+        return baseState.GetType() == currentBaseState.GetType() || currentBaseState.GetType().IsSubclassOf(baseState.GetType());
+    }
+    public bool ComparePreviousStateIsOrTypeOf(BaseState<T> baseState)
+    {
+        if(previousBaseState == null) return false;
+        return previousBaseState.GetType() == baseState.GetType() || previousBaseState.GetType().IsSubclassOf(baseState.GetType());
     }
     
 }

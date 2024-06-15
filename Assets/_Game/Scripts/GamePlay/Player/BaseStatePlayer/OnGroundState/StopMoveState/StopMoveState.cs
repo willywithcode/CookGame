@@ -26,7 +26,7 @@ public class StopMoveState : OnGroundState
 
     public void OnEndAnim(ClipTransition clip, Player owner)
     {
-        owner.ChangeAnim(owner.characterData.stopRunning).Events.OnEnd =
+        owner.characterAnim.PlayBase(owner.characterData.stopRunning).Events.OnEnd =
             () =>
             {
                 owner.stateMachine.ChangeState(owner.stateMachine.idleState);

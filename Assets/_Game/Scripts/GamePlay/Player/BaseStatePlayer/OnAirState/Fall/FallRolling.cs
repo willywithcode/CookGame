@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallNormal : FallState
+public class FallRolling : FallState
 {
     public override void EnterState(Player owner)
     {
         base.EnterState(owner);
-        owner.ChangeAnim(owner.characterData.fallNormal);
+        owner.characterAnim.PlayBase(owner.characterData.fallRolling);
     }
 
     public override void Execute(Player owner)
     {
         base.Execute(owner);
-        this.CheckCanLand(owner, owner.stateMachine.landNormalState);
+        this.CheckCanLand(owner, owner.stateMachine.landRollingState);
     }
 }

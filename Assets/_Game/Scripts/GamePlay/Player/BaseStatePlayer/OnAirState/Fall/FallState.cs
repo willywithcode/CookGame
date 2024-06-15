@@ -34,7 +34,7 @@ public class FallState : OnAirState
     {
         if (owner.character.IsGrounded())
         {
-            if (isHighEnough)
+            if (isHighEnough || Vector3.Distance(InputManager.Instance.GetMoveDirection(),Vector3.zero) < 0.1f)
             {
                 owner.stateMachine.ChangeState(landState);
                 return;

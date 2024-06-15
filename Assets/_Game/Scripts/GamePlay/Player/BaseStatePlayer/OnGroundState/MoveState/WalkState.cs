@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JogState : MoveState
+public class WalkState : MoveState
 {
     public override void EnterState(Player owner)
     {
-        owner.ChangeAnim(owner.characterData.jog);
-        owner.ChangeSpeed(owner.characterData.jogSpeed);
+        owner.characterAnim.PlayBase(owner.characterData.walk);
+        owner.ChangeSpeed(owner.characterData.walkSpeed);
     }
-
     public override void Execute(Player owner)
     {
         if(Vector3.Distance(InputManager.Instance.GetMoveDirection(), Vector3.zero) <= 0.1f) 
