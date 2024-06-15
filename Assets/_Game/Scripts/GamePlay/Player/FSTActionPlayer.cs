@@ -8,6 +8,7 @@ public class FSTActionPlayer : StateMachine<Player>
     public NoActionUpperState noActionUpperState = new NoActionUpperState();
     public PunchState punchState = new PunchState();
     public KickState kickState = new KickState();
+    public JumpAttackState jumpAttackState = new JumpAttackState();
     private void Start()
     {
         this.ChangeState(noActionUpperState);

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FallState : OnAirState
 {
-    private bool isHighEnough;
-    private float highestHeightFall;
+    protected bool isHighEnough;
+    protected float highestHeightFall;
     public override void EnterState(Player owner)
     {
         isHighEnough = false;
@@ -30,7 +30,7 @@ public class FallState : OnAirState
         return highestHeightFall;
     }
 
-    public void CheckCanLand(Player owner, LandState landState)
+    public virtual void CheckCanLand(Player owner, LandState landState)
     {
         if (owner.character.IsGrounded())
         {
