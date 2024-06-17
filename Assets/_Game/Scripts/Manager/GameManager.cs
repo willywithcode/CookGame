@@ -11,6 +11,8 @@ public enum GameState
 }
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] private RenUIPlayer renUIPlayer;
+    public RenUIPlayer RenUIPlayer => renUIPlayer;
     private static GameState currentGameState;
     private void Start()
     {

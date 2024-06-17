@@ -1918,6 +1918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcfb5558892d9844b849678b1345f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renUIPlayer: {fileID: 0}
 --- !u!1001 &887379612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2368,6 +2369,7 @@ MonoBehaviour:
     _Clip: {fileID: 7400000, guid: 57ba4920ed5811e4ea680744879a1c3a, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
+  handTransform: {fileID: 0}
 --- !u!1 &947766070
 GameObject:
   m_ObjectHideFlags: 0

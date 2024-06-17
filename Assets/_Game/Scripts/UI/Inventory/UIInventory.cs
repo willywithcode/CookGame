@@ -29,7 +29,11 @@ public class UIInventory : UICanvas
                     this.SetupItemAction(inventoryItem);
                 }
             }
-
+            inventorySelectedItem.Setup();
+            /*inventorySelectedItem.onChangedItem += (item) =>
+            {
+                if (mouseFollower.CurrentInventoryItem == null || !mouseFollower.CurrentInventoryItem.HaveItem) return;
+            };*/
             this.SetupItemAction(inventorySelectedItem);
             this.AddItemToInventory(0, Constant.BREAD_STRING, 1);
             this.AddItemToInventory(3, Constant.CABBAGE_STRING, 10);

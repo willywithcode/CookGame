@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class InventorySelectedItem : InventoryItem, IDropHandler
 {
-    [SerializeField] private RenUIPlayer player;
+    public UnityAction<InventorySelectedItem> onChangedItem;
     public override void OnDrop(PointerEventData eventData)
     {
-        this.onItemDropped?.Invoke(this);
+        base.OnDrop(eventData);
+        onChangedItem?.Invoke(this);
     }
 }
