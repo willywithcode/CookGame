@@ -9,7 +9,7 @@ public class NoActionUpperState : BaseState<Player>
         owner.characterAnim.FadeOutUpperBody();
         if (owner.stateMachine.CompareCurrentState(owner.stateMachine.idleState))
         {
-            owner.characterAnim.PlayBase(owner.characterData.idle_1, true);
+            owner.characterAnim.PlayBase(owner.characterData.idle_3, true);
         }
     }
 

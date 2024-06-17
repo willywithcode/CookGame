@@ -9,6 +9,7 @@ using UnityEngine;
 
 public class SaveGameManager : Singleton<SaveGameManager>
 {
+        public DataItemContainer dataItemContainer;
         private const string KEY = "dv0x4vsAQxffsxOrmBywQZELCS8k8InXeoju8xRK1NA=";
         private const string IV = "OmAyItBPXgbCpZLgB0FmoA==";
         private const string PATH = "/savegame.json";

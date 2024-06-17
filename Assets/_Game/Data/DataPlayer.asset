@@ -81,7 +81,7 @@ MonoBehaviour:
       _NormalizedTimes: []
       _Callbacks: []
       _Names: []
-    _Clip: {fileID: 7400000, guid: c798d30820f9934459473492ec371e74, type: 3}
+    _Clip: {fileID: 7400000, guid: 1f7a93442b82e564ab956b4cd8a0bc07, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
   fallRolling:
@@ -199,6 +199,15 @@ MonoBehaviour:
       _Callbacks: []
       _Names: []
     _Clip: {fileID: 7400000, guid: 04c249908638ccf45a546e5200f48f90, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  slip:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: 2702d78ca67ba4c43a3c8ea9021478ac, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
   walkSpeed: 5

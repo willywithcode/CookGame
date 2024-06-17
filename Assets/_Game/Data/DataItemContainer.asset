@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6acb0fb2e21c72549b98fdcb9b82eb81, type: 3}
+  m_Name: DataItemContainer
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: 91bf9054237c06247b2a47a8563b96c3, type: 3}
+    - {fileID: 831190082778032985, guid: 81e9fe7b3cd084242a088e945f531f38, type: 3}
+    - {fileID: 21300000, guid: 69ffff161ef869b428fc360527541055, type: 3}
+    - {fileID: 2753376050769379997, guid: bc49891f572f1164e9938f845ec37ab0, type: 3}
+    - {fileID: 21300000, guid: a730ea8b5fc2f1149934efe3cdfb9632, type: 3}
+    - {fileID: 5619282389117888688, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: dataItems
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[DataItem,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Tomato
+    - Name: $v
+      Entry: 7
+      Data: 2|DataItem, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Tomato
+    - Name: description
+      Entry: 1
+      Data: This is tomato
+    - Name: icon
+      Entry: 10
+      Data: 0
+    - Name: prefab
+      Entry: 10
+      Data: 1
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Bread
+    - Name: $v
+      Entry: 7
+      Data: 3|DataItem, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Bread
+    - Name: description
+      Entry: 1
+      Data: This is bread
+    - Name: icon
+      Entry: 10
+      Data: 2
+    - Name: prefab
+      Entry: 10
+      Data: 3
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Cabbage
+    - Name: $v
+      Entry: 7
+      Data: 4|DataItem, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Cabbage
+    - Name: description
+      Entry: 1
+      Data: This is cabbage
+    - Name: icon
+      Entry: 10
+      Data: 4
+    - Name: prefab
+      Entry: 10
+      Data: 5
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

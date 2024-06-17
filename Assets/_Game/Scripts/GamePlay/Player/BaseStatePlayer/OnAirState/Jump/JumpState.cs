@@ -17,7 +17,7 @@ public class JumpState : OnAirState
 
     public override void Execute(Player owner)
     {
-        DOVirtual.DelayedCall(0.2f, () => owner.character.StopJumping());
+        this.CheckCanLand(owner);
     }
 
     public override void ExitState(Player owner)
@@ -34,7 +34,6 @@ public class JumpState : OnAirState
 
     public void CheckCanLand(Player owner)
     {
-        
         countTime += Time.deltaTime;
         if(countTime <= timeOffset) return;
         if(owner.character.IsOnGround()) this.SwitchOnGround(owner);

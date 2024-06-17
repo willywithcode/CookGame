@@ -10,7 +10,9 @@ public class StateMachine<T> : MonoBehaviour where T : class
     private BaseState<T> currentBaseState;
 
     private void Update()
-    {
+    {        
+        if(!GameManager.CompareCurrentState(GameState.Gameplay))
+            return;
         ExecuteState();
     }
 

@@ -6,7 +6,7 @@ public class IdleState : OnGroundState
 {
     public override void EnterState(Player owner)
     {
-        if (owner.stateMachine.ComparePreviousState(owner.stateMachine.landRollingState))
+        if (owner.stateMachine.ComparePreviousState(owner.stateMachine.landRollingState) || owner.actionStateMachine.ComparePreviousState(owner.actionStateMachine.punchState))
         {
             owner.characterAnim.PlayBase(owner.characterData.idle_3, true);
             return;

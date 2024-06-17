@@ -144,11 +144,11 @@ public enum ParticleType
 public enum PoolType
 {
     None,
-
-    Bullet_1,
-    Bullet_2,
-    Bullet_3,
-    Bullet_4,
+    Bread,
+    Cheese,
+    Cabbage,
+    Meat,
+    Tomato
 }
 
 

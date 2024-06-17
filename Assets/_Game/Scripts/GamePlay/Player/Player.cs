@@ -17,7 +17,6 @@ public class Player : ACacheMonoBehauviour
     public CharacterAnim characterAnim;
     [SerializeField] private Transform playerTransform;
     private float turnToSmoothTime = 0.1f;
-
     public void ChangeSpeed(float speed)
     {
         character.maxWalkSpeed = speed;
