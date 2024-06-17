@@ -51,27 +51,27 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         this.quantityText.gameObject.SetActive(false);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         this.onItemClicked?.Invoke(this);
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public virtual void OnBeginDrag(PointerEventData eventData)
     {
         this.onItemBeginDrag?.Invoke(this);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public virtual void OnEndDrag(PointerEventData eventData)
     {
         this.onItemEndDrag?.Invoke(this);
     }
 
-    public void OnDrop(PointerEventData eventData)
+    public virtual void OnDrop(PointerEventData eventData)
     {
         this.onItemDropped?.Invoke(this);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public virtual void OnDrag(PointerEventData eventData)
     {
         onItemDrag?.Invoke(this);
     }

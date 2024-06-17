@@ -9,6 +9,8 @@ public class UIInventory : UICanvas
     [SerializeField] private Transform content;
     [SerializeField] private InventoryItem inventoryItemPrefab;
     [SerializeField] private MouseFollower mouseFollower;
+    [SerializeField] private DetailItemUI detailItemUI;
+    [SerializeField] private InventorySelectedItem inventorySelectedItem;
     private List<InventoryItem> inventoryItems = new List<InventoryItem>();
     private bool isFirstTime = true;
     public override void Setup()
@@ -27,6 +29,8 @@ public class UIInventory : UICanvas
                     this.SetupItemAction(inventoryItem);
                 }
             }
+
+            this.SetupItemAction(inventorySelectedItem);
             this.AddItemToInventory(0, Constant.BREAD_STRING, 1);
             this.AddItemToInventory(3, Constant.CABBAGE_STRING, 10);
             this.AddItemToInventory(4, Constant.TOMATO_STRING, 2);
@@ -45,7 +49,12 @@ public class UIInventory : UICanvas
     }
     private void HandleItemClicked(InventoryItem inventoryItem)
     {
-        
+        if (!inventoryItem.HaveItem)
+        {
+            this.detailItemUI.ResetDetail();
+            return;
+        }
+        this.detailItemUI.SetDetail(inventoryItem.DataItem);
     }
     public void HandleItemDropped(InventoryItem inventoryItem)
     {
@@ -55,6 +64,7 @@ public class UIInventory : UICanvas
     private void HandleItemBeginDrag(InventoryItem inventoryItem)
     {
         if(!inventoryItem.HaveItem) return;
+        this.detailItemUI.SetDetail(inventoryItem.DataItem);
         mouseFollower.gameObject.SetActive(true);
         mouseFollower.SetFollower(inventoryItem.DataItem, inventoryItem.QuantityItem, inventoryItem);
     }
