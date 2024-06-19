@@ -15,6 +15,7 @@ public class DataItem
     public string description;
     public Sprite icon;
     public GameUnit prefab;
+    public GameObject prefabGameObject;
     public bool isStackable;
     [ShowIf("@(isStackable)")]public int maxStack;
 }

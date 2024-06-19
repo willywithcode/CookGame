@@ -1918,7 +1918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcfb5558892d9844b849678b1345f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renUIPlayer: {fileID: 0}
+  renUIPlayer: {fileID: 923516145}
 --- !u!1001 &887379612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2369,7 +2369,7 @@ MonoBehaviour:
     _Clip: {fileID: 7400000, guid: 57ba4920ed5811e4ea680744879a1c3a, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
-  handTransform: {fileID: 0}
+  handTransform: {fileID: 1160633213}
 --- !u!1 &947766070
 GameObject:
   m_ObjectHideFlags: 0
@@ -3053,6 +3053,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1957443741}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!4 &1160633213 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400050, guid: d917c7129a9e4c74e84188b278d96de7, type: 3}
+  m_PrefabInstance: {fileID: 1215742873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1215742873
 PrefabInstance:
   m_ObjectHideFlags: 0

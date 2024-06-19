@@ -11,28 +11,29 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     IEndDragHandler, IDropHandler, IDragHandler
 {
     public UnityAction<InventoryItem> onItemBeginDrag,onItemDropped, onItemClicked, onItemEndDrag, onItemDrag;
-    [SerializeField] private Image contentItem;
-    [SerializeField] private TextMeshProUGUI quantityText;
-    private DataItem dataItem;
-    private bool haveItem = false;
-    private int quantityItem;
+    [SerializeField] protected Image contentItem;
+    [SerializeField] protected TextMeshProUGUI quantityText;
+    [SerializeField] protected Image borderImg;
+    protected DataItem dataItem;
+    protected bool haveItem = false;
+    protected int quantityItem;
     public bool HaveItem => haveItem;
     public DataItem DataItem => dataItem;
     public int QuantityItem => quantityItem;
 
     public void SetupItem(DataItem dataItem , int quantity = 0)
     {
+        if(quantity <= 0) return;
         this.haveItem = true;
         this.contentItem.gameObject.SetActive(true);
         this.contentItem.sprite = dataItem.icon;
         this.dataItem = dataItem;
+        this.quantityItem = quantity;
         if (!dataItem.isStackable || quantity < 2)
         {
             this.quantityText.gameObject.SetActive(false);
             return;
         }
-
-        this.quantityItem = quantity;
         this.quantityText.gameObject.SetActive(true);
         this.quantityText.text = quantity.ToString();
     }
@@ -47,6 +48,8 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     {
         this.haveItem = false;
         this.dataItem = null;
+        this.quantityItem = 0;
+        this.ToggleBorder(false);
         this.contentItem.gameObject.SetActive(false);
         this.quantityText.gameObject.SetActive(false);
     }
@@ -74,5 +77,32 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     public virtual void OnDrag(PointerEventData eventData)
     {
         onItemDrag?.Invoke(this);
+    }
+
+    public void ToggleBorder(bool state)
+    {
+        borderImg.enabled = state;
+    }
+
+    public void ThrowItem()
+    {
+        if (this.quantityItem < 2)
+        {
+            this.RemoveItem();
+            return;
+        }
+
+        quantityItem -= 1;
+        quantityText.text = quantityItem.ToString();
+        if(quantityItem == 1) quantityText.gameObject.SetActive(false);
+    }
+
+    public int SplitItem()
+    {
+        int temp = quantityItem / 2;
+        quantityItem -= temp;
+        quantityText.text = quantityItem.ToString();
+        if(quantityItem == 1) quantityText.gameObject.SetActive(false);
+        return temp;
     }
 }

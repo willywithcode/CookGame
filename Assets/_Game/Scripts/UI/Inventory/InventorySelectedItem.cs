@@ -6,10 +6,9 @@ using UnityEngine.EventSystems;
 
 public class InventorySelectedItem : InventoryItem, IDropHandler
 {
-    public UnityAction<InventorySelectedItem> onChangedItem;
     public override void OnDrop(PointerEventData eventData)
     {
         base.OnDrop(eventData);
-        onChangedItem?.Invoke(this);
+        GameManager.Instance.RenUIPlayer.SetCurrentItem(this.dataItem);
     }
 }

@@ -12,6 +12,7 @@ public class UIInventory : UICanvas
     [SerializeField] private DetailItemUI detailItemUI;
     [SerializeField] private InventorySelectedItem inventorySelectedItem;
     private List<InventoryItem> inventoryItems = new List<InventoryItem>();
+    private InventoryItem currentSelectedItem;
     private bool isFirstTime = true;
     public override void Setup()
     {
@@ -19,6 +20,9 @@ public class UIInventory : UICanvas
         if (isFirstTime)
         {
             isFirstTime = false;
+            this.detailItemUI.AddEventOnclickSplitBtn(SplitItem);
+            this.detailItemUI.AddEventOnclickThrowBtn(ThrowItem);
+            this.detailItemUI.AddEventOnclickThrowAllBtn(ThrowAllItem);
             for(int i = 0; i < numRow; i++)
             {
                 for (int j = 0; j < 4; j++)
@@ -30,10 +34,7 @@ public class UIInventory : UICanvas
                 }
             }
             inventorySelectedItem.Setup();
-            /*inventorySelectedItem.onChangedItem += (item) =>
-            {
-                if (mouseFollower.CurrentInventoryItem == null || !mouseFollower.CurrentInventoryItem.HaveItem) return;
-            };*/
+            this.TurnOffAllBorder();
             this.SetupItemAction(inventorySelectedItem);
             this.AddItemToInventory(0, Constant.BREAD_STRING, 1);
             this.AddItemToInventory(3, Constant.CABBAGE_STRING, 10);
@@ -56,8 +57,11 @@ public class UIInventory : UICanvas
         if (!inventoryItem.HaveItem)
         {
             this.detailItemUI.ResetDetail();
+            this.TurnOffAllBorder();
             return;
         }
+        this.TurnOnNewBorder(inventoryItem);
+        this.currentSelectedItem = inventoryItem;
         this.detailItemUI.SetDetail(inventoryItem.DataItem);
     }
     public void HandleItemDropped(InventoryItem inventoryItem)
@@ -68,6 +72,8 @@ public class UIInventory : UICanvas
     private void HandleItemBeginDrag(InventoryItem inventoryItem)
     {
         if(!inventoryItem.HaveItem) return;
+        this.TurnOnNewBorder(inventoryItem);
+        this.currentSelectedItem = inventoryItem;
         this.detailItemUI.SetDetail(inventoryItem.DataItem);
         mouseFollower.gameObject.SetActive(true);
         mouseFollower.SetFollower(inventoryItem.DataItem, inventoryItem.QuantityItem, inventoryItem);
@@ -84,10 +90,17 @@ public class UIInventory : UICanvas
     public void SwapItem(InventoryItem currentItem, InventoryItem targetItem)
     {
         if(currentItem == targetItem) return;  
+        this.currentSelectedItem = null;
+        this.detailItemUI.ResetDetail();
+        this.TurnOffAllBorder();
         if (!targetItem.HaveItem)
         {
             targetItem.SetupItem(currentItem.DataItem, currentItem.QuantityItem);
             currentItem.RemoveItem();
+            if(currentItem == inventorySelectedItem)
+            {
+                GameManager.Instance.RenUIPlayer.ResetItem();
+            }
             return;
         }
         if (currentItem.DataItem != targetItem.DataItem 
@@ -117,4 +130,63 @@ public class UIInventory : UICanvas
         if (index < 0 || index >= inventoryItems.Count) return;
         inventoryItems[index].SetupItem(SaveGameManager.Instance.dataItemContainer.dataItems[dataname], quantity);
     }
-}
+
+    public void AddItemToInventory(string name, int quantity)
+    {
+        if (CheckHaveEmptyInventory(out int index))
+        {
+            AddItemToInventory(index, name,  quantity);
+        }
+    }
+    public void ThrowItem() 
+    {
+        if (this.currentSelectedItem == null) return;
+        currentSelectedItem.ThrowItem();
+    }
+
+    public void ThrowAllItem()
+    {
+        if (currentSelectedItem == null) return;
+        currentSelectedItem.RemoveItem();
+    }
+
+    public void SplitItem()
+    {
+        if(currentSelectedItem == null) return;
+        if (CheckHaveEmptyInventory(out int index))
+        {
+            int splitQuantity = currentSelectedItem.SplitItem();
+            inventoryItems[index].SetupItem(currentSelectedItem.DataItem, splitQuantity);
+        }
+    }
+
+    public bool CheckHaveEmptyInventory(out int index)
+    {
+        index = -1;
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            if (!inventoryItems[i].HaveItem)
+            {
+                index = i;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void TurnOffAllBorder()
+    {
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            inventoryItems[i].ToggleBorder(false);
+        }
+        inventorySelectedItem.ToggleBorder(false);
+    }
+
+    public void TurnOnNewBorder(InventoryItem inventoryItem)
+    {
+        this.TurnOffAllBorder();
+        inventoryItem.ToggleBorder(true);
+    }
+ }

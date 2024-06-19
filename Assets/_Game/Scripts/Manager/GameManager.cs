@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -49,4 +51,15 @@ public class GameManager : Singleton<GameManager>
     {
         return currentGameState == state;
     }
+    #if UNITY_EDITOR
+    [Button]
+    public void AddItemInInvenroty([ValueDropdown(nameof(ValueDropdown))] string name, int quantity)
+    {
+        UIManager.Instance.GetUI<UIInventory>().AddItemToInventory(name, quantity);
+    }
+    public IEnumerable ValueDropdown()
+    {
+        return SaveGameManager.Instance.dataItemContainer.dataItems.Select(e => e.Value.name);
+    }
+    #endif
 }
