@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public interface IPickable
 {
-    public void PickUp(Transform parent);
+    public void PickUp(Action<object> onPickUp = null);
 }

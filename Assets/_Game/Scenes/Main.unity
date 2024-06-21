@@ -1919,6 +1919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renUIPlayer: {fileID: 923516145}
+  player: {fileID: 317010345}
 --- !u!1001 &887379612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5069,7 +5070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1788920038
 Transform:
   m_ObjectHideFlags: 0
@@ -5099,11 +5100,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pool:
   - root: {fileID: 1788920038}
-    prefab: {fileID: 831190082778032985, guid: 81e9fe7b3cd084242a088e945f531f38, type: 3}
+    prefab: {fileID: 0}
     amount: 10
     collect: 1
   - root: {fileID: 1788920038}
-    prefab: {fileID: 2753376050769379997, guid: bc49891f572f1164e9938f845ec37ab0, type: 3}
+    prefab: {fileID: 0}
     amount: 10
     collect: 1
   Particle: []
@@ -5315,7 +5316,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

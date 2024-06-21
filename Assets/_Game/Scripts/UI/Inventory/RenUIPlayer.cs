@@ -10,13 +10,13 @@ public class RenUIPlayer : MonoBehaviour
     [SerializeField] private ClipTransition clipIdle;
     [SerializeField] private Transform handTransform;
     private GameObject currentItem;
-    private DataItem curremtDataItem;
+    private DataItem<Item> curremtDataItem;
 
     private void Start()
     {
         characterAnim.PlayBase(clipIdle, false);
     }
-    public void SetCurrentItem(DataItem dataItem)
+    public void SetCurrentItem(DataItem<Item> dataItem)
     {
         if (currentItem != null)
         {

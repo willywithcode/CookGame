@@ -107,7 +107,6 @@ public class UICanvas : ACacheMonoBehauviour
     //dong canvas sau mot khoang thoi gian delay
     public virtual void Close(float delayTime)
     {
-        Debug.Log("Close");
         Invoke(nameof(CloseDirectly), delayTime);
     }
 

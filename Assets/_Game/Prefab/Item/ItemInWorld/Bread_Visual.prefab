@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c1e102b8baf8e4b9350122094ec1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 1
+  itemFactory: {fileID: 11400000, guid: 100f1218d852c8040847d8ae9405db70, type: 2}
   typeItem: Bread
 --- !u!54 &7126018405420280806
 Rigidbody:

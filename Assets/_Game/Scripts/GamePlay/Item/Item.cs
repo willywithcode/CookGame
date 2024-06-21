@@ -4,13 +4,20 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class Item : GameUnit
+public class Item : PoolElement
 {
+    [SerializeField] private ItemFactory itemFactory;
+    public ItemFactory ItemFactory => itemFactory;
     [SerializeField, ValueDropdown(nameof(ValueDropdown))] public string typeItem;
-    #if UNITY_EDITOR
+    public string TypeItem => typeItem;
     public IEnumerable ValueDropdown()
     {
         return SaveGameManager.Instance.dataItemContainer.dataItems.Select(e => e.Value.name);
     }
-    #endif
+
+    public override void OnDespawn()
+    {
+        base.OnDespawn();
+        itemFactory.ReturnObject(this);
+    }
 }

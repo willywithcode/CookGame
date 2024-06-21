@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3649cff2c9e88fe4abf7ec8b4f52bccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 3
+  itemFactory: {fileID: 11400000, guid: 46da40095dd615c4d82cbdda06843f83, type: 2}
   typeItem: Cabbage
 --- !u!54 &-6840392617627216515
 Rigidbody:

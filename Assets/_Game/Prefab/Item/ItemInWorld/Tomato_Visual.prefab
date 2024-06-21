@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553c3ee394315994f980d6d0baa686d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 5
+  itemFactory: {fileID: 11400000, guid: 93a7b4df8b07d4642b5aa784595cf60f, type: 2}
   typeItem: Tomato
 --- !u!54 &2429357378659337554
 Rigidbody:

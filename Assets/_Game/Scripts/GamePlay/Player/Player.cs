@@ -37,4 +37,15 @@ public class Player : ACacheMonoBehauviour
     {
         return this.GetDirectionLocal(InputManager.Instance.GetMoveDirection().normalized);
     }
+    private void OnCollisionEnter(Collision other)
+    {
+        if(Cache.GetCollisionPickable(other, out IPickable pickable))
+        {
+            pickable.PickUp((param) => AddItemToInventory(1, (Item) param));
+        }
+    }
+    private void AddItemToInventory( int quantity, Item item)
+    {
+        UIManager.Instance.GetUI<UIInventory>().AddItemToInventory(item.TypeItem, quantity);
+    }
 }

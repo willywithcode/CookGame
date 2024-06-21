@@ -14,6 +14,7 @@ public class UIInventory : UICanvas
     private List<InventoryItem> inventoryItems = new List<InventoryItem>();
     private InventoryItem currentSelectedItem;
     private bool isFirstTime = true;
+    private bool isHaveItemSelected = false;
     public override void Setup()
     {
         base.Setup();
@@ -36,12 +37,7 @@ public class UIInventory : UICanvas
             inventorySelectedItem.Setup();
             this.TurnOffAllBorder();
             this.SetupItemAction(inventorySelectedItem);
-            this.AddItemToInventory(0, Constant.BREAD_STRING, 1);
-            this.AddItemToInventory(3, Constant.CABBAGE_STRING, 10);
-            this.AddItemToInventory(4, Constant.TOMATO_STRING, 2);
-            this.AddItemToInventory(5, Constant.CABBAGE_STRING, 99);
-            this.AddItemToInventory(10, Constant.TOMATO_STRING, 2);
-
+            this.LoadData();
         }
     }
     private void SetupItemAction(InventoryItem item)
@@ -58,6 +54,7 @@ public class UIInventory : UICanvas
         {
             this.detailItemUI.ResetDetail();
             this.TurnOffAllBorder();
+            this.currentSelectedItem = null;
             return;
         }
         this.TurnOnNewBorder(inventoryItem);
@@ -68,10 +65,13 @@ public class UIInventory : UICanvas
     {
         if(mouseFollower.CurrentInventoryItem == null || !mouseFollower.CurrentInventoryItem.HaveItem) return;
         this.SwapItem(mouseFollower.CurrentInventoryItem, inventoryItem);
+        this.Save();
     }
     private void HandleItemBeginDrag(InventoryItem inventoryItem)
     {
         if(!inventoryItem.HaveItem) return;
+        if(isHaveItemSelected) return;
+        isHaveItemSelected = true;
         this.TurnOnNewBorder(inventoryItem);
         this.currentSelectedItem = inventoryItem;
         this.detailItemUI.SetDetail(inventoryItem.DataItem);
@@ -81,6 +81,10 @@ public class UIInventory : UICanvas
     private void HandleItemEndDrag(InventoryItem inventoryItem)
     {
         mouseFollower.gameObject.SetActive(false);
+        if (isHaveItemSelected && mouseFollower.CurrentInventoryItem == inventoryItem)
+        {
+            isHaveItemSelected = false;
+        }
     }
     private void HandleItemDrag(InventoryItem inventoryItem)
     {
@@ -107,7 +111,7 @@ public class UIInventory : UICanvas
             || !currentItem.DataItem.isStackable 
             || !targetItem.DataItem.isStackable)
         {
-            DataItem dataItem = currentItem.DataItem;
+            DataItem<Item> dataItem = currentItem.DataItem;
             int quantity = currentItem.QuantityItem;
             currentItem.SetupItem(targetItem.DataItem, targetItem.QuantityItem);
             targetItem.SetupItem(dataItem, quantity);
@@ -128,26 +132,45 @@ public class UIInventory : UICanvas
     public void AddItemToInventory(int index, string dataname, int quantity)
     {
         if (index < 0 || index >= inventoryItems.Count) return;
-        inventoryItems[index].SetupItem(SaveGameManager.Instance.dataItemContainer.dataItems[dataname], quantity);
+        inventoryItems[index].SetupItem(GetTypeItem(dataname), quantity);
+        this.Save();
     }
-
-    public void AddItemToInventory(string name, int quantity)
+    public void AddItemToInventory(string dataname, int quantity)
     {
-        if (CheckHaveEmptyInventory(out int index))
+        if(CheckHaveEmptyInventoryOrSameItem( GetTypeItem(dataname), out int indexItem))
         {
-            AddItemToInventory(index, name,  quantity);
+            if(inventoryItems[indexItem].QuantityItem + quantity > inventoryItems[indexItem].DataItem.maxStack)
+            {
+                int reminder = inventoryItems[indexItem].QuantityItem + quantity - inventoryItems[indexItem].DataItem.maxStack;
+                this.AddItemToInventory(indexItem, dataname, inventoryItems[indexItem].DataItem.maxStack);
+                if (CheckHaveEmptyInventory(out int index))
+                {
+                    AddItemToInventory(index, name,  quantity);
+                }
+            }
+            else
+            {
+                this.AddItemToInventory(indexItem,dataname, inventoryItems[indexItem].QuantityItem + quantity);
+            }
         }
+        else if (CheckHaveEmptyInventory(out int index))
+        {
+            this.AddItemToInventory(index,dataname, inventoryItems[index].QuantityItem + quantity);
+        }
+        
     }
     public void ThrowItem() 
     {
         if (this.currentSelectedItem == null) return;
         currentSelectedItem.ThrowItem();
+        this.Save();
     }
 
     public void ThrowAllItem()
     {
         if (currentSelectedItem == null) return;
-        currentSelectedItem.RemoveItem();
+        currentSelectedItem.ThrowAllItem();
+        this.Save();
     }
 
     public void SplitItem()
@@ -158,6 +181,7 @@ public class UIInventory : UICanvas
             int splitQuantity = currentSelectedItem.SplitItem();
             inventoryItems[index].SetupItem(currentSelectedItem.DataItem, splitQuantity);
         }
+        this.Save();
     }
 
     public bool CheckHaveEmptyInventory(out int index)
@@ -174,6 +198,20 @@ public class UIInventory : UICanvas
 
         return false;
     }
+    public bool CheckHaveEmptyInventoryOrSameItem(DataItem<Item> type,out int index)
+    {
+        index = -1;
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            if (inventoryItems[i].HaveItem && inventoryItems[i].DataItem == type 
+                                           && inventoryItems[i].DataItem.isStackable && inventoryItems[i].QuantityItem < type.maxStack)
+            { 
+                index = i;
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void TurnOffAllBorder()
     {
@@ -188,5 +226,40 @@ public class UIInventory : UICanvas
     {
         this.TurnOffAllBorder();
         inventoryItem.ToggleBorder(true);
+    }
+    public DataItem<Item> GetTypeItem(string typeItem)
+    {
+        return SaveGameManager.Instance.dataItemContainer.dataItems[typeItem];
+    }
+
+    public void Save()
+    {
+        SaveGameManager.Instance.InventoryItems = new List<InventoryData>();
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            if (inventoryItems[i].HaveItem)
+            {
+                SaveGameManager.Instance.InventoryItems.Add(new InventoryData(inventoryItems[i].DataItem.name,
+                    inventoryItems[i].DataItem.isStackable ? inventoryItems[i].QuantityItem: 1) );
+            }
+            else
+            {
+                SaveGameManager.Instance.InventoryItems.Add(new InventoryData("", 0));
+            }
+        }
+        SaveGameManager.Instance.SaveData();
+    }
+
+    public void LoadData()
+    {
+        if(SaveGameManager.Instance.InventoryItems.Count <= 0) return;
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            if (SaveGameManager.Instance.InventoryItems[i].quantity > 0)
+            {
+                inventoryItems[i].SetupItem(SaveGameManager.Instance.dataItemContainer.dataItems[SaveGameManager.Instance.InventoryItems[i].name],
+                    SaveGameManager.Instance.InventoryItems[i].quantity);
+            }
+        }
     }
  }

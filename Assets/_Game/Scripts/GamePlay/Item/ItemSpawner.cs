@@ -18,18 +18,18 @@ public class ItemSpawner : MonoBehaviour
 
     private void Start()
     {
-        this.SpawnItem(quantityTomato, PoolType.Tomato);
-        this.SpawnItem(quantityBread, PoolType.Bread);
+        this.SpawnItem(quantityTomato, Constant.TOMATO_STRING);
+        this.SpawnItem(quantityBread, Constant.BREAD_STRING);
     }
 
-    public void SpawnItem(int quantity, PoolType type)
+    public void SpawnItem(int quantity, string typeItem)
     {
         for (int i = 0; i < quantity; i++)
         {
             Vector3 position = new Vector3(centerSpawner.x + UnityEngine.Random.Range(-width, width)
                 , height
                 , centerSpawner.y + UnityEngine.Random.Range(-length, length));
-            GameUnit item = SimplePool.Spawn<GameUnit>(type);
+            Item item = SaveGameManager.Instance.dataItemContainer.dataItems[typeItem].prefab.ItemFactory.GetObject();
             item.TF.position = position;
         }
     }

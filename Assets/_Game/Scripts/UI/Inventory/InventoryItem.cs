@@ -14,14 +14,14 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     [SerializeField] protected Image contentItem;
     [SerializeField] protected TextMeshProUGUI quantityText;
     [SerializeField] protected Image borderImg;
-    protected DataItem dataItem;
+    protected DataItem<Item> dataItem;
     protected bool haveItem = false;
     protected int quantityItem;
     public bool HaveItem => haveItem;
-    public DataItem DataItem => dataItem;
+    public DataItem<Item> DataItem => dataItem;
     public int QuantityItem => quantityItem;
 
-    public void SetupItem(DataItem dataItem , int quantity = 0)
+    public void SetupItem(DataItem<Item> dataItem , int quantity = 0)
     {
         if(quantity <= 0) return;
         this.haveItem = true;
@@ -86,6 +86,10 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
 
     public void ThrowItem()
     {
+        Item item = dataItem.prefab.ItemFactory.GetObject();
+        item.TF.position = new Vector3(GameManager.Instance.Player.TF.position.x + Random.Range(3f,4f)
+            , GameManager.Instance.Player.TF.position.y + 1
+            , GameManager.Instance.Player.TF.position.z + Random.Range(3f,4f));
         if (this.quantityItem < 2)
         {
             this.RemoveItem();
@@ -95,6 +99,15 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         quantityItem -= 1;
         quantityText.text = quantityItem.ToString();
         if(quantityItem == 1) quantityText.gameObject.SetActive(false);
+    }
+
+    public void ThrowAllItem()
+    {
+        Item item = dataItem.prefab.ItemFactory.GetObject();
+        item.TF.position = new Vector3(GameManager.Instance.Player.TF.position.x + Random.Range(3f,4f)
+            , GameManager.Instance.Player.TF.position.y + 1
+            , GameManager.Instance.Player.TF.position.z + Random.Range(3f,4f));
+        this.RemoveItem();
     }
 
     public int SplitItem()

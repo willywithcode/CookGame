@@ -65,5 +65,9 @@ public class UIGamePlay : UICanvas
     {
         return previousMoveDirection;
     }
+    public void OpenInventory()
+    {
+        UIManager.Instance.OpenUI<UIInventory>();
+    }
     
 }

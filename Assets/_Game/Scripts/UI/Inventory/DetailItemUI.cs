@@ -14,7 +14,7 @@ public class DetailItemUI : MonoBehaviour
     [SerializeField] private ButtonCustom throwBtn;
     [SerializeField] private ButtonCustom throwAllBtn;
     [SerializeField] private ButtonCustom splitBtn;
-    public void SetDetail(DataItem dataItem)
+    public void SetDetail(DataItem<Item> dataItem)
     {
         contentItemImg.gameObject.SetActive(true);
         contentItemImg.sprite = dataItem.icon;

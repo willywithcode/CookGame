@@ -32,8 +32,8 @@ MonoBehaviour:
     SerializationNodes:
     - Name: dataItems
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[DataItem,
-        Assembly-CSharp]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[DataItem`1[[Item,
+        Assembly-CSharp]], Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
@@ -52,7 +52,7 @@ MonoBehaviour:
       Data: Tomato
     - Name: $v
       Entry: 7
-      Data: 2|DataItem, Assembly-CSharp
+      Data: 2|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Tomato
@@ -88,7 +88,7 @@ MonoBehaviour:
       Data: Bread
     - Name: $v
       Entry: 7
-      Data: 3|DataItem, Assembly-CSharp
+      Data: 3|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Bread
@@ -124,7 +124,7 @@ MonoBehaviour:
       Data: Cabbage
     - Name: $v
       Entry: 7
-      Data: 4|DataItem, Assembly-CSharp
+      Data: 4|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Cabbage

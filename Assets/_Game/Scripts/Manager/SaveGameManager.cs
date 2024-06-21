@@ -14,9 +14,24 @@ public class SaveGameManager : Singleton<SaveGameManager>
         private const string IV = "OmAyItBPXgbCpZLgB0FmoA==";
         private const string PATH = "/savegame.json";
 
+        private void Awake()
+        {
+            LoadData();
+            InitPool();
+            
+        }
+        private void InitPool()
+        {
+            foreach (var item in dataItemContainer.dataItems)
+            {
+                item.Value.prefab.ItemFactory.CreatePool();
+            }
+        }
+
         #region DataGame
 
         private int sampleData;
+        private List<InventoryData> inventoryItems;
         public int SampleData
         {
             get => sampleData;
@@ -27,7 +42,15 @@ public class SaveGameManager : Singleton<SaveGameManager>
             }
         }
         
-
+        public List<InventoryData> InventoryItems
+        {
+            get => inventoryItems;
+            set
+            {
+                inventoryItems = value;
+                SaveData();
+            }
+        }
         #endregion
 
 
@@ -37,7 +60,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
             //Custom data before saving
             GameData saveData = new GameData();
             saveData.sampleData = this.sampleData;
-            
+            saveData.inventoryDatas = this.inventoryItems;
             string path = Application.persistentDataPath + PATH;
             if (SaveData(saveData, path))
             {
@@ -52,6 +75,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
             //Custom default data
             GameData defaultData = new GameData();
             defaultData.sampleData = 0;
+            defaultData.inventoryDatas = new List<InventoryData>();
             
             // Load data
             GameData data = LoadData(path, defaultData);
@@ -59,6 +83,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
             
             //Custom properties
             this.sampleData = data.sampleData;
+            this.inventoryItems = data.inventoryDatas;
         }
 
         #region SaveAndLoadDataMoreDetail
@@ -134,4 +159,16 @@ public class SaveGameManager : Singleton<SaveGameManager>
 public class GameData
 {
     public int sampleData;
-} 
+    public List<InventoryData> inventoryDatas;
+}
+
+public struct InventoryData
+{
+    public InventoryData(string name, int quantity)
+    {
+        this.name = name;
+        this.quantity = quantity;
+    }
+    public string name;
+    public int quantity;
+}

@@ -6,15 +6,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "dataItemContainer", menuName = "ScriptableObjects/dataItemContainer", order = 1)]
 public class DataItemContainer : SerializedScriptableObject
 {
-    public Dictionary<string, DataItem> dataItems = new Dictionary<string, DataItem>();
+    public Dictionary<string, DataItem<Item>> dataItems = new Dictionary<string, DataItem<Item>>();
 }
 [Serializable]
-public class DataItem
+public class DataItem<T> where T : PoolElement
 {
     public string name;
     public string description;
     public Sprite icon;
-    public GameUnit prefab;
+    public T prefab;
     public GameObject prefabGameObject;
     public bool isStackable;
     [ShowIf("@(isStackable)")]public int maxStack;

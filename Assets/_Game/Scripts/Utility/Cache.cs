@@ -16,6 +16,20 @@ public class Cache
 
         return m_WFS[key];
     }
-
     //------------------------------------------------------------------------------------------------------------
+    
+    
+    private static Dictionary<int, IPickable> m_CollisionPickable = new Dictionary<int, IPickable>();
+    public static bool GetCollisionPickable(Collision key, out IPickable obj)
+    {
+        if (!m_CollisionPickable.ContainsKey(key.gameObject.GetInstanceID()))
+        {
+            obj = key.gameObject.GetComponent<IPickable>();
+            if (obj == null) return false;
+            m_CollisionPickable[key.gameObject.GetInstanceID()] = obj;
+        }
+
+        obj = m_CollisionPickable[key.gameObject.GetInstanceID()];
+        return true;
+    }
 }

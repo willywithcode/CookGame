@@ -14,11 +14,15 @@ public enum GameState
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private RenUIPlayer renUIPlayer;
+    [SerializeField] private Player player;
     public RenUIPlayer RenUIPlayer => renUIPlayer;
+    public Player Player => player;
     private static GameState currentGameState;
     private void Start()
     {
         UIManager.Instance.OpenUI<UIGamePlay>();
+        UIManager.Instance.OpenUI<UIInventory>();
+        UIManager.Instance.GetUI<UIInventory>().Close(0);
         Application.targetFrameRate = 60;
     }
 
