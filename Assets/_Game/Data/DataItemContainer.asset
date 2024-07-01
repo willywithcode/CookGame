@@ -25,6 +25,24 @@ MonoBehaviour:
     - {fileID: 21300000, guid: a730ea8b5fc2f1149934efe3cdfb9632, type: 3}
     - {fileID: 5619282389117888688, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
     - {fileID: 3812876574508226177, guid: 5c567c8e02e54644daeb3efc5a18242a, type: 3}
+    - {fileID: 21300000, guid: f9006aaa02b00b3449f218311be275c2, type: 3}
+    - {fileID: 3370421185354585972, guid: 44325c67017631342b5f02792113e57b, type: 3}
+    - {fileID: 3812876574508226177, guid: 4deea0c5a1d75c34fae10b05b51fa1b7, type: 3}
+    - {fileID: 21300000, guid: c77b9d26b8ece83418040edf1768d165, type: 3}
+    - {fileID: 7361602581055532200, guid: 21b2fcdae015b8c4c83ff4b68b31b06f, type: 3}
+    - {fileID: 3812876574508226177, guid: e2aa9d56799fdea4aaa81acd31520810, type: 3}
+    - {fileID: 21300000, guid: 4c044e2bfa2330449ad7aa6a2a4a85b3, type: 3}
+    - {fileID: -4038098181281078126, guid: 0df961a7e3870b44f9bbce7bdf930613, type: 3}
+    - {fileID: 3812876574508226177, guid: 5113db35e811ab043b9c9d35d6010a33, type: 3}
+    - {fileID: 21300000, guid: 1be000525c90a4240938de14bd716e65, type: 3}
+    - {fileID: -6742018563828368822, guid: d41d88fd6ee1ee54b92bcda056d98e4a, type: 3}
+    - {fileID: 2665173133816618215, guid: 5cf31908d889a1b4ab1be8d23f17bc00, type: 3}
+    - {fileID: 21300000, guid: a4ba1470638282042b5474878fa1f41a, type: 3}
+    - {fileID: 2039906848333051337, guid: 9292080c4545dad4c84d43504886abc3, type: 3}
+    - {fileID: 8446081424280377425, guid: a5135a99a1de74c4bb661c9cff69d432, type: 3}
+    - {fileID: 21300000, guid: ca6ef3c94c5ad394d8aab5eac85e6f61, type: 3}
+    - {fileID: -8584777775107063827, guid: a850e5d840d823543913c3bc0f233474, type: 3}
+    - {fileID: 1242060376076328654, guid: 229bca7d7b772f24d9f2e3315aea4dc5, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -43,7 +61,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 9
     - Name: 
       Entry: 7
       Data: 
@@ -54,6 +72,9 @@ MonoBehaviour:
       Entry: 7
       Data: 2|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
     - Name: name
+      Entry: 1
+      Data: Tomato
+    - Name: title
       Entry: 1
       Data: Tomato
     - Name: description
@@ -92,6 +113,9 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: Bread
+    - Name: title
+      Entry: 1
+      Data: Bread
     - Name: description
       Entry: 1
       Data: This is bread
@@ -128,6 +152,9 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: Cabbage
+    - Name: title
+      Entry: 1
+      Data: Cabbage
     - Name: description
       Entry: 1
       Data: This is cabbage
@@ -153,8 +180,254 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Cheese
+    - Name: $v
+      Entry: 7
+      Data: 5|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Cheese
+    - Name: title
+      Entry: 1
+      Data: Cheese
+    - Name: description
+      Entry: 1
+      Data: This is Cheesr
+    - Name: icon
+      Entry: 10
+      Data: 9
+    - Name: prefab
+      Entry: 10
+      Data: 10
+    - Name: prefabGameObject
+      Entry: 10
+      Data: 11
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Meat
+    - Name: $v
+      Entry: 7
+      Data: 6|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Meat
+    - Name: title
+      Entry: 1
+      Data: Meat
+    - Name: description
+      Entry: 1
+      Data: This is meat
+    - Name: icon
+      Entry: 10
+      Data: 12
+    - Name: prefab
+      Entry: 10
+      Data: 13
+    - Name: prefabGameObject
+      Entry: 10
+      Data: 14
+    - Name: isStackable
+      Entry: 5
+      Data: false
+    - Name: maxStack
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Burntmeat
+    - Name: $v
+      Entry: 7
+      Data: 7|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Burntmeat
+    - Name: title
+      Entry: 1
+      Data: Burnt Meat
+    - Name: description
+      Entry: 1
+      Data: Meat is burnt
+    - Name: icon
+      Entry: 10
+      Data: 15
+    - Name: prefab
+      Entry: 10
+      Data: 16
+    - Name: prefabGameObject
+      Entry: 10
+      Data: 17
+    - Name: isStackable
+      Entry: 5
+      Data: false
+    - Name: maxStack
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Sandwicha
+    - Name: $v
+      Entry: 7
+      Data: 8|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Sandwicha
+    - Name: title
+      Entry: 1
+      Data: Sandwich
+    - Name: description
+      Entry: 1
+      Data: This is sandwich
+    - Name: icon
+      Entry: 10
+      Data: 18
+    - Name: prefab
+      Entry: 10
+      Data: 19
+    - Name: prefabGameObject
+      Entry: 10
+      Data: 20
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Sandwichb
+    - Name: $v
+      Entry: 7
+      Data: 9|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Sandwichb
+    - Name: title
+      Entry: 1
+      Data: Sandwich
+    - Name: description
+      Entry: 1
+      Data: This is sanwich
+    - Name: icon
+      Entry: 10
+      Data: 21
+    - Name: prefab
+      Entry: 10
+      Data: 22
+    - Name: prefabGameObject
+      Entry: 10
+      Data: 23
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Sandwichc
+    - Name: $v
+      Entry: 7
+      Data: 10|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Sandwichc
+    - Name: title
+      Entry: 1
+      Data: Sandwich
+    - Name: description
+      Entry: 1
+      Data: This is sandwich
+    - Name: icon
+      Entry: 10
+      Data: 24
+    - Name: prefab
+      Entry: 10
+      Data: 25
+    - Name: prefabGameObject
+      Entry: 10
+      Data: 26
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
+  recipes:
+  - nameDish: SandwichA
+    time: 5
+    ingredients: Bread*2/Cabbage*2/Meat*2/Tomato*1/
+  - nameDish: SandwichB
+    time: 5
+    ingredients: Bread*2/Cabbage*1/Meat*2/Tomato*2/
+  - nameDish: sandwichC
+    time: 5
+    ingredients: Bread*3/Cabbage*1/Meat*1/Tomato*2/
+  link: 1KCZuFuy00onfEcxtTdsBdUM2veHv1dAyeg0eB13lbxg
+  tabNme: Data

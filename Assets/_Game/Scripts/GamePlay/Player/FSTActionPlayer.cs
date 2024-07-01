@@ -9,8 +9,10 @@ public class FSTActionPlayer : StateMachine<Player>
     public PunchState punchState = new PunchState();
     public KickState kickState = new KickState();
     public JumpAttackState jumpAttackState = new JumpAttackState();
+    public HoldState holdState = new HoldState();
     private void Start()
     {
-        this.ChangeState(noActionUpperState);
+        if(owner.CheckHaveDataItem()) ChangeState(holdState);
+        else ChangeState(noActionUpperState);
     }
 }

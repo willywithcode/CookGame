@@ -6,14 +6,17 @@ public class IdleState : OnGroundState
 {
     public override void EnterState(Player owner)
     {
-        if (owner.stateMachine.ComparePreviousState(owner.stateMachine.landRollingState) || owner.actionStateMachine.ComparePreviousState(owner.actionStateMachine.punchState))
+        if (owner.stateMachine.ComparePreviousState(owner.stateMachine.landRollingState) 
+            || owner.actionStateMachine.ComparePreviousState(owner.actionStateMachine.punchState)
+            || owner.actionStateMachine.ComparePreviousState(owner.actionStateMachine.kickState)
+            || owner.stateMachine.CompareCurrentState(owner.stateMachine.fallRollingState))
         {
-            owner.characterAnim.PlayBase(owner.characterData.idle_3, true);
+            owner.characterAnim.PlayBase(owner.characterData.idle_3, false);
             return;
         }
         int random = Random.Range(0, 2);
-        if(random == 0) owner.characterAnim.PlayBase(owner.characterData.idle_1, true);
-        else owner.characterAnim.PlayBase(owner.characterData.idle_2, true);
+        if(random == 0) owner.characterAnim.PlayBase(owner.characterData.idle_1, false);
+        else owner.characterAnim.PlayBase(owner.characterData.idle_2, false);
     }
 
     public override void Execute(Player owner)

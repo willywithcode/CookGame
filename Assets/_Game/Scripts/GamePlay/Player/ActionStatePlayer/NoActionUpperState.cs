@@ -7,10 +7,7 @@ public class NoActionUpperState : BaseState<Player>
     public override void EnterState(Player owner)
     {
         owner.characterAnim.FadeOutUpperBody();
-        if (owner.stateMachine.CompareCurrentState(owner.stateMachine.idleState))
-        {
-            owner.characterAnim.PlayBase(owner.characterData.idle_3, true);
-        }
+        UIManager.Instance.GetUI<UIGamePlay>().ToggleButtonInteractItem(false);
     }
 
     public override void Execute(Player owner)

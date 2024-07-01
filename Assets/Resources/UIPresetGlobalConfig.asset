@@ -12,10 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1559a9c78f7654db844f4f446d21b6, type: 3}
   m_Name: UIPresetGlobalConfig
   m_EditorClassIdentifier: 
-  m_MainTextFontAsset: {fileID: 0}
+  m_MainTextFontAsset: {fileID: 11400000, guid: 1c30397ea3f18bd428cf8dfa1867edb2, type: 2}
   m_MainSpriteAsset: {fileID: 0}
   m_MainTextStyleSheet: {fileID: 0}
-  TextPresets: []
+  TextPresets:
+  - m_presetName: Title
+    m_presetSize: 36
+    m_OverrideTextFontAsset: {fileID: 11400000, guid: 1c30397ea3f18bd428cf8dfa1867edb2, type: 2}
+    m_OverrideTextSpriteAsset: {fileID: 0}
+    m_OverrideTextStyleSheet: {fileID: 0}
+  - m_presetName: Middle Font
+    m_presetSize: 28
+    m_OverrideTextFontAsset: {fileID: 11400000, guid: 1c30397ea3f18bd428cf8dfa1867edb2, type: 2}
+    m_OverrideTextSpriteAsset: {fileID: 0}
+    m_OverrideTextStyleSheet: {fileID: 0}
+  - m_presetName: Small Font
+    m_presetSize: 20
+    m_OverrideTextFontAsset: {fileID: 11400000, guid: 1c30397ea3f18bd428cf8dfa1867edb2, type: 2}
+    m_OverrideTextSpriteAsset: {fileID: 0}
+    m_OverrideTextStyleSheet: {fileID: 0}
+  - m_presetName: BigTitle
+    m_presetSize: 64
+    m_OverrideTextFontAsset: {fileID: 11400000, guid: 1c30397ea3f18bd428cf8dfa1867edb2, type: 2}
+    m_OverrideTextSpriteAsset: {fileID: 0}
+    m_OverrideTextStyleSheet: {fileID: 0}
+  - m_presetName: Little Small Size
+    m_presetSize: 24
+    m_OverrideTextFontAsset: {fileID: 11400000, guid: 1c30397ea3f18bd428cf8dfa1867edb2, type: 2}
+    m_OverrideTextSpriteAsset: {fileID: 0}
+    m_OverrideTextStyleSheet: {fileID: 0}
+  - m_presetName: Middle Title
+    m_presetSize: 45
+    m_OverrideTextFontAsset: {fileID: 11400000, guid: 1c30397ea3f18bd428cf8dfa1867edb2, type: 2}
+    m_OverrideTextSpriteAsset: {fileID: 0}
+    m_OverrideTextStyleSheet: {fileID: 0}
   ButtonPresets:
   - m_presetName: Middle Size
     m_PresetSize: {x: 160, y: 160}
+  - m_presetName: Small Size
+    m_PresetSize: {x: 120, y: 120}
+  - m_presetName: Tiny Size
+    m_PresetSize: {x: 80, y: 80}

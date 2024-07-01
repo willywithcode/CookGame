@@ -20,6 +20,7 @@ public class ItemSpawner : MonoBehaviour
     {
         this.SpawnItem(quantityTomato, Constant.TOMATO_STRING);
         this.SpawnItem(quantityBread, Constant.BREAD_STRING);
+        this.SpawnItem(10, Constant.CABBAGE_STRING);
     }
 
     public void SpawnItem(int quantity, string typeItem)
@@ -29,7 +30,7 @@ public class ItemSpawner : MonoBehaviour
             Vector3 position = new Vector3(centerSpawner.x + UnityEngine.Random.Range(-width, width)
                 , height
                 , centerSpawner.y + UnityEngine.Random.Range(-length, length));
-            Item item = SaveGameManager.Instance.dataItemContainer.dataItems[typeItem].prefab.ItemFactory.GetObject();
+            Item item = SaveGameManager.Instance.dataItemContainer.dataItems[typeItem].prefab.ItemFactory.GetObject(5);
             item.TF.position = position;
         }
     }

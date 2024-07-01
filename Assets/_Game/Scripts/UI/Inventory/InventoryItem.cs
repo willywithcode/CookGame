@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,6 +21,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     public bool HaveItem => haveItem;
     public DataItem<Item> DataItem => dataItem;
     public int QuantityItem => quantityItem;
+    private bool isTweening = false;
 
     public void SetupItem(DataItem<Item> dataItem , int quantity = 0)
     {
@@ -81,12 +83,17 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
 
     public void ToggleBorder(bool state)
     {
+        if (state && !isTweening)
+        {
+            borderImg.transform.DOScale(0.95f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+            isTweening = true;
+        }
         borderImg.enabled = state;
     }
 
     public void ThrowItem()
     {
-        Item item = dataItem.prefab.ItemFactory.GetObject();
+        Item item = dataItem.prefab.ItemFactory.GetObject(1);
         item.TF.position = new Vector3(GameManager.Instance.Player.TF.position.x + Random.Range(3f,4f)
             , GameManager.Instance.Player.TF.position.y + 1
             , GameManager.Instance.Player.TF.position.z + Random.Range(3f,4f));
@@ -103,7 +110,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
 
     public void ThrowAllItem()
     {
-        Item item = dataItem.prefab.ItemFactory.GetObject();
+        Item item = dataItem.prefab.ItemFactory.GetObject(this.quantityItem);
         item.TF.position = new Vector3(GameManager.Instance.Player.TF.position.x + Random.Range(3f,4f)
             , GameManager.Instance.Player.TF.position.y + 1
             , GameManager.Instance.Player.TF.position.z + Random.Range(3f,4f));
@@ -117,5 +124,17 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         quantityText.text = quantityItem.ToString();
         if(quantityItem == 1) quantityText.gameObject.SetActive(false);
         return temp;
+    }
+
+    public void Hold()
+    {
+        if (this.quantityItem < 2)
+        {
+            this.RemoveItem();
+            return;
+        }
+        quantityItem -= 1;
+        quantityText.text = quantityItem.ToString();
+        if(quantityItem == 1) quantityText.gameObject.SetActive(false);
     }
 }

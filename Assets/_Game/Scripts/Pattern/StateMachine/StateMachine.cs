@@ -5,14 +5,12 @@ using UnityEngine;
 [Serializable]
 public class StateMachine<T> : MonoBehaviour where T : class
 {
-    [SerializeField] private T owner;
+    [SerializeField] protected T owner;
     private BaseState<T> previousBaseState;
     private BaseState<T> currentBaseState;
 
     private void Update()
     {        
-        if(!GameManager.CompareCurrentState(GameState.Gameplay))
-            return;
         ExecuteState();
     }
 

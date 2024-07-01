@@ -63,7 +63,7 @@ public class GameManager : Singleton<GameManager>
     }
     public IEnumerable ValueDropdown()
     {
-        return SaveGameManager.Instance.dataItemContainer.dataItems.Select(e => e.Value.name);
+        return SaveGameManager.Instance.dataItemContainer.dataItems.Select(e => e.Key);
     }
     #endif
 }

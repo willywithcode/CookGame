@@ -19,7 +19,8 @@ public class FallNormal : FallState
         if(owner.actionStateMachine.CompareCurrentState(owner.actionStateMachine.jumpAttackState) ) return;
         if (owner.character.IsGrounded())
         {
-            if (canAttack && highestHeightFall >= owner.characterData.heightEnoughForLanding)
+            if (canAttack && highestHeightFall >= owner.characterData.heightEnoughForLanding && 
+                !owner.actionStateMachine.CompareCurrentState(owner.actionStateMachine.holdState))
             {
                 owner.actionStateMachine.ChangeState(owner.actionStateMachine.jumpAttackState);
             }

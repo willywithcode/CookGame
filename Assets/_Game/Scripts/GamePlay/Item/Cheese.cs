@@ -6,8 +6,9 @@ using UnityEngine.Events;
 
 public class Cheese : Item, IPickable
 {
-    public void PickUp(Action<object> onPickUp = null)
+    public void PickUp(CheckPickup onPickUp = null)
     {
-        
+        if(onPickUp.Invoke(this))
+            this.OnDespawn();
     }
 }

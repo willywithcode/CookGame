@@ -11,8 +11,15 @@ public class JumpState : OnAirState
     public override void EnterState(Player owner)
     {
         countTime = 0;
-        owner.stateMachine.ChangeState(owner.stateMachine.ComparePreviousState(owner.stateMachine.runState) ?
-            owner.stateMachine.jumpRollingState : owner.stateMachine.jumpNormalState);
+        if (!owner.actionStateMachine.CompareCurrentState(owner.actionStateMachine.holdState))
+        {
+            owner.stateMachine.ChangeState(owner.stateMachine.ComparePreviousState(owner.stateMachine.runState) ?
+                owner.stateMachine.jumpRollingState : owner.stateMachine.jumpNormalState);
+        }
+        else
+        {
+            owner.stateMachine.ChangeState(owner.stateMachine.jumpNormalState);
+        }
     }
 
     public override void Execute(Player owner)
@@ -26,7 +33,7 @@ public class JumpState : OnAirState
     }
     public void OnEndJump(Player owner, ClipTransition clipTransition, FallState fallState)
     {
-        owner.characterAnim.PlayBase(clipTransition, true).Events.OnEnd = () =>
+        owner.characterAnim.PlayBase(clipTransition, false).Events.OnEnd = () =>
         {
             owner.stateMachine.ChangeState(fallState);
         };

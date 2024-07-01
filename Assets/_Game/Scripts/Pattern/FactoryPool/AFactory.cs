@@ -7,13 +7,17 @@ public class AFactory<T> : ScriptableObject where T : PoolElement
     protected Queue<T> pool = new Queue<T>();
     [SerializeField] protected T prefab;
     [SerializeField] protected int poolSize = 10;
+    private Transform root;
     public virtual void CreatePool()
     {
+        root = new GameObject(prefab.name + "Pool").transform;
+        root.SetParent(GameManager.Instance.transform);
         for (int i = 0; i < poolSize; i++)
         {
             T obj = Instantiate(prefab);
             obj.gameObject.SetActive(false);
             pool.Enqueue(obj);
+            obj.transform.SetParent(root);
         }
     }
     public virtual T GetObject()
@@ -33,5 +37,12 @@ public class AFactory<T> : ScriptableObject where T : PoolElement
     {
         obj.gameObject.SetActive(false);
         pool.Enqueue(obj);
+        obj.transform.SetParent(root);
+    }
+
+    public void SetUp(T prefab, int poolSize = 10)
+    {
+        this.prefab = prefab;
+        this.poolSize = poolSize;
     }
 }

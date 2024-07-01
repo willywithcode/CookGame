@@ -32,4 +32,18 @@ public class Cache
         obj = m_CollisionPickable[key.gameObject.GetInstanceID()];
         return true;
     }
+    
+    private static Dictionary<int, IPickable> m_TriggerPickable = new Dictionary<int, IPickable>();
+    public static bool GetTriggerPickable(Collider key, out IPickable obj)
+    {
+        if (!m_TriggerPickable.ContainsKey(key.gameObject.GetInstanceID()))
+        {
+            obj = key.gameObject.GetComponent<IPickable>();
+            if (obj == null) return false;
+            m_TriggerPickable[key.gameObject.GetInstanceID()] = obj;
+        }
+
+        obj = m_TriggerPickable[key.gameObject.GetInstanceID()];
+        return true;
+    }
 }

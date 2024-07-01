@@ -32,13 +32,11 @@ public class ButtonCustom : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void OnPointerDown(PointerEventData eventData)
     {
         customButtonDown?.Invoke();
-        Debug.Log("OnPointerDown");
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         customButtonUp?.Invoke();
-        Debug.Log("OnPointerUp");
     }
 #if UNITY_EDITOR
 

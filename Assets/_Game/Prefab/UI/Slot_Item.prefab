@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6423615997575860685}
   - component: {fileID: 2652789284864425526}
   - component: {fileID: 7284916369841523670}
-  - component: {fileID: 8944459359147891202}
   m_Layer: 5
   m_Name: Slot_Item
   m_TagString: Untagged
@@ -79,21 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8944459359147891202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4079530692988919974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89e16b20da00fa49b40fa4dd3cbd6f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentItem: {fileID: 3362489360623374858}
-  quantityText: {fileID: 6718328592795114017}
-  borderImg: {fileID: 4651350127797013085}
 --- !u!1 &4670031166371426285
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +239,7 @@ GameObject:
   - component: {fileID: 7106719448061042597}
   - component: {fileID: 612307981799134493}
   - component: {fileID: 6718328592795114017}
+  - component: {fileID: 4255304451523701280}
   m_Layer: 5
   m_Name: Item_Count
   m_TagString: Untagged
@@ -311,8 +296,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1c30397ea3f18bd428cf8dfa1867edb2, type: 2}
+  m_sharedMaterial: {fileID: 6761310089167574738, guid: 1c30397ea3f18bd428cf8dfa1867edb2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -378,3 +363,17 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4255304451523701280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156422532138427911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7968b65c545aa942b8005978daf21be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PresetType>k__BackingField: 1
+  Preset: Title

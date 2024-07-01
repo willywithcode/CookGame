@@ -6,9 +6,9 @@ using UnityEngine.Events;
 
 public class Tomato : Item, IPickable
 {
-    public void PickUp(Action<object> onPickUp = null)
+    public void PickUp(CheckPickup onPickUp = null)
     {
-        this.OnDespawn();
-        onPickUp?.Invoke(this);
+        if(onPickUp.Invoke(this))
+            this.OnDespawn();
     }
 }

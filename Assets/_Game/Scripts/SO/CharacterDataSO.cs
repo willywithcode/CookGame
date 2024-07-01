@@ -30,6 +30,10 @@ public class CharacterDataSO : ScriptableObject
     [FoldoutGroup("Kick Attack")] public ClipTransition kickAttack_2;
     [FoldoutGroup("Kick Attack")] public ClipTransition kickAttack_3;
     [FoldoutGroup("Jump Attack")] public ClipTransition jumpAttack;
+    [FoldoutGroup("Hold")] public ClipTransition hold_1;
+    [FoldoutGroup("Hold")] public ClipTransition hold_2;
+    [FoldoutGroup("Hold")] public ClipTransition hold_3;
+    [FoldoutGroup("Spawn")] public ClipTransition spawn;
     [Title("Speed")]
     public float walkSpeed = 5;
     public float runSpeed = 10;

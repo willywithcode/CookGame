@@ -201,13 +201,40 @@ MonoBehaviour:
     _Clip: {fileID: 7400000, guid: 04c249908638ccf45a546e5200f48f90, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
-  slip:
+  hold_1:
     _FadeDuration: 0.25
     _Events:
       _NormalizedTimes: []
       _Callbacks: []
       _Names: []
-    _Clip: {fileID: 7400000, guid: 2702d78ca67ba4c43a3c8ea9021478ac, type: 3}
+    _Clip: {fileID: -203655887218126122, guid: 401c664f30640e04e95c72ca99a1d1ab, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  hold_2:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: -203655887218126122, guid: 7ae3b0a2c72ba4f4ca5c117af0b1f15a, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  hold_3:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: -203655887218126122, guid: fcdf1ce4ff53e324cb217026904298a7, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  spawn:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: 7400000, guid: bd76db5efd660bf468bd38a0860a63a2, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
   walkSpeed: 5

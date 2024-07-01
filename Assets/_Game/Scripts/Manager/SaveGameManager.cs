@@ -13,11 +13,11 @@ public class SaveGameManager : Singleton<SaveGameManager>
         private const string KEY = "dv0x4vsAQxffsxOrmBywQZELCS8k8InXeoju8xRK1NA=";
         private const string IV = "OmAyItBPXgbCpZLgB0FmoA==";
         private const string PATH = "/savegame.json";
-
+        public DataItem<Item> DataItem(string name) => dataItemContainer.dataItems[name];
         private void Awake()
         {
-            LoadData();
-            InitPool();
+            this.LoadData();
+            this.Setup();
             
         }
         private void InitPool()
@@ -28,10 +28,17 @@ public class SaveGameManager : Singleton<SaveGameManager>
             }
         }
 
+        public void Setup()
+        {
+            InitPool();
+            GameManager.Instance.Player.LoadData();
+            GameManager.Instance.RenUIPlayer.LoadData();
+        }
         #region DataGame
 
         private int sampleData;
-        private List<InventoryData> inventoryItems;
+        private List<ItemData> inventoryItems;
+        private List<ItemData> itemPlayerHold;
         public int SampleData
         {
             get => sampleData;
@@ -42,12 +49,21 @@ public class SaveGameManager : Singleton<SaveGameManager>
             }
         }
         
-        public List<InventoryData> InventoryItems
+        public List<ItemData> InventoryItems
         {
             get => inventoryItems;
             set
             {
                 inventoryItems = value;
+                SaveData();
+            }
+        }
+        public List<ItemData> ItemPlayerHold
+        {
+            get => itemPlayerHold;
+            set
+            {
+                itemPlayerHold = value;
                 SaveData();
             }
         }
@@ -61,21 +77,22 @@ public class SaveGameManager : Singleton<SaveGameManager>
             GameData saveData = new GameData();
             saveData.sampleData = this.sampleData;
             saveData.inventoryDatas = this.inventoryItems;
+            saveData.itemPlayerHold = this.itemPlayerHold;
             string path = Application.persistentDataPath + PATH;
             if (SaveData(saveData, path))
             {
-                Debug.Log("Data saved successfully");
+                
             }
         }
         
         public void LoadData()
         {
             string path = Application.persistentDataPath + PATH;
-            
             //Custom default data
             GameData defaultData = new GameData();
             defaultData.sampleData = 0;
-            defaultData.inventoryDatas = new List<InventoryData>();
+            defaultData.inventoryDatas = new List<ItemData>();
+            defaultData.itemPlayerHold = new List<ItemData>();
             
             // Load data
             GameData data = LoadData(path, defaultData);
@@ -84,6 +101,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
             //Custom properties
             this.sampleData = data.sampleData;
             this.inventoryItems = data.inventoryDatas;
+            this.itemPlayerHold = data.itemPlayerHold;
         }
 
         #region SaveAndLoadDataMoreDetail
@@ -155,16 +173,18 @@ public class SaveGameManager : Singleton<SaveGameManager>
             }
         }
         #endregion
+
 }
 public class GameData
 {
     public int sampleData;
-    public List<InventoryData> inventoryDatas;
+    public List<ItemData> inventoryDatas;
+    public List<ItemData> itemPlayerHold;
 }
 
-public struct InventoryData
+public struct ItemData
 {
-    public InventoryData(string name, int quantity)
+    public ItemData(string name, int quantity)
     {
         this.name = name;
         this.quantity = quantity;
