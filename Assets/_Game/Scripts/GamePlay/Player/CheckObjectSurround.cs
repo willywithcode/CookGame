@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class CheckObjectSurround : ACacheMonoBehauviour
+public class CheckObjectSurround : ACacheMonoBehaviour
 {
     [SerializeField] private Player player;
     private List<Stove> stoves = new List<Stove>();
@@ -20,11 +20,13 @@ public class CheckObjectSurround : ACacheMonoBehauviour
         if(Cache.GetTriggerPickable(other, out var pickable))
         {
             Item item = (Item) pickable;
-            UIManager.Instance.GetUI<UIGamePlay>().PickupItemScreen.AddItem(SaveGameManager.Instance.dataItemContainer.dataItems[item.TypeItem]
+            Debug.Log("check");
+            UIManager.Instance.GetUI<UIGamePlay>().PickupItemScreen.AddItem(SaveGameManager.GetDataItem(item.ItemName)
                 , () =>
                 {
                     pickable.PickUp((param) =>  AddToInventory(item.quantity, (Item) pickable));
                 }, other, item.quantity);
+            // UIManager.Instance.GetUI<UIGamePlay>().PickupItemScreen.Check();
         }
         if (other.TryGetComponent<Stove>(out Stove stove))
         {

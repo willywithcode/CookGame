@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,16 +8,18 @@ public class PickupItemScreen : MonoBehaviour
 {
     [SerializeField] private Transform container;
     [SerializeField] private PickUpItemBtn pickUpItemBtn;
+    [SerializeField] private ButtonPickUpPool pool;
     private Dictionary<int, PickUpItemBtn> pickupItems = new Dictionary<int, PickUpItemBtn>();
-    public void AddItem(DataItem<Item> dataItem, UnityAction action, Collider collider, int quantity)
+    public void AddItem(DataItem dataItem, UnityAction action, Collider collider, int quantity)
     {
-        var item = Instantiate(pickUpItemBtn, container);
+        PickUpItemBtn item = (PickUpItemBtn) pool.GetObject(parent:container, scale: Vector3.one);
+        Debug.Log(item.GetInstanceID());
         item.SetUp(dataItem, () =>
         {
             action?.Invoke();
             if(pickupItems.ContainsKey(collider.GetInstanceID()))
             {
-                Destroy(pickupItems[collider.GetInstanceID()].gameObject);
+                pickupItems[collider.GetInstanceID()].OnDespawn();
                 pickupItems.Remove(collider.GetInstanceID());
             }
 
@@ -32,7 +35,7 @@ public class PickupItemScreen : MonoBehaviour
     {
         if (pickupItems.ContainsKey(collider.GetInstanceID()))
         {
-            Destroy(pickupItems[collider.GetInstanceID()].gameObject);
+            pickupItems[collider.GetInstanceID()].OnDespawn();
             pickupItems.Remove(collider.GetInstanceID());
             
         }
@@ -40,5 +43,15 @@ public class PickupItemScreen : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
+    }
+
+    public void Check()
+    {
+        PickUpItemBtn item = (PickUpItemBtn) pool.GetObject(parent:container, scale: Vector3.one);
+        Debug.Log(item.GetInstanceID());
+        DOVirtual.DelayedCall(2, () =>
+        {
+            item.OnDespawn();
+        });
     }
 }

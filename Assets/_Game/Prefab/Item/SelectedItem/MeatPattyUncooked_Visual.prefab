@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3812876574508226176}
   - component: {fileID: 6638671305895388161}
+  - component: {fileID: 2915719486398774137}
   m_Layer: 8
   m_Name: MeatPattyUncooked_Visual
   m_TagString: Untagged
@@ -54,6 +55,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7419753, y: 0.13880047, z: 0.71851856}
   m_Center: {x: 0.0016754866, y: 0.048589066, z: 0.000000029802322}
+--- !u!114 &2915719486398774137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812876574508226177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04e1f71b93d2ac49a017537aec9d5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantity: 1
+  itemFactory: {fileID: 11400000, guid: af616d097165da842b4aeffe7edbda0e, type: 2}
+  itemType: 2
+  itemName: Meat
 --- !u!1001 &2911635562203194026
 PrefabInstance:
   m_ObjectHideFlags: 0

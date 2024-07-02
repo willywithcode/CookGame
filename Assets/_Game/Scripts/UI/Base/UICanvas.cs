@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UICanvas : ACacheMonoBehauviour
+public class UICanvas : ACacheMonoBehaviour
 {
     public bool IsDestroyOnClose = false;
     public bool IsHandlingRabbitEars = false;

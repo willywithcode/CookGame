@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3812876574508226176}
   - component: {fileID: 5545729267537100989}
-  - component: {fileID: -4038098181281078126}
   - component: {fileID: -2824266063185966049}
+  - component: {fileID: 2767816732147052125}
   m_Layer: 9
   m_Name: MeatPattyBurned_Visual
   m_TagString: Untagged
@@ -56,21 +56,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7624057, y: 0.18363625, z: 0.76820064}
   m_Center: {x: -0.0028974712, y: 0.08029559, z: 0.011589959}
---- !u!114 &-4038098181281078126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3812876574508226177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c73464ff56908c4699b78f026fb20f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quantity: 1
-  itemFactory: {fileID: 11400000, guid: 34e3be5bf3b012c4ea8e46228950faf5, type: 2}
-  typeItem: Burntmeat
 --- !u!54 &-2824266063185966049
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98,6 +83,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2767816732147052125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812876574508226177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0312a42a92dc46b40a352d517d542d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantity: 1
+  itemFactory: {fileID: 11400000, guid: 34e3be5bf3b012c4ea8e46228950faf5, type: 2}
+  itemType: 1
+  itemName: Burntmeat
 --- !u!1001 &6759599153453497129
 PrefabInstance:
   m_ObjectHideFlags: 0

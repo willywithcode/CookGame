@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class AFactory<T> : ScriptableObject where T : PoolElement
 {
-    protected Queue<T> pool = new Queue<T>();
+    // Pool chua cac doi tuong
+    protected readonly Queue<T> pool = new Queue<T>();
+    // Prefab cua doi tuong
     [SerializeField] protected T prefab;
+    // So luong doi tuong trong pool
     [SerializeField] protected int poolSize = 10;
+    // Root chua cac doi tuong
     private Transform root;
+    // Tao pool
     public virtual void CreatePool()
     {
         root = new GameObject(prefab.name + "Pool").transform;
@@ -17,32 +22,43 @@ public class AFactory<T> : ScriptableObject where T : PoolElement
             T obj = Instantiate(prefab);
             obj.gameObject.SetActive(false);
             pool.Enqueue(obj);
-            obj.transform.SetParent(root);
+            obj.TF.SetParent(root);
         }
     }
-    public virtual T GetObject()
+    // Lay doi tuong tu pool
+    public virtual T GetObject(Vector3 pos = default,Vector3 scale = default, Vector3 rot = default, Transform parent = null)
     {
+        if(root == null) CreatePool();
         if (pool.Count == 0)
         {
             T extendObj = Instantiate(prefab);;
             extendObj.gameObject.SetActive(false);
+            extendObj.transform.SetParent(root);
             pool.Enqueue(extendObj);
         }
         T obj = pool.Dequeue();
         obj.OnInit();
         obj.gameObject.SetActive(true);
+        if(parent != null) obj.TF.SetParent(parent);
+        obj.TF.position = pos;
+        obj.TF.localScale = scale == default ? Vector3.one : scale;
+        obj.TF.eulerAngles = rot;
         return obj;
     }
+    // Tra doi tuong vao pool
     public virtual void ReturnObject(T obj)
     {
         obj.gameObject.SetActive(false);
         pool.Enqueue(obj);
-        obj.transform.SetParent(root);
+        obj.TF.SetParent(root);
     }
-
+#if UNITY_EDITOR
+    // Setup prefab va pool size
+    // Dung trong Inspector
     public void SetUp(T prefab, int poolSize = 10)
     {
         this.prefab = prefab;
         this.poolSize = poolSize;
     }
+#endif
 }

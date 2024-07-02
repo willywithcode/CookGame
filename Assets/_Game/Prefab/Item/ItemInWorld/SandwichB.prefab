@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3163912010171920215}
   - component: {fileID: 260535784046439789}
   - component: {fileID: 2563767419480493776}
-  - component: {fileID: 2039906848333051337}
+  - component: {fileID: -5331427563739194234}
   m_Layer: 9
   m_Name: SandwichB
   m_TagString: Untagged
@@ -166,7 +166,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5156784, y: 0.3851223, z: 1}
   m_Center: {x: -0.007338047, y: 0.1463995, z: 0}
---- !u!114 &2039906848333051337
+--- !u!114 &-5331427563739194234
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,9 +175,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5701771512617303770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea43cf46ed832f849bf006b679be723d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0312a42a92dc46b40a352d517d542d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   quantity: 1
-  itemFactory: {fileID: 11400000, guid: 2d1d0b79aa2947845be64d9e6eaa4fab, type: 2}
-  typeItem: Sandwichb
+  itemFactory: {fileID: 0}
+  itemType: 1
+  itemName: Sandwichb

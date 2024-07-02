@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3812876574508226176}
   - component: {fileID: 1294096424574671830}
+  - component: {fileID: -789778125545238737}
   m_Layer: 8
   m_Name: Cabbage_Visual
   m_TagString: Untagged
@@ -54,6 +55,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8351934, y: 0.47026438, z: 0.8312695}
   m_Center: {x: -0.007847905, y: 0.20993227, z: -0.005885944}
+--- !u!114 &-789778125545238737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812876574508226177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04e1f71b93d2ac49a017537aec9d5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantity: 1
+  itemFactory: {fileID: 11400000, guid: 61ccaedee0adbb84c984a1059217590a, type: 2}
+  itemType: 2
+  itemName: Cabbage
 --- !u!1001 &7790586617283749605
 PrefabInstance:
   m_ObjectHideFlags: 0

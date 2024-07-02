@@ -12,7 +12,7 @@ public class MouseFollower : MonoBehaviour
     [SerializeField] private TextMeshProUGUI quantityText;
     private InventoryItem currentInventoryItem;
     public InventoryItem CurrentInventoryItem => currentInventoryItem;
-    public void SetFollower(DataItem<Item> dataItem, int quantity, InventoryItem item)
+    public void SetFollower(DataItem dataItem, int quantity, InventoryItem item)
     {
         this.currentInventoryItem = item;
         image.sprite = dataItem.icon;

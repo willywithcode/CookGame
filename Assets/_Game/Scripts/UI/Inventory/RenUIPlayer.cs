@@ -12,17 +12,14 @@ using Random = UnityEngine.Random;
 public class RenUIPlayer : MonoBehaviour
 {
     [SerializeField] private CharacterAnim characterAnim;
-    [SerializeField] private ClipTransition clipIdle;
     [SerializeField] private Transform leftHandTransform;
     [SerializeField] private Transform rightHandTransform;
     [SerializeField] private CharacterDataSO data;
     [SerializeField] private Vector3 leftHandPosition;
     [SerializeField] private Vector3 rightHandPosition;
-    private GameObject currentItem;
-    private DataItem<Item> curremtDataItem;
+    private Item currentItem;
+    private DataItem curremtDataItem;
     private List<ItemStack> listHoldItem = new List<ItemStack>();
-    private bool isEndSpawn = false;
-    public bool IsEndSpawn => isEndSpawn;
 
     private void Start()
     {
@@ -41,24 +38,22 @@ public class RenUIPlayer : MonoBehaviour
         if(listHoldItem.Count > 0) return;
         characterAnim.PlayBase(data.spawn, false).Events.OnEnd = () =>
         {
-            isEndSpawn = true;
             this.ChangeToIdle();
         };
     }
-    public void SetCurrentItem(DataItem<Item> dataItem)
+    public void SetCurrentItem(DataItem dataItem)
     {
         if (currentItem != null)
         {
             Destroy(currentItem);
         }
-        currentItem = Instantiate(dataItem.prefabGameObject, leftHandTransform);
-        currentItem.transform.localPosition = Vector3.zero;
-        currentItem.transform.localScale = Vector3.one * 0.3f;
+        currentItem = dataItem.prefabGameObject.ItemFactory.GetObject(scale:Vector3.one * 0.3f);
+        currentItem.TF.localPosition = Vector3.zero;
         curremtDataItem = dataItem;
     }
-    public void HoldItem(DataItem<Item> dataItem, int quantity)
+    public void HoldItem(DataItem dataItem, int quantity)
     {
-        GameObject item = Instantiate(dataItem.prefabGameObject, leftHandTransform);
+        ItemHolding item = (ItemHolding)dataItem.prefabGameObject.ItemFactory.GetObject();
         listHoldItem.Add(new ItemStack(dataItem, quantity, item));
         int random = UnityEngine.Random.Range(0, 2);
         if (random == 0)
@@ -70,25 +65,25 @@ public class RenUIPlayer : MonoBehaviour
             HoldRightHand(item);
         }
     }
-    public void HoldLeftHand(GameObject item)
+    public void HoldLeftHand(ItemHolding item)
     {
-        item.transform.SetParent(leftHandTransform);
+        item.TF.SetParent(leftHandTransform);
         float randomFactor = Random.value;
-        item.transform.localPosition = Vector3.Lerp(Vector3.zero, leftHandPosition, randomFactor);
-        item.transform.localScale = Vector3.one * 0.3f;
+        item.TF.localPosition = Vector3.Lerp(Vector3.zero, leftHandPosition, randomFactor);
+        item.TF.localScale = Vector3.one * 0.3f;
     }
-    public void HoldRightHand(GameObject item)
+    public void HoldRightHand(ItemHolding item)
     {
-        item.transform.SetParent(rightHandTransform);
+        item.TF.SetParent(rightHandTransform);
         float randomFactor = Random.value;
-        item.transform.localPosition = Vector3.Lerp(Vector3.zero, rightHandPosition, randomFactor) ;
-        item.transform.localScale = Vector3.one * 0.3f;
+        item.TF.localPosition = Vector3.Lerp(Vector3.zero, rightHandPosition, randomFactor) ;
+        item.TF.localScale = Vector3.one * 0.3f;
     }
     public void ThrowItem()
     {
         for (int i = 0; i < listHoldItem.Count; i++)
         {
-            Destroy(listHoldItem[i].itemObject);
+            listHoldItem[i].itemObjectHolding.OnDespawn();
         }
         listHoldItem.Clear();
         this.ChangeToIdle();
@@ -115,7 +110,7 @@ public class RenUIPlayer : MonoBehaviour
         if(listItem.Count <= 0) return;
         for(int i = 0; i < listItem.Count; i++)
         {
-            HoldItem(SaveGameManager.Instance.dataItemContainer.dataItems[listItem[i].name],
+            HoldItem(SaveGameManager.GetDataItem(listItem[i].name),
                 listItem[i].quantity);
             
         }

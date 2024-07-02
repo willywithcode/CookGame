@@ -17,32 +17,32 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 21300000, guid: 91bf9054237c06247b2a47a8563b96c3, type: 3}
-    - {fileID: 831190082778032985, guid: 81e9fe7b3cd084242a088e945f531f38, type: 3}
-    - {fileID: 3812876574508226177, guid: 1613e500be0d548449ee1559e8133aa7, type: 3}
+    - {fileID: 4800944208016091475, guid: 81e9fe7b3cd084242a088e945f531f38, type: 3}
+    - {fileID: 3855597776949664201, guid: 1613e500be0d548449ee1559e8133aa7, type: 3}
     - {fileID: 21300000, guid: 69ffff161ef869b428fc360527541055, type: 3}
-    - {fileID: 2753376050769379997, guid: bc49891f572f1164e9938f845ec37ab0, type: 3}
-    - {fileID: 3812876574508226177, guid: 4088692a16acacc4ebcaad08afa32b00, type: 3}
+    - {fileID: -7302580476561429133, guid: bc49891f572f1164e9938f845ec37ab0, type: 3}
+    - {fileID: -305848482686728811, guid: 4088692a16acacc4ebcaad08afa32b00, type: 3}
     - {fileID: 21300000, guid: a730ea8b5fc2f1149934efe3cdfb9632, type: 3}
-    - {fileID: 5619282389117888688, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
-    - {fileID: 3812876574508226177, guid: 5c567c8e02e54644daeb3efc5a18242a, type: 3}
+    - {fileID: 6096043599489860052, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
+    - {fileID: -789778125545238737, guid: 5c567c8e02e54644daeb3efc5a18242a, type: 3}
     - {fileID: 21300000, guid: f9006aaa02b00b3449f218311be275c2, type: 3}
-    - {fileID: 3370421185354585972, guid: 44325c67017631342b5f02792113e57b, type: 3}
-    - {fileID: 3812876574508226177, guid: 4deea0c5a1d75c34fae10b05b51fa1b7, type: 3}
+    - {fileID: 8027845148961920590, guid: 44325c67017631342b5f02792113e57b, type: 3}
+    - {fileID: 2856075003311344850, guid: 4deea0c5a1d75c34fae10b05b51fa1b7, type: 3}
     - {fileID: 21300000, guid: c77b9d26b8ece83418040edf1768d165, type: 3}
-    - {fileID: 7361602581055532200, guid: 21b2fcdae015b8c4c83ff4b68b31b06f, type: 3}
-    - {fileID: 3812876574508226177, guid: e2aa9d56799fdea4aaa81acd31520810, type: 3}
+    - {fileID: 7464194305539567434, guid: 21b2fcdae015b8c4c83ff4b68b31b06f, type: 3}
+    - {fileID: 2915719486398774137, guid: e2aa9d56799fdea4aaa81acd31520810, type: 3}
     - {fileID: 21300000, guid: 4c044e2bfa2330449ad7aa6a2a4a85b3, type: 3}
-    - {fileID: -4038098181281078126, guid: 0df961a7e3870b44f9bbce7bdf930613, type: 3}
-    - {fileID: 3812876574508226177, guid: 5113db35e811ab043b9c9d35d6010a33, type: 3}
+    - {fileID: 2767816732147052125, guid: 0df961a7e3870b44f9bbce7bdf930613, type: 3}
+    - {fileID: -1436426114776724717, guid: 5113db35e811ab043b9c9d35d6010a33, type: 3}
     - {fileID: 21300000, guid: 1be000525c90a4240938de14bd716e65, type: 3}
-    - {fileID: -6742018563828368822, guid: d41d88fd6ee1ee54b92bcda056d98e4a, type: 3}
-    - {fileID: 2665173133816618215, guid: 5cf31908d889a1b4ab1be8d23f17bc00, type: 3}
+    - {fileID: -2632966024842373737, guid: d41d88fd6ee1ee54b92bcda056d98e4a, type: 3}
+    - {fileID: -5188388287378860922, guid: 5cf31908d889a1b4ab1be8d23f17bc00, type: 3}
     - {fileID: 21300000, guid: a4ba1470638282042b5474878fa1f41a, type: 3}
-    - {fileID: 2039906848333051337, guid: 9292080c4545dad4c84d43504886abc3, type: 3}
-    - {fileID: 8446081424280377425, guid: a5135a99a1de74c4bb661c9cff69d432, type: 3}
+    - {fileID: -5331427563739194234, guid: 9292080c4545dad4c84d43504886abc3, type: 3}
+    - {fileID: -1726443462337967129, guid: a5135a99a1de74c4bb661c9cff69d432, type: 3}
     - {fileID: 21300000, guid: ca6ef3c94c5ad394d8aab5eac85e6f61, type: 3}
-    - {fileID: -8584777775107063827, guid: a850e5d840d823543913c3bc0f233474, type: 3}
-    - {fileID: 1242060376076328654, guid: 229bca7d7b772f24d9f2e3315aea4dc5, type: 3}
+    - {fileID: -311511742068349724, guid: a850e5d840d823543913c3bc0f233474, type: 3}
+    - {fileID: -8148881932199873494, guid: 229bca7d7b772f24d9f2e3315aea4dc5, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -50,8 +50,8 @@ MonoBehaviour:
     SerializationNodes:
     - Name: dataItems
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[DataItem`1[[Item,
-        Assembly-CSharp]], Assembly-CSharp]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[DataItem,
+        Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
@@ -70,7 +70,7 @@ MonoBehaviour:
       Data: Tomato
     - Name: $v
       Entry: 7
-      Data: 2|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+      Data: 2|DataItem, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Tomato
@@ -88,6 +88,9 @@ MonoBehaviour:
       Data: 1
     - Name: prefabGameObject
       Entry: 10
+      Data: 2
+    - Name: type
+      Entry: 3
       Data: 2
     - Name: isStackable
       Entry: 5
@@ -109,7 +112,7 @@ MonoBehaviour:
       Data: Bread
     - Name: $v
       Entry: 7
-      Data: 3|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+      Data: 3|DataItem, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Bread
@@ -128,6 +131,9 @@ MonoBehaviour:
     - Name: prefabGameObject
       Entry: 10
       Data: 5
+    - Name: type
+      Entry: 3
+      Data: 2
     - Name: isStackable
       Entry: 5
       Data: true
@@ -148,7 +154,7 @@ MonoBehaviour:
       Data: Cabbage
     - Name: $v
       Entry: 7
-      Data: 4|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+      Data: 4|DataItem, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Cabbage
@@ -167,6 +173,9 @@ MonoBehaviour:
     - Name: prefabGameObject
       Entry: 10
       Data: 8
+    - Name: type
+      Entry: 3
+      Data: 2
     - Name: isStackable
       Entry: 5
       Data: true
@@ -187,7 +196,7 @@ MonoBehaviour:
       Data: Cheese
     - Name: $v
       Entry: 7
-      Data: 5|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+      Data: 5|DataItem, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Cheese
@@ -206,6 +215,9 @@ MonoBehaviour:
     - Name: prefabGameObject
       Entry: 10
       Data: 11
+    - Name: type
+      Entry: 3
+      Data: 2
     - Name: isStackable
       Entry: 5
       Data: true
@@ -226,7 +238,7 @@ MonoBehaviour:
       Data: Meat
     - Name: $v
       Entry: 7
-      Data: 6|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+      Data: 6|DataItem, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Meat
@@ -245,6 +257,9 @@ MonoBehaviour:
     - Name: prefabGameObject
       Entry: 10
       Data: 14
+    - Name: type
+      Entry: 3
+      Data: 2
     - Name: isStackable
       Entry: 5
       Data: false
@@ -265,7 +280,7 @@ MonoBehaviour:
       Data: Burntmeat
     - Name: $v
       Entry: 7
-      Data: 7|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+      Data: 7|DataItem, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Burntmeat
@@ -284,6 +299,9 @@ MonoBehaviour:
     - Name: prefabGameObject
       Entry: 10
       Data: 17
+    - Name: type
+      Entry: 3
+      Data: 1
     - Name: isStackable
       Entry: 5
       Data: false
@@ -304,7 +322,7 @@ MonoBehaviour:
       Data: Sandwicha
     - Name: $v
       Entry: 7
-      Data: 8|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+      Data: 8|DataItem, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Sandwicha
@@ -323,6 +341,9 @@ MonoBehaviour:
     - Name: prefabGameObject
       Entry: 10
       Data: 20
+    - Name: type
+      Entry: 3
+      Data: 1
     - Name: isStackable
       Entry: 5
       Data: true
@@ -343,7 +364,7 @@ MonoBehaviour:
       Data: Sandwichb
     - Name: $v
       Entry: 7
-      Data: 9|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+      Data: 9|DataItem, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Sandwichb
@@ -362,6 +383,9 @@ MonoBehaviour:
     - Name: prefabGameObject
       Entry: 10
       Data: 23
+    - Name: type
+      Entry: 3
+      Data: 1
     - Name: isStackable
       Entry: 5
       Data: true
@@ -382,7 +406,7 @@ MonoBehaviour:
       Data: Sandwichc
     - Name: $v
       Entry: 7
-      Data: 10|DataItem`1[[Item, Assembly-CSharp]], Assembly-CSharp
+      Data: 10|DataItem, Assembly-CSharp
     - Name: name
       Entry: 1
       Data: Sandwichc
@@ -401,6 +425,9 @@ MonoBehaviour:
     - Name: prefabGameObject
       Entry: 10
       Data: 26
+    - Name: type
+      Entry: 3
+      Data: 1
     - Name: isStackable
       Entry: 5
       Data: true

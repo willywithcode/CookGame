@@ -3,31 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 public class Item : PoolElement
 {
     public int quantity  = 1;
-    [SerializeField] private ItemFactory itemFactory;
+    [SerializeField] protected ItemFactory itemFactory;
     public ItemFactory ItemFactory => itemFactory;
-    [SerializeField, ValueDropdown(nameof(ValueDropdown))] public string typeItem;
-    public string TypeItem => typeItem;
-    public IEnumerable ValueDropdown()
-    {
-        return SaveGameManager.Instance.dataItemContainer.dataItems.Select(e => e.Key);
-    }
-
+    [SerializeField, ReadOnly] protected ItemType itemType;
+    [SerializeField, ReadOnly] protected string itemName;
+    public string ItemName => itemName;
+    public ItemType ItemType => itemType;
     public override void OnDespawn()
     {
         base.OnDespawn();
         quantity = 1;
+        TF.eulerAngles = Vector3.zero;
         itemFactory.ReturnObject(this);
     }
     #if UNITY_EDITOR
     [Button]
-    public void CreateSOPooling()
+    public virtual void CreateSOPooling()
     {
         ItemFactory itemFactory = ScriptableObject.CreateInstance<ItemFactory>();
         itemFactory.SetUp(this, 10);
-        UnityEditor.AssetDatabase.CreateAsset(itemFactory, "Assets/_Game/PoolFactory/" + this.typeItem + ".asset");
+        UnityEditor.AssetDatabase.CreateAsset(itemFactory, "Assets/_Game/PoolFactory/" + this.itemName + ".asset");
         this.itemFactory = itemFactory;
         UnityEditor.AssetDatabase.SaveAssets();
     }

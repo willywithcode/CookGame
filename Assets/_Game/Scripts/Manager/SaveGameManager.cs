@@ -9,45 +9,42 @@ using UnityEngine;
 
 public class SaveGameManager : Singleton<SaveGameManager>
 {
-        public DataItemContainer dataItemContainer;
+    #region Data
+    // Data item container
+    public DataItemContainer dataItemContainer;
+    // Get data item by name
+    public static DataItem GetDataItem(string name)
+    {
+        if (Instance.dataItemContainer.dataItems.ContainsKey(name))
+        {
+            return Instance.dataItemContainer.dataItems[name];
+        }
+        Debug.LogError($"Item {name} not found");
+        return null;
+    }
+    #endregion
+        // Key and IV for encrypt and decrypt
         private const string KEY = "dv0x4vsAQxffsxOrmBywQZELCS8k8InXeoju8xRK1NA=";
         private const string IV = "OmAyItBPXgbCpZLgB0FmoA==";
+        // Path to save game data
         private const string PATH = "/savegame.json";
-        public DataItem<Item> DataItem(string name) => dataItemContainer.dataItems[name];
         private void Awake()
         {
             this.LoadData();
             this.Setup();
             
         }
-        private void InitPool()
-        {
-            foreach (var item in dataItemContainer.dataItems)
-            {
-                item.Value.prefab.ItemFactory.CreatePool();
-            }
-        }
-
+        // Setup data
         public void Setup()
         {
-            InitPool();
             GameManager.Instance.Player.LoadData();
             GameManager.Instance.RenUIPlayer.LoadData();
         }
         #region DataGame
-
-        private int sampleData;
+        // Data game
         private List<ItemData> inventoryItems;
         private List<ItemData> itemPlayerHold;
-        public int SampleData
-        {
-            get => sampleData;
-            set
-            {
-                sampleData = value;
-                SaveData();
-            }
-        }
+ 
         
         public List<ItemData> InventoryItems
         {
@@ -68,14 +65,11 @@ public class SaveGameManager : Singleton<SaveGameManager>
             }
         }
         #endregion
-
-
-
+        // Save data
         public void SaveData()
         {
             //Custom data before saving
             GameData saveData = new GameData();
-            saveData.sampleData = this.sampleData;
             saveData.inventoryDatas = this.inventoryItems;
             saveData.itemPlayerHold = this.itemPlayerHold;
             string path = Application.persistentDataPath + PATH;
@@ -90,7 +84,6 @@ public class SaveGameManager : Singleton<SaveGameManager>
             string path = Application.persistentDataPath + PATH;
             //Custom default data
             GameData defaultData = new GameData();
-            defaultData.sampleData = 0;
             defaultData.inventoryDatas = new List<ItemData>();
             defaultData.itemPlayerHold = new List<ItemData>();
             
@@ -99,7 +92,6 @@ public class SaveGameManager : Singleton<SaveGameManager>
             
             
             //Custom properties
-            this.sampleData = data.sampleData;
             this.inventoryItems = data.inventoryDatas;
             this.itemPlayerHold = data.itemPlayerHold;
         }
@@ -107,7 +99,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
         #region SaveAndLoadDataMoreDetail
 
         
-
+        // Save data to file
         public bool SaveData(GameData data, string path)
         {
             try
@@ -135,7 +127,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
                 return false;
             }
         }
-
+        //Load data
         public GameData LoadData(string path, GameData defaultData = null)
         {
             if (!File.Exists(path))
@@ -175,13 +167,14 @@ public class SaveGameManager : Singleton<SaveGameManager>
         #endregion
 
 }
+// Game data for saving
+[Serializable]
 public class GameData
 {
-    public int sampleData;
     public List<ItemData> inventoryDatas;
     public List<ItemData> itemPlayerHold;
 }
-
+// Data item for saving
 public struct ItemData
 {
     public ItemData(string name, int quantity)

@@ -148,7 +148,7 @@ public class UIInventory : UICanvas
             || !currentItem.DataItem.isStackable 
             || !targetItem.DataItem.isStackable)
         {
-            DataItem<Item> dataItem = currentItem.DataItem;
+            DataItem dataItem = currentItem.DataItem;
             int quantity = currentItem.QuantityItem;
             currentItem.SetupItem(targetItem.DataItem, targetItem.QuantityItem);
             targetItem.SetupItem(dataItem, quantity);
@@ -169,12 +169,12 @@ public class UIInventory : UICanvas
     public void AddItemToInventory(int index, string dataName, int quantity)
     {
         if (index < 0 || index >= inventoryItems.Count) return;
-        inventoryItems[index].SetupItem(GetTypeItem(dataName), quantity);
+        inventoryItems[index].SetupItem(SaveGameManager.GetDataItem(dataName), quantity);
         this.Save();
     }
     public bool AddItemToInventory(string dataNameItem, int quantity)
     {
-        if(CheckHaveEmptyInventoryOrSameItem( GetTypeItem(dataNameItem), out int indexItem))
+        if(CheckHaveEmptyInventoryOrSameItem( SaveGameManager.GetDataItem(dataNameItem), out int indexItem))
         {
             if(inventoryItems[indexItem].QuantityItem + quantity > inventoryItems[indexItem].DataItem.maxStack)
             {
@@ -262,7 +262,7 @@ public class UIInventory : UICanvas
 
         return false;
     }
-    public bool CheckHaveEmptyInventoryOrSameItem(DataItem<Item> type,out int index)
+    public bool CheckHaveEmptyInventoryOrSameItem(DataItem type,out int index)
     {
         index = -1;
         for (int i = 0; i < inventoryItems.Count; i++)
@@ -294,10 +294,6 @@ public class UIInventory : UICanvas
     public void ChangeTextNumHoldItem(int num)
     {
         countItemHoldText.text = num.ToString() + "/7";
-    }
-    public DataItem<Item> GetTypeItem(string typeItem)
-    {
-        return SaveGameManager.Instance.dataItemContainer.dataItems[typeItem];
     }
 
     public void Save()
@@ -334,13 +330,13 @@ public class UIInventory : UICanvas
         {
             if (SaveGameManager.Instance.InventoryItems[i].quantity > 0)
             {
-                inventoryItems[i].SetupItem(SaveGameManager.Instance.dataItemContainer.dataItems[SaveGameManager.Instance.InventoryItems[i].name],
+                inventoryItems[i].SetupItem(SaveGameManager.GetDataItem(SaveGameManager.Instance.InventoryItems[i].name),
                     SaveGameManager.Instance.InventoryItems[i].quantity);
             }
         }
         int index = SaveGameManager.Instance.InventoryItems.Count - 1;
         if(string.IsNullOrEmpty(SaveGameManager.Instance.InventoryItems[index].name)) return;
-        inventorySelectedItem.SetupItem(SaveGameManager.Instance.dataItemContainer.dataItems[SaveGameManager.Instance.InventoryItems[index].name],
+        inventorySelectedItem.SetupItem(SaveGameManager.GetDataItem(SaveGameManager.Instance.InventoryItems[index].name),
             SaveGameManager.Instance.InventoryItems[index].quantity);
     }
 

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3812876574508226176}
   - component: {fileID: 3983012030272578716}
-  - component: {fileID: 3370421185354585972}
   - component: {fileID: -7005562735225683708}
+  - component: {fileID: 8027845148961920590}
   m_Layer: 9
   m_Name: CheeseBlock_Visual
   m_TagString: Untagged
@@ -56,21 +56,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.591356, y: 0.2164532, z: 0.39265752}
   m_Center: {x: -0.024368674, y: 0.13683951, z: 0}
---- !u!114 &3370421185354585972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3812876574508226177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 532fce1b1a5e4f14bb6d9a00eca9da48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quantity: 1
-  itemFactory: {fileID: 11400000, guid: c0a4f079b52150640a9f2042bbbcec4d, type: 2}
-  typeItem: Cheese
 --- !u!54 &-7005562735225683708
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98,6 +83,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8027845148961920590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812876574508226177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0312a42a92dc46b40a352d517d542d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantity: 1
+  itemFactory: {fileID: 11400000, guid: c0a4f079b52150640a9f2042bbbcec4d, type: 2}
+  itemType: 2
+  itemName: Cheese
 --- !u!1001 &1845905871233530044
 PrefabInstance:
   m_ObjectHideFlags: 0

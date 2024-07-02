@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5485606044370074652}
   - component: {fileID: 2528386473001272661}
   - component: {fileID: 2342835434949836154}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Sandwich B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 750927681990440375}
-  m_Layer: 9
+  - component: {fileID: -1726443462337967129}
+  m_Layer: 8
   m_Name: SandwichB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,3 +116,19 @@ Transform:
   - {fileID: 5485606044370074652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1726443462337967129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446081424280377425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04e1f71b93d2ac49a017537aec9d5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantity: 1
+  itemFactory: {fileID: 11400000, guid: ad30bd19a6a200145a109eb21083508c, type: 2}
+  itemType: 1
+  itemName: Sandwichb

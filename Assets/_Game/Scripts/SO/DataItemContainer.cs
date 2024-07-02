@@ -14,7 +14,7 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "dataItemContainer", menuName = "ScriptableObjects/dataItemContainer", order = 1)]
 public class DataItemContainer : SerializedScriptableObject
 {
-    public Dictionary<string, DataItem<Item>> dataItems = new Dictionary<string, DataItem<Item>>(StringComparer.OrdinalIgnoreCase);
+    public Dictionary<string, DataItem> dataItems = new Dictionary<string, DataItem>(StringComparer.OrdinalIgnoreCase);
     public List<Recipe> recipes;
 #if UNITY_EDITOR
     public string link;
@@ -22,7 +22,7 @@ public class DataItemContainer : SerializedScriptableObject
     [Button]
     public async void GetDataFromSheet()
     {
-        string result =  await GetJson(link, tabNme);
+        string result =  await Helper.GetJson(link, tabNme);
         Debug.Log(result);
         JArray jArray = JArray.Parse(result);
         recipes = new List<Recipe>();
@@ -90,42 +90,29 @@ public class DataItemContainer : SerializedScriptableObject
         }
         return true;
     }
-    public static async Task<string> GetJson(string spreadsheetId, string tabName)
-    {
-        return await SendRequest(spreadsheetId, tabName);
-    }
-
-    private static async Task<string> SendRequest(string spreadsheetId, string tabName)
-    {
-        string url = $"https://opensheet.elk.sh/{spreadsheetId}/{tabName}";
-        UnityWebRequest www = UnityWebRequest.Get(url);
-
-        await www.SendWebRequest();
-
-        if (www.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log($"Update Success {spreadsheetId}/{tabName}");
-            return www.downloadHandler.text;
-        }
-        else
-        {
-            Debug.LogError("Error: " + www.error);
-            return "";
-        }
-    }
+    
 #endif
 }
 [Serializable]
-public class DataItem<T> where T : PoolElement
+public class DataItem
 {
+    // public string id, dung de luu du lieu game va get du lieu tu sheet, dictionary
     public string name;
+    // Hien thi tren UI
     public string title;
     public string description;
     public Sprite icon;
-    public T prefab;
-    public GameObject prefabGameObject;
+    public Item prefab;
+    public ItemHolding prefabGameObject;
+    public ItemType type;
     public bool isStackable;
     [ShowIf("@(isStackable)")]public int maxStack;
+}
+public enum ItemType
+{
+    None,
+    Food,
+    Ingredient
 }
 [Serializable] 
 public class Recipe
@@ -134,20 +121,19 @@ public class Recipe
     public string nameDish;
     public int time;
     public string ingredients;
-    public DataItem<Item> GetItem => SaveGameManager.Instance.dataItemContainer.dataItems[nameDish];
-    public bool CanGetItem(string result, out DataItem<Item> item)
+    public bool CanGetItem(string result, out DataItem item)
     {
         item = null;
         if (SaveGameManager.Instance.dataItemContainer.dataItems.ContainsKey(result))
         {
-            item = SaveGameManager.Instance.dataItemContainer.dataItems[result];
+            item = SaveGameManager.GetDataItem(result);
             return true;
         }
 
         return false;
     }
 
-    public bool GetResult(Dictionary<string,int> dataItemString, out DataItem<Item> item, out int time)
+    public bool GetResult(Dictionary<string,int> dataItemString, out DataItem item, out int time)
     {
         item = null;
         time = 0;
@@ -168,7 +154,6 @@ public class Recipe
         string firstChar = nameDish.Substring(0, 1).ToUpper();
         string restChars = nameDish.Substring(1).ToLower();
         string normalNameDish = firstChar + restChars;
-        Debug.Log("Get Result : "+ normalNameDish);
         if (CanGetItem(normalNameDish, out item))
         {
             time = this.time;

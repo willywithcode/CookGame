@@ -365,6 +365,7 @@ MonoBehaviour:
   nameItem: {fileID: 5048564353325354401}
   quantityItem: {fileID: 2869233153421679728}
   btn: {fileID: 6182762477369690717}
+  pool: {fileID: 11400000, guid: 62284ac6109ab0342bddf8c1382b2f8f, type: 2}
 --- !u!114 &6182762477369690717
 MonoBehaviour:
   m_ObjectHideFlags: 0

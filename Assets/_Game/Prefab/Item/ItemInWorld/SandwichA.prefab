@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8526285115799312206}
   - component: {fileID: 2137167403564248873}
   - component: {fileID: 5177463086351590892}
-  - component: {fileID: -6742018563828368822}
+  - component: {fileID: -2632966024842373737}
   m_Layer: 9
   m_Name: SandwichA
   m_TagString: Untagged
@@ -166,7 +166,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5230169, y: 0.3558426, z: 1}
   m_Center: {x: -0.003669262, y: 0.13175964, z: 0}
---- !u!114 &-6742018563828368822
+--- !u!114 &-2632966024842373737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,9 +175,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8882026697875415170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea43cf46ed832f849bf006b679be723d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0312a42a92dc46b40a352d517d542d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   quantity: 1
   itemFactory: {fileID: 11400000, guid: fdb42975d4c11ef4eaa0cb1de35438e7, type: 2}
-  typeItem: Sandwicha
+  itemType: 1
+  itemName: Sandwicha

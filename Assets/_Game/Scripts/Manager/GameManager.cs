@@ -13,11 +13,14 @@ public enum GameState
 }
 public class GameManager : Singleton<GameManager>
 {
+    // RenUIPlayer and player
     [SerializeField] private RenUIPlayer renUIPlayer;
     [SerializeField] private Player player;
     public RenUIPlayer RenUIPlayer => renUIPlayer;
     public Player Player => player;
+    // Current game state
     private static GameState currentGameState;
+    // Start game
     private void Start()
     {
         UIManager.Instance.OpenUI<UIGamePlay>();
@@ -28,6 +31,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
+        #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (GameManager.CompareCurrentState(GameState.Gameplay))
@@ -41,23 +45,27 @@ public class GameManager : Singleton<GameManager>
                 UIManager.Instance.GetUI<UIInventory>().Close(0);
             }
         }
+        #endif
     }
-
+    // Change game state
     public static void ChangeState(GameState newState)
     {
         currentGameState = newState;
     }
+    // Get current game state
     public static GameState GetState()
     {
         return currentGameState;
     }
+    // Compare current game state
     public static bool CompareCurrentState(GameState state)
     {
         return currentGameState == state;
     }
     #if UNITY_EDITOR
     [Button]
-    public void AddItemInInvenroty([ValueDropdown(nameof(ValueDropdown))] string name, int quantity)
+    // Add item in inventory in editor
+    public void AddItemInInventory([ValueDropdown(nameof(ValueDropdown))] string name, int quantity)
     {
         UIManager.Instance.GetUI<UIInventory>().AddItemToInventory(name, quantity);
     }

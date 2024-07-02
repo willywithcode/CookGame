@@ -15,23 +15,23 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     [SerializeField] protected Image contentItem;
     [SerializeField] protected TextMeshProUGUI quantityText;
     [SerializeField] protected Image borderImg;
-    protected DataItem<Item> dataItem;
+    protected DataItem dataItem;
     protected bool haveItem = false;
     protected int quantityItem;
     public bool HaveItem => haveItem;
-    public DataItem<Item> DataItem => dataItem;
+    public DataItem DataItem => dataItem;
     public int QuantityItem => quantityItem;
     private bool isTweening = false;
 
-    public void SetupItem(DataItem<Item> dataItem , int quantity = 0)
+    public void SetupItem(DataItem dataItemSetup , int quantity = 0)
     {
         if(quantity <= 0) return;
         this.haveItem = true;
         this.contentItem.gameObject.SetActive(true);
-        this.contentItem.sprite = dataItem.icon;
-        this.dataItem = dataItem;
+        this.contentItem.sprite = dataItemSetup.icon;
+        this.dataItem = dataItemSetup;
         this.quantityItem = quantity;
-        if (!dataItem.isStackable || quantity < 2)
+        if (!dataItemSetup.isStackable || quantity < 2)
         {
             this.quantityText.gameObject.SetActive(false);
             return;

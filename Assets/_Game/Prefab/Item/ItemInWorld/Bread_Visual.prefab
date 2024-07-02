@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3812876574508226176}
   - component: {fileID: 562387427132623762}
-  - component: {fileID: 2753376050769379997}
   - component: {fileID: 7126018405420280806}
+  - component: {fileID: -7302580476561429133}
   m_Layer: 9
   m_Name: Bread_Visual
   m_TagString: Untagged
@@ -57,21 +57,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0203028, y: 0.53559476, z: 0.8826561}
   m_Center: {x: -0.06642926, y: 0.23220262, z: 0.0025509745}
---- !u!114 &2753376050769379997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3812876574508226177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c1e102b8baf8e4b9350122094ec1c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quantity: 1
-  itemFactory: {fileID: 11400000, guid: 100f1218d852c8040847d8ae9405db70, type: 2}
-  typeItem: Bread
 --- !u!54 &7126018405420280806
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99,6 +84,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-7302580476561429133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812876574508226177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0312a42a92dc46b40a352d517d542d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantity: 1
+  itemFactory: {fileID: 11400000, guid: 100f1218d852c8040847d8ae9405db70, type: 2}
+  itemType: 2
+  itemName: Bread
 --- !u!1001 &1395028449477224493
 PrefabInstance:
   m_ObjectHideFlags: 0

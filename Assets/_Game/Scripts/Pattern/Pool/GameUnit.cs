@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameUnit : ACacheMonoBehauviour
+public abstract class GameUnit : ACacheMonoBehaviour
 {
     public PoolType poolType;
 

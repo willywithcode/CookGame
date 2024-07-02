@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3812876574508226176}
   - component: {fileID: 6638671305895388161}
-  - component: {fileID: 7361602581055532200}
   - component: {fileID: 834354802887818049}
+  - component: {fileID: 7464194305539567434}
   m_Layer: 9
   m_Name: MeatPattyUncooked_Visual
   m_TagString: Untagged
@@ -56,21 +56,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7419753, y: 0.13880047, z: 0.71851856}
   m_Center: {x: 0.0016754866, y: 0.048589066, z: 0.000000029802322}
---- !u!114 &7361602581055532200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3812876574508226177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c73464ff56908c4699b78f026fb20f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quantity: 1
-  itemFactory: {fileID: 11400000, guid: 675e2f18773e51c47981b1218ce42b3d, type: 2}
-  typeItem: Meat
 --- !u!54 &834354802887818049
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98,6 +83,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7464194305539567434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812876574508226177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0312a42a92dc46b40a352d517d542d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantity: 1
+  itemFactory: {fileID: 11400000, guid: 675e2f18773e51c47981b1218ce42b3d, type: 2}
+  itemType: 2
+  itemName: Meat
 --- !u!1001 &2911635562203194026
 PrefabInstance:
   m_ObjectHideFlags: 0

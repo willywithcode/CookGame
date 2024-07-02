@@ -30,7 +30,7 @@ public class ItemSpawner : MonoBehaviour
             Vector3 position = new Vector3(centerSpawner.x + UnityEngine.Random.Range(-width, width)
                 , height
                 , centerSpawner.y + UnityEngine.Random.Range(-length, length));
-            Item item = SaveGameManager.Instance.dataItemContainer.dataItems[typeItem].prefab.ItemFactory.GetObject(5);
+            Item item = SaveGameManager.GetDataItem(typeItem).prefab.ItemFactory.GetObject(5);
             item.TF.position = position;
         }
     }

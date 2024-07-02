@@ -25,7 +25,7 @@ public class DetailItemUI : MonoBehaviour
     private List<Tuple<Vector3, Vector3>> listPos = new List<Tuple<Vector3, Vector3>>();
     private CancellationTokenSource cancellationTypingToken;
     public bool IsButtonVisible => isButtonVisible;
-    public void SetDetail(DataItem<Item> dataItem)
+    public void SetDetail(DataItem dataItem)
     {
         contentItemImg.gameObject.SetActive(true);
         contentItemImg.sprite = dataItem.icon;

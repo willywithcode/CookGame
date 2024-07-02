@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3812876574508226176}
+  - component: {fileID: -1436426114776724717}
   m_Layer: 8
   m_Name: MeatPattyBurned_Visual
   m_TagString: Untagged
@@ -32,6 +33,22 @@ Transform:
   - {fileID: 6504414887129455810}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1436426114776724717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812876574508226177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04e1f71b93d2ac49a017537aec9d5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantity: 1
+  itemFactory: {fileID: 11400000, guid: fbb5fdbc4970b4e4291bf7f8c3223a11, type: 2}
+  itemType: 1
+  itemName: Burntmeat
 --- !u!1001 &6759599153453497129
 PrefabInstance:
   m_ObjectHideFlags: 0

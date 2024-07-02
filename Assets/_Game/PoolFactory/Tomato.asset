@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d4e5c0c0efde74b810de0d282c5c2e, type: 3}
   m_Name: Tomato
   m_EditorClassIdentifier: 
-  prefab: {fileID: 831190082778032985, guid: 81e9fe7b3cd084242a088e945f531f38, type: 3}
+  prefab: {fileID: 4800944208016091475, guid: 81e9fe7b3cd084242a088e945f531f38, type: 3}
   poolSize: 10

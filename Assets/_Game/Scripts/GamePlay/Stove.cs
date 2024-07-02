@@ -4,13 +4,13 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Stove : ACacheMonoBehauviour
+public class Stove : ACacheMonoBehaviour
 {
     public UnityAction<Stove> OnDoneCooking;
     [SerializeField] private GameObject effectFire;
     private List<ItemStack> items = new List<ItemStack>();
     private bool isCooking = false;
-    private DataItem<Item> result;
+    private DataItem result;
     public bool IsCooking => isCooking;
     public void ToggleFire(bool value)
     {
@@ -25,7 +25,7 @@ public class Stove : ACacheMonoBehauviour
         this.items = items;
         for(int i = 0 ; i < items.Count; i++)
         { 
-            Transform itemTF = items[i].itemObject.transform;
+            Transform itemTF = items[i].itemObjectHolding.transform;
            itemTF.SetParent(this.TF);
            itemTF.DOLocalJump(Vector3.zero, 1, 1, 0.5f)
                .OnComplete(() =>
@@ -49,9 +49,8 @@ public class Stove : ACacheMonoBehauviour
         var dataItemString = ProcessIngredient();
         for(int i = 0; i < recipes.Count; i++)
         {
-           if(recipes[i].GetResult(dataItemString, out DataItem<Item> result, out int time))
+           if(recipes[i].GetResult(dataItemString, out DataItem result, out int time))
            {
-               Debug.Log("Result: " + result.name);
                 this.result = result;
                 DOVirtual.DelayedCall(time, () =>
                 {
@@ -60,17 +59,16 @@ public class Stove : ACacheMonoBehauviour
                 return;
            }
         }
-        result = SaveGameManager.Instance.dataItemContainer.dataItems[Constant.BURNT_MEAT_STRING];
+        result = SaveGameManager.GetDataItem(Constant.BURNT_MEAT_STRING);
         DOVirtual.DelayedCall(20, () =>
         {
             this.StopCook();
         });
     }
 
-    public void SpawnResult(DataItem<Item> item)
+    public void SpawnResult(DataItem item)
     {
-        var obj = item.prefab.ItemFactory.GetObject();
-        obj.TF.SetParent(this.TF);
+        var obj = item.prefab.ItemFactory.GetObject(parent:TF);
         var newPos = new Vector3( Random.Range(0f,2f)
             , 1
             , Random.Range(0f,2f));
