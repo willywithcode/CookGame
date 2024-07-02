@@ -46,7 +46,6 @@ public class UIPresetSetup : MonoBehaviour
                 btnTranform.sizeDelta = preset.m_PresetSize;
             }
         }
-        EditorUtility.SetDirty(gameObject);
     }
     
 

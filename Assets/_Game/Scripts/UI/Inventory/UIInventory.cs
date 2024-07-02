@@ -92,10 +92,14 @@ public class UIInventory : UICanvas
             if(detailItemUI.IsButtonVisible) detailItemUI.DoMoveButtonsDown();
             return;
         }
-        if(!detailItemUI.IsButtonVisible) detailItemUI.DoMoveButtonsUp();
         this.TurnOnNewBorder(inventoryItem);
         this.currentSelectedItem = inventoryItem;
         this.detailItemUI.SetDetail(inventoryItem.DataItem);
+        detailItemUI.SetTextTitleFunctionButton(currentSelectedItem.DataItem.type);
+        if (!detailItemUI.IsButtonVisible)
+        {
+            detailItemUI.DoMoveButtonsUp();
+        }
     }
     public void HandleItemDropped(InventoryItem inventoryItem)
     {
@@ -182,7 +186,7 @@ public class UIInventory : UICanvas
                 this.AddItemToInventory(indexItem, dataNameItem, inventoryItems[indexItem].DataItem.maxStack);
                 if (CheckHaveEmptyInventory(out int index))
                 {
-                    AddItemToInventory(index, dataNameItem,  quantity);
+                    AddItemToInventory(index, dataNameItem,  reminder);
                 }
             }
             else
@@ -311,15 +315,15 @@ public class UIInventory : UICanvas
                 SaveGameManager.Instance.InventoryItems.Add(new ItemData("", 0));
             }
         }
-        if(inventorySelectedItem.HaveItem)
-        {
-            SaveGameManager.Instance.InventoryItems.Add(new ItemData(inventorySelectedItem.DataItem.name,
-                inventorySelectedItem.DataItem.isStackable ? inventorySelectedItem.QuantityItem : 1));
-        }
-        else
-        {
-            SaveGameManager.Instance.InventoryItems.Add(new ItemData("", 0));
-        }
+        // if(inventorySelectedItem.HaveItem)
+        // {
+        //     SaveGameManager.Instance.InventoryItems.Add(new ItemData(inventorySelectedItem.DataItem.name,
+        //         inventorySelectedItem.DataItem.isStackable ? inventorySelectedItem.QuantityItem : 1));
+        // }
+        // else
+        // {
+        //     SaveGameManager.Instance.InventoryItems.Add(new ItemData("", 0));
+        // }
         SaveGameManager.Instance.SaveData();
     }
 
@@ -334,10 +338,10 @@ public class UIInventory : UICanvas
                     SaveGameManager.Instance.InventoryItems[i].quantity);
             }
         }
-        int index = SaveGameManager.Instance.InventoryItems.Count - 1;
-        if(string.IsNullOrEmpty(SaveGameManager.Instance.InventoryItems[index].name)) return;
-        inventorySelectedItem.SetupItem(SaveGameManager.GetDataItem(SaveGameManager.Instance.InventoryItems[index].name),
-            SaveGameManager.Instance.InventoryItems[index].quantity);
+        // int index = SaveGameManager.Instance.InventoryItems.Count - 1;
+        // if(string.IsNullOrEmpty(SaveGameManager.Instance.InventoryItems[index].name)) return;
+        // inventorySelectedItem.SetupItem(SaveGameManager.GetDataItem(SaveGameManager.Instance.InventoryItems[index].name),
+        //     SaveGameManager.Instance.InventoryItems[index].quantity);
     }
 
     public void OpenUIGamePlay()

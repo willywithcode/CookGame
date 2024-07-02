@@ -126,7 +126,7 @@ MonoBehaviour:
       _NormalizedTimes: []
       _Callbacks: []
       _Names: []
-    _Clip: {fileID: 7400000, guid: 6a382880977f98648bd2d3035d1c2d50, type: 3}
+    _Clip: {fileID: 7400000, guid: 6b90c9bd5fe345147a928d2be24c7804, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
   stopWalking:
@@ -240,4 +240,5 @@ MonoBehaviour:
   walkSpeed: 5
   runSpeed: 10
   jogSpeed: 7
+  stopRunSpeed: 3
   heightEnoughForLanding: 5

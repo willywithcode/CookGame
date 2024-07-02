@@ -13169,6 +13169,7 @@ MonoBehaviour:
   throwAllBtn: {fileID: 2122617685418678426}
   splitBtn: {fileID: 8889938304570252313}
   holdBtn: {fileID: 6855490318666256822}
+  titleFuctionButton: {fileID: 8911767327512589266}
 --- !u!1 &4478235436004288506
 GameObject:
   m_ObjectHideFlags: 0

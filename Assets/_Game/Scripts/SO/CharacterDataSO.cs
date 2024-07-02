@@ -38,5 +38,6 @@ public class CharacterDataSO : ScriptableObject
     public float walkSpeed = 5;
     public float runSpeed = 10;
     public float jogSpeed = 7;
+    public float stopRunSpeed = 1;
     public float heightEnoughForLanding = 4;
 }

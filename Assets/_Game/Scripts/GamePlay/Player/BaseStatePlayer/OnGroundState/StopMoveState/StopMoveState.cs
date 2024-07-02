@@ -9,6 +9,7 @@ public class StopMoveState : OnGroundState
     protected Vector3 moveDirection;
     public override void EnterState(Player owner)
     {
+        owner.ChangeSpeed(owner.characterData.stopRunSpeed);
         moveDirection = owner.GetDirectionLocal(InputManager.Instance.GetPreviousMoveDirection()).Item1;
     }
 
@@ -22,6 +23,12 @@ public class StopMoveState : OnGroundState
             return;
         }
         owner.character.SetMovementDirection(moveDirection);
+    }
+
+    public override void ExitState(Player owner)
+    {
+        base.ExitState(owner);
+        owner.ChangeSpeed(owner.characterData.walkSpeed);
     }
 
     public void OnEndAnim(ClipTransition clip, Player owner)

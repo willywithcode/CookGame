@@ -14,4 +14,10 @@ public class Constant
     public static readonly string MEAT_STRING = "Meat";
     public static readonly string BURNT_MEAT_STRING = "Burntmeat";
     public static readonly string CHEESE_STRING = "Cheese";
+    
+    
+    
+    
+    public static readonly string HOLD_STRING = "Hold";
+    public static readonly string USE_STRING = "Use";
 }

@@ -17,6 +17,7 @@ public class DetailItemUI : MonoBehaviour
     [SerializeField] private ButtonCustom throwAllBtn;
     [SerializeField] private ButtonCustom splitBtn;
     [SerializeField] private ButtonCustom holdBtn;
+    [SerializeField] private TextMeshProUGUI titleFuctionButton;
     private bool isButtonVisible = true;
     private Tween tween_ThrowBtn;
     private Tween tween_ThrowAllBtn;
@@ -81,6 +82,18 @@ public class DetailItemUI : MonoBehaviour
         this.DoMoveUp(this.throwAllBtn, tween_ThrowAllBtn, 1);
         this.DoMoveUp(this.splitBtn, tween_SplitBtn, 2);
         this.DoMoveUp(this.holdBtn, tween_HoldBtn, 3);
+    }
+
+    public void SetTextTitleFunctionButton(ItemType itemType)
+    {
+        if(itemType == ItemType.Food)
+            this.SetTextTitleFunctionButton(Constant.USE_STRING);
+        else
+            this.SetTextTitleFunctionButton(Constant.HOLD_STRING);
+    }
+    public void SetTextTitleFunctionButton(string title)
+    {
+        this.titleFuctionButton.text = title;
     }
     public void DoMoveUp(ButtonCustom button, Tween tween, int index)
     {
