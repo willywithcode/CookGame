@@ -21,13 +21,18 @@ public class Item : PoolElement
         TF.eulerAngles = Vector3.zero;
         itemFactory.ReturnObject(this);
     }
+
+    public void ReturnRoot()
+    {
+        this.TF.SetParent(itemFactory.Root);
+    }
     #if UNITY_EDITOR
     [Button]
     public virtual void CreateSOPooling()
     {
         ItemFactory itemFactory = ScriptableObject.CreateInstance<ItemFactory>();
         itemFactory.SetUp(this, 10);
-        UnityEditor.AssetDatabase.CreateAsset(itemFactory, "Assets/_Game/PoolFactory/" + this.itemName + ".asset");
+        UnityEditor.AssetDatabase.CreateAsset(itemFactory, "Assets/_Game/PoolFactory/Item/" + this.itemName + ".asset");
         this.itemFactory = itemFactory;
         UnityEditor.AssetDatabase.SaveAssets();
     }

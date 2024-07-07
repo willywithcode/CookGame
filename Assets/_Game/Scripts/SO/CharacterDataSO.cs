@@ -34,6 +34,11 @@ public class CharacterDataSO : ScriptableObject
     [FoldoutGroup("Hold")] public ClipTransition hold_2;
     [FoldoutGroup("Hold")] public ClipTransition hold_3;
     [FoldoutGroup("Spawn")] public ClipTransition spawn;
+    [FoldoutGroup("Farm")] public ClipTransition plantSeed;
+    [FoldoutGroup("Farm")] public ClipTransition water;
+    [FoldoutGroup("Farm")] public ClipTransition harvest;
+    [FoldoutGroup("Farm")] public ClipTransition startFishing;
+    [FoldoutGroup("Farm")] public ClipTransition pullFish;
     [Title("Speed")]
     public float walkSpeed = 5;
     public float runSpeed = 10;

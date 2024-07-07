@@ -13,6 +13,7 @@ public class AFactory<T> : ScriptableObject where T : PoolElement
     // Root chua cac doi tuong
     private Transform root;
     // Tao pool
+    public Transform Root => root;
     public virtual void CreatePool()
     {
         root = new GameObject(prefab.name + "Pool").transform;

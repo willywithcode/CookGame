@@ -4,11 +4,13 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class UIInventory : UICanvas
 {
     [SerializeField] private int numRow;
-    [SerializeField] private Transform content;
+    [SerializeField] private Transform[] content;
     [SerializeField] private InventoryItem inventoryItemPrefab;
     [SerializeField] private MouseFollower mouseFollower;
     [SerializeField] private DetailItemUI detailItemUI;
@@ -16,32 +18,74 @@ public class UIInventory : UICanvas
     [SerializeField] private TouchField touchField;
     [SerializeField] private TextMeshProUGUI countItemHoldText;
     [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private RectTransform view;
+    [SerializeField] private float[] point;
+    [SerializeField] private ButtonCustom backPageBtn;
+    [SerializeField] private ButtonCustom nextPageBtn;
+    [SerializeField] private ChangePageChecker backPageChecker;
+    [SerializeField] private ChangePageChecker nextPageChecker;
+    [SerializeField] private ButtonCustom tabAllBtn;
+    [SerializeField] private ButtonCustom tabFoodBtn;
+    [SerializeField] private ButtonCustom tabIngredientBtn;
+    [SerializeField] private RectTransform focusBar;
+    [SerializeField] private InventoryPage inventoryFoodPage;
+    [SerializeField] private InventoryPage inventoryIngredientPage;
+    [SerializeField] private ButtonCustom cancelAutoHoldingBtn;
+    [SerializeField] private GameObject autoHoldingPanel;
     private List<InventoryItem> inventoryItems = new List<InventoryItem>();
     private InventoryItem currentSelectedItem;
     private bool isFirstTime = true;
     private bool isHaveItemSelected = false;
     private Tween tween;
+    private Tween tweenChangePage;
+    private Tween tweenFocusBar;
+    private Tween tweenBtnCancelAutoHolding;
+    private int currentSlide = 0;
+    private Vector3 tempPos;
+    private bool isAutoHolding = false;
+    
+    public InventoryItem CurrentSelectedItem => currentSelectedItem;
     public override void Setup()
     {
         base.Setup();
         this.ChangeTextNumHoldItem(GameManager.Instance.Player.ListItemHold.Count);
         GameManager.Instance.RenUIPlayer.SpawnPlayer();
+        this.SetFirstPage();
+        this.SetFirstTab();
+        this.ToggleAutoHolding(false);
+        this.detailItemUI.SplitBtn.gameObject.SetActive(true);
         if (isFirstTime)
         {
+            this.SetUpButtonTab();
             this.detailItemUI.SetInvisibleButton();
             this.detailItemUI.AddEventOnclickSplitBtn(SplitItem);
             this.detailItemUI.AddEventOnclickThrowBtn(ThrowItem);
             this.detailItemUI.AddEventOnclickThrowAllBtn(ThrowAllItem);
             this.detailItemUI.AddEventOnclickHoldBtn(HoldItem);
-            for(int i = 0; i < numRow; i++)
+            this.cancelAutoHoldingBtn.customButtonOnClick += () =>
             {
-                for (int j = 0; j < 4; j++)
+                this.ToggleAutoHolding(false);
+                tweenBtnCancelAutoHolding?.Kill();
+            };
+            tempPos = focusBar.localPosition;
+            for(int k = 0; k < content.Length; k++)
+            {
+                for(int i = 0; i < numRow; i++)
                 {
-                    InventoryItem inventoryItem = Instantiate(inventoryItemPrefab, content);
-                    inventoryItem.Setup();
-                    inventoryItems.Add(inventoryItem);
-                    this.SetupItemAction(inventoryItem);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        InventoryItem inventoryItem = Instantiate(inventoryItemPrefab, content[k]);
+                        inventoryItem.Setup();
+                        inventoryItems.Add(inventoryItem);
+                        this.SetupItemAction(inventoryItem);
+                    }
                 }
+            }
+
+            for (int i = 0; i < content.Length; i++)
+            {
+                
+                content[i].SetParent(view);
             }
             inventorySelectedItem.Setup();
             this.TurnOffAllBorder();
@@ -100,6 +144,7 @@ public class UIInventory : UICanvas
         {
             detailItemUI.DoMoveButtonsUp();
         }
+        if(isAutoHolding) this.HoldItem();
     }
     public void HandleItemDropped(InventoryItem inventoryItem)
     {
@@ -178,7 +223,7 @@ public class UIInventory : UICanvas
     }
     public bool AddItemToInventory(string dataNameItem, int quantity)
     {
-        if(CheckHaveEmptyInventoryOrSameItem( SaveGameManager.GetDataItem(dataNameItem), out int indexItem))
+        if(CheckHaveSameItemInventory( SaveGameManager.GetDataItem(dataNameItem), out int indexItem))
         {
             if(inventoryItems[indexItem].QuantityItem + quantity > inventoryItems[indexItem].DataItem.maxStack)
             {
@@ -187,6 +232,10 @@ public class UIInventory : UICanvas
                 if (CheckHaveEmptyInventory(out int index))
                 {
                     AddItemToInventory(index, dataNameItem,  reminder);
+                }
+                else
+                {
+                    UIManager.Instance.GetUI<UIGamePlay>().PopUpText("Inventory is full");
                 }
             }
             else
@@ -201,7 +250,7 @@ public class UIInventory : UICanvas
             this.AddItemToInventory(index,dataNameItem, inventoryItems[index].QuantityItem + quantity);
             return true;
         }
-
+        UIManager.Instance.GetUI<UIGamePlay>().PopUpText("Inventory is full");
         return false;
 
     }
@@ -237,18 +286,20 @@ public class UIInventory : UICanvas
         if(currentSelectedItem == null) return;
         if(currentSelectedItem.QuantityItem < 1) return;
         if(GameManager.Instance.Player.ListItemHold.Count >= 7) return;
-        GameManager.Instance.RenUIPlayer.HoldItem(currentSelectedItem.DataItem, 1);
-        GameManager.Instance.RenUIPlayer.Hold();
-        GameManager.Instance.Player.HoldItem(currentSelectedItem.DataItem, 1);
-        GameManager.Instance.Player.actionStateMachine.ChangeState(GameManager.Instance.Player.actionStateMachine.holdState);
-        GameManager.Instance.Player.SaveData();
-        currentSelectedItem.Hold();
+        if (!isAutoHolding)
+        {
+            this.ToggleAutoHolding(true);
+            tweenBtnCancelAutoHolding?.Kill();
+            tweenBtnCancelAutoHolding = cancelAutoHoldingBtn.transform.DOScale(1.1f, 0.5f)
+                .SetLoops(-1, LoopType.Yoyo);
+        }
+        this.PostEvent(EventID.OnHoldingItem, this);
         if(currentSelectedItem.QuantityItem < 1)
         {
             currentSelectedItem = null;
             this.TurnOffAllBorder();
         }
-        this.ChangeTextNumHoldItem(GameManager.Instance.Player.ListItemHold.Count);
+        currentSelectedItem.Hold();
         this.Save();
     }
 
@@ -266,7 +317,7 @@ public class UIInventory : UICanvas
 
         return false;
     }
-    public bool CheckHaveEmptyInventoryOrSameItem(DataItem type,out int index)
+    public bool CheckHaveSameItemInventory(DataItem type,out int index)
     {
         index = -1;
         for (int i = 0; i < inventoryItems.Count; i++)
@@ -315,21 +366,32 @@ public class UIInventory : UICanvas
                 SaveGameManager.Instance.InventoryItems.Add(new ItemData("", 0));
             }
         }
-        // if(inventorySelectedItem.HaveItem)
-        // {
-        //     SaveGameManager.Instance.InventoryItems.Add(new ItemData(inventorySelectedItem.DataItem.name,
-        //         inventorySelectedItem.DataItem.isStackable ? inventorySelectedItem.QuantityItem : 1));
-        // }
-        // else
-        // {
-        //     SaveGameManager.Instance.InventoryItems.Add(new ItemData("", 0));
-        // }
         SaveGameManager.Instance.SaveData();
     }
-
+    
     public void LoadData()
     {
-        if(SaveGameManager.Instance.InventoryItems.Count <= 0) return;
+        if (SaveGameManager.Instance.InventoryItems.Count <= 0)
+        {
+            var list = new List<ItemData>()
+            {
+                new ItemData("Seedtomato",99),
+                new ItemData("Seedcabbage",99),
+                new ItemData("Meat",1),
+                new ItemData("Bread",99),
+                new ItemData("Tomato",99),
+                new ItemData("Cabbage",99),
+                new ItemData("Sandwicha",99),
+                new ItemData("Sandwichb",99),
+                new ItemData("Sandwichc",99),
+                new  ItemData("Burntmeat",99),
+            };
+            for(int i = 0;i < list.Count; i++)
+            {
+                this.AddItemToInventory(i, list[i].name, list[i].quantity);
+            }
+            return;
+        }
         for (int i = 0; i < inventoryItems.Count; i++)
         {
             if (SaveGameManager.Instance.InventoryItems[i].quantity > 0)
@@ -338,15 +400,151 @@ public class UIInventory : UICanvas
                     SaveGameManager.Instance.InventoryItems[i].quantity);
             }
         }
-        // int index = SaveGameManager.Instance.InventoryItems.Count - 1;
-        // if(string.IsNullOrEmpty(SaveGameManager.Instance.InventoryItems[index].name)) return;
-        // inventorySelectedItem.SetupItem(SaveGameManager.GetDataItem(SaveGameManager.Instance.InventoryItems[index].name),
-        //     SaveGameManager.Instance.InventoryItems[index].quantity);
     }
 
     public void OpenUIGamePlay()
     {
-        UIManager.Instance.GetUI<UIInventory>().CloseDirectly();
+        this.CloseDirectly();
         GameManager.ChangeState(GameState.Gameplay);
+        UIManager.Instance.OpenUI<UIGamePlay>();
+    }
+
+    public void TurnToNextPage()
+    {
+        currentSlide++;
+        if (currentSlide >= point.Length - 1)
+        {
+            currentSlide = point.Length - 1;
+            nextPageBtn.gameObject.SetActive(false);
+            nextPageChecker.gameObject.SetActive(false);
+        }
+        backPageBtn.gameObject.SetActive(true);
+        backPageChecker.gameObject.SetActive(true);
+        tweenChangePage?.Kill();
+        tweenChangePage = view.DOAnchorPosX(point[currentSlide], 0.5f).SetEase(Ease.OutBack);
+    }
+    public void TurnToBackPage()
+    {
+        currentSlide--;
+        if (currentSlide <= 0)
+        {
+            currentSlide = 0;
+            backPageBtn.gameObject.SetActive(false);
+            backPageChecker.gameObject.SetActive(false);
+        }
+        nextPageChecker.gameObject.SetActive(true);
+        nextPageBtn.gameObject.SetActive(true);
+        tweenChangePage?.Kill();
+        tweenChangePage = view.DOAnchorPosX(point[currentSlide], 0.5f).SetEase(Ease.OutBack);
+    }
+
+    public void FocusTab(ButtonCustom button)
+    {
+        tweenFocusBar?.Kill();
+        focusBar.SetParent(button.TF);
+        tweenFocusBar = focusBar.DOLocalMove(tempPos, 0.5f).SetEase(Ease.OutBack);
+    }
+
+    public void SetUpButtonTab()
+    {
+        tabAllBtn.Btn.onClick.AddListener(() =>
+        {
+            detailItemUI.SplitBtn.gameObject.SetActive(true);
+            FocusTab(tabAllBtn);
+            this.ToggleViewAll(true);
+            inventoryIngredientPage.ToggleContent(false);
+            inventoryFoodPage.ToggleContent(false);
+            this.SetFirstPage();
+        });
+        tabFoodBtn.Btn.onClick.AddListener(() =>
+        {
+            if(inventoryFoodPage.IsOpening) return;
+            detailItemUI.SplitBtn.gameObject.SetActive(false);
+            FocusTab(tabFoodBtn);
+            ToggleViewAll(false);
+            inventoryIngredientPage.ToggleContent(false);
+            inventoryFoodPage.ToggleContent(true);
+            this.Filter(ItemType.Food);
+            this.SetFirstPage();
+        });
+        tabIngredientBtn.Btn.onClick.AddListener(() =>
+        {
+            if(inventoryIngredientPage.IsOpening) return;
+            detailItemUI.SplitBtn.gameObject.SetActive(false);
+            FocusTab(tabIngredientBtn);
+            ToggleViewAll(false);
+            inventoryIngredientPage.ToggleContent(true);
+            inventoryFoodPage.ToggleContent(false);
+            this.Filter(ItemType.Ingredient);
+            this.SetFirstPage();
+        });
+    }
+    public bool IsDraging()
+    {
+        return mouseFollower.gameObject.activeSelf;
+    }
+
+    public void Filter(ItemType type)
+    {
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            if (type == ItemType.Ingredient)
+            {
+                if (inventoryItems[i].HaveItem && inventoryItems[i].DataItem.type == ItemType.Ingredient)
+                {
+                    inventoryIngredientPage.AddItem(inventoryItems[i], HandleItemClicked);
+                }
+            }
+            else
+            {
+                if (inventoryItems[i].HaveItem && inventoryItems[i].DataItem.type == ItemType.Food)
+                {
+                    inventoryFoodPage.AddItem(inventoryItems[i], HandleItemClicked);
+                }
+            }
+        }
+
+        if (type == ItemType.Ingredient)
+        {
+            inventoryIngredientPage.FinishAddItem();
+        }
+        else
+        {
+            inventoryFoodPage.FinishAddItem();
+        }
+    }
+    private void ToggleViewAll(bool state)
+    {
+        for (int i = 0; i < content.Length; i++)
+        {
+            content[i].gameObject.SetActive(state);
+        }
+    }
+    public void SetFirstPage()
+    {
+        currentSlide = 0;
+        view.anchoredPosition = new Vector2(point[0], 0);
+        backPageBtn.gameObject.SetActive(false);
+        backPageChecker.gameObject.SetActive(false);
+        nextPageBtn.gameObject.SetActive(true);
+        nextPageChecker.gameObject.SetActive(true);
+    }
+    public void SetFirstTab()
+    {
+        FocusTab(tabAllBtn);
+        ToggleViewAll(true);
+        inventoryIngredientPage.ToggleContent(false);
+        inventoryFoodPage.ToggleContent(false);
+    }
+
+    public void ToggleAutoHolding(bool state)
+    {
+        isAutoHolding = state;
+        cancelAutoHoldingBtn.gameObject.SetActive(state);
+        autoHoldingPanel.SetActive(state);
+    }
+    public InventoryItem GetInventoryItem(int index)
+    {
+        return inventoryItems[index];
     }
  }

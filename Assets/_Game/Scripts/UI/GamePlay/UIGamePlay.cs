@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -11,7 +12,7 @@ public class UIGamePlay : UICanvas
 {
     private bool isFirstTimeOpen = true;
     private bool canPressJumpBtn = true;
-
+    [SerializeField] private SelectedItemContainer selectedItemContainer;
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private RectTransform[] positions;
     [SerializeField] private Image toogleImg;
@@ -23,21 +24,48 @@ public class UIGamePlay : UICanvas
     [SerializeField] private ButtonCustom attackButton;
     [SerializeField] private ButtonCustom throwItemBtn;
     [SerializeField] private ButtonCustom storeItemBtn;
+    [SerializeField] private ButtonCustom interactFarmButton;
+    [SerializeField] private ButtonCustom teleBtn;
+    [SerializeField] private ButtonCustom viewStoreBtn;
+    [SerializeField] private ButtonCustom recipeBtn;
+    [SerializeField] private ButtonCustom orderBtn;
+    [SerializeField] private ButtonCustom cuttingBtn;
+    [SerializeField] private ButtonCustom trashBtn;
+    [SerializeField] private ButtonCustom fishingBtn;
     [SerializeField] private TouchField touchField;
     [SerializeField] private PickupItemScreen pickupItemScreen;
     [SerializeField] private ButtonCustom cookButton;
+    [SerializeField] private TextMeshProUGUI currentCoinTxt;
+    [SerializeField] private Image farmInteractIcon;
+    [SerializeField] private Sprite waterIcon;
+    [SerializeField] private Sprite harvestIcon;
+    [SerializeField] private Sprite plantIcon;
+    [SerializeField] private TextMeshProUGUI textPopUp;
     public PickupItemScreen PickupItemScreen => pickupItemScreen;
     private Vector3 moveDirection;
     private Vector3 previousMoveDirection;
     private Tween toggleTween;
+    private Tween tweenIncressCoin;
+    private Tween tweenEffect;
+    private bool isAssignCookBtnAction = false;
     public override void Setup()
     {
         base.Setup();
         FSTActionPlayer stateMachine = GameManager.Instance.Player.actionStateMachine;
-        ToggleCookButton(!stateMachine.CompareCurrentState(stateMachine.noActionUpperState));
+        selectedItemContainer.SetUp();
+        currentCoinTxt.text = SaveGameManager.Instance.CurrentCoin.ToString();
         if (isFirstTimeOpen)
         {
             isFirstTimeOpen = false;
+            SoundManager.Instance.PlayBgMusic(SoundManager.DataSound.bgm);
+            selectedItemContainer.HandleOnClickedItem();
+            interactFarmButton.gameObject.SetActive(false);
+            teleBtn.gameObject.SetActive(false);
+            viewStoreBtn.gameObject.SetActive(false);
+            orderBtn.gameObject.SetActive(false);
+            cuttingBtn.gameObject.SetActive(false);
+            trashBtn.gameObject.SetActive(false);
+            fishingBtn.gameObject.SetActive(false);
             sprintButton.customButtonDown += () =>
             {
                 toggleTween?.Kill();
@@ -99,11 +127,6 @@ public class UIGamePlay : UICanvas
             
         }
         InputManager.Instance.OnAssignTouchField?.Invoke(touchField);
-        cookButton.gameObject.SetActive(false);
-        cookButton.button.onClick.AddListener(() =>
-        {
-            cookButton.gameObject.SetActive(false);
-        });
 #if UNITY_EDITOR
         joystick.gameObject.SetActive(false);
         jumpButton.gameObject.SetActive(false);
@@ -142,8 +165,27 @@ public class UIGamePlay : UICanvas
     }
     public void AddCookButtonEvent(UnityAction action)
     {
-        cookButton.customButtonOnClick = null;
         cookButton.customButtonOnClick += action;
+    }
+    public void AddFarmInteractEvent(UnityAction action)
+    {
+        interactFarmButton.customButtonOnClick += action;
+    }
+    public void AddCuttingEvent(UnityAction action)
+    {
+        cuttingBtn.customButtonOnClick += action;
+    }
+    public void AddTrashBinEvent(UnityAction action)
+    {
+        trashBtn.customButtonOnClick += action;
+    }
+    public void AddFishingEvent(UnityAction action)
+    {
+        fishingBtn.customButtonOnClick += action;
+    }
+    public void AddTeleportEvent(UnityAction action)
+    {
+        teleBtn.customButtonOnClick += action;
     }
 
     public void ToggleButtonInteractItem(bool state)
@@ -151,4 +193,118 @@ public class UIGamePlay : UICanvas
         throwItemBtn.gameObject.SetActive(state);
         storeItemBtn.gameObject.SetActive(state);
     }
+    public void ToggleButtonInteractFarm(bool state)
+    {
+        interactFarmButton.gameObject.SetActive(state);
+    }
+    public void ToggleButtonFishingSite(bool state)
+    {
+        fishingBtn.gameObject.SetActive(state);
+    }
+    public SelectedItem GetCurrentSelectedItem()
+    {
+        return selectedItemContainer.CurrentSelectedItem;
+    }
+
+    public void ToggleAllInteractButton(bool state)
+    {
+        ToggleButtonInteractFarm(state);
+        ToggleButtonInteractItem(state);
+        ToggleCookButton(state);
+    }
+    public void ToggleButtonTeleport(bool state)
+    {
+        teleBtn.gameObject.SetActive(state);
+    }
+    public void ToggleButtonViewStore(bool state)
+    {
+        viewStoreBtn.gameObject.SetActive(state);
+    }
+    public void ToggleButtonTrashBin(bool state)
+    {
+        trashBtn.gameObject.SetActive(state);
+    }
+
+    public void ToggleButtonOrder(bool state)
+    {
+        orderBtn.gameObject.SetActive(state);
+    }
+    public void ToggleButtonKnifeTable(bool state)
+    {
+        cuttingBtn.gameObject.SetActive(state);
+    }
+    public void OpenSetting()
+    {
+        UIManager.Instance.OpenUI<UISetting>();
+    }
+    public void OpenRecipe()
+    {
+        UIManager.Instance.OpenUI<UIRecipe>();
+    }
+    public void ViewStore()
+    {
+        UIManager.Instance.OpenUI<UIShop>();
+    }
+    public void OpenOrder()
+    {
+        UIManager.Instance.OpenUI<UIOrder>();
+    }
+    public void TweenIncressCoin(int coin)
+    {
+        SaveGameManager.Instance.CurrentCoin += coin;
+        currentCoinTxt.TweenIncressCoin(
+            SaveGameManager.Instance.CurrentCoin - coin, 
+            SaveGameManager.Instance.CurrentCoin, 1f);
+    }
+    public void ChangeIconFarmInteract(FarmInteractType type)
+    {
+        switch (type)
+        {
+            case FarmInteractType.Water:
+                farmInteractIcon.sprite = waterIcon;
+                break;
+            case FarmInteractType.Harvest:
+                farmInteractIcon.sprite = harvestIcon;
+                break;
+            case FarmInteractType.Plant:
+                farmInteractIcon.sprite = plantIcon;
+                break;
+        }
+    }
+
+    public void PopUpText(string popUpContent)
+    {
+        tweenEffect?.Kill();
+        textPopUp.text = popUpContent;
+        textPopUp.gameObject.SetActive(true);
+        Tween tweenFade = textPopUp.DOFade(0, 3f);
+        tweenFade.onComplete += () =>
+        {
+            textPopUp.gameObject.SetActive(false);
+            textPopUp.color = new Color(textPopUp.color.r, textPopUp.color.g, textPopUp.color.b, 1);
+        };
+        tweenFade.onKill += () =>
+        {
+            textPopUp.gameObject.SetActive(false);
+            textPopUp.color = new Color(textPopUp.color.r, textPopUp.color.g, textPopUp.color.b, 1);
+        };
+        float tempY = textPopUp.transform.localPosition.y;
+        Tween tweenMove = textPopUp.transform.DOLocalMoveY(tempY + 100, 3f);
+        tweenMove.onComplete += () =>
+        {
+            textPopUp.transform.localPosition = new Vector3(textPopUp.transform.localPosition.x, tempY, textPopUp.transform.localPosition.z);
+        };
+        tweenMove.onKill += () =>
+        {
+            textPopUp.transform.localPosition = new Vector3(textPopUp.transform.localPosition.x, tempY, textPopUp.transform.localPosition.z);
+        };
+        tweenEffect = DOTween.Sequence().Append(tweenFade).Join(tweenMove);
+    }
+    
+}
+public enum FarmInteractType
+{
+    Water,
+    Harvest,
+    Plant
 }

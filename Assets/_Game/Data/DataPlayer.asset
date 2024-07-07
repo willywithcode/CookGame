@@ -237,8 +237,53 @@ MonoBehaviour:
     _Clip: {fileID: 7400000, guid: bd76db5efd660bf468bd38a0860a63a2, type: 3}
     _Speed: 1
     _NormalizedStartTime: NaN
+  plantSeed:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: -203655887218126122, guid: 8b5dc53110a912a44953380bbf3fca3b, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  water:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: -203655887218126122, guid: e22243a6a379d24479f5e833d3bf051c, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  harvest:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: -203655887218126122, guid: de6f2eb40c0bf9148bba8a959d822990, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  startFishing:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: -203655887218126122, guid: c2a9f18799f8c59439a19a5d8cef667b, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
+  pullFish:
+    _FadeDuration: 0.25
+    _Events:
+      _NormalizedTimes: []
+      _Callbacks: []
+      _Names: []
+    _Clip: {fileID: -7786796784323606868, guid: c2a9f18799f8c59439a19a5d8cef667b, type: 3}
+    _Speed: 1
+    _NormalizedStartTime: NaN
   walkSpeed: 5
   runSpeed: 10
   jogSpeed: 7
-  stopRunSpeed: 3
+  stopRunSpeed: 1
   heightEnoughForLanding: 5

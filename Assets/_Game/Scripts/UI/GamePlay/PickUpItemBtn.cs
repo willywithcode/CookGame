@@ -14,27 +14,33 @@ public class PickUpItemBtn : PoolElement
     [SerializeField] private TextMeshProUGUI quantityItem;
     [SerializeField] private ButtonCustom btn;
     [SerializeField] private ButtonPickUpPool pool;
-    private DataItem data;
-    private int quantity;
-    public void SetUp(DataItem data, UnityAction action, int quantity)
+    private ItemInWorld data;
+    public ItemInWorld Data => data;
+    private int idCollider;
+    public int IdCollider => idCollider;
+
+    public void OnClick()
     {
-        this.data = data;
-        content.sprite = data.icon;
-        nameItem.text = data.title;
-        quantityItem.gameObject.SetActive(data.isStackable && quantity > 1);
-        quantityItem.text = quantity.ToString();
-        btn.customButtonOnClick += action;
+        this.PostEvent(EventID.OnPickUpItem, this);
+    }
+    public void SetUp(ItemInWorld dataParam, int id)
+    {
+        this.data = dataParam;
+        DataItem item = SaveGameManager.GetDataItem(dataParam.ItemName);
+        content.sprite = item.icon;
+        nameItem.text = item.title;
+        this.idCollider = id;
+        quantityItem.gameObject.SetActive(item.isStackable && data.quantity > 1);
+        quantityItem.text = data.quantity.ToString();
     }
 
     public override void OnDespawn()
     {
         base.OnDespawn();
         data = null;
-        quantity = 0;
         content.sprite = null;
         nameItem.text = string.Empty;
         quantityItem.text = string.Empty;
-        btn.customButtonOnClick = null;
         pool.ReturnObject(this);
     }
 

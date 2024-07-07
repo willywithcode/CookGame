@@ -16,6 +16,9 @@ public class DataItemContainer : SerializedScriptableObject
 {
     public Dictionary<string, DataItem> dataItems = new Dictionary<string, DataItem>(StringComparer.OrdinalIgnoreCase);
     public List<Recipe> recipes;
+    public Dictionary<string, Plant> plants = new Dictionary<string, Plant>(StringComparer.OrdinalIgnoreCase);
+    public List<OrderDetail> orderDetails = new List<OrderDetail>();
+    public Dictionary<string, string> cuttingBoards = new Dictionary<string, string>();
 #if UNITY_EDITOR
     public string link;
     public string tabNme;
@@ -90,7 +93,23 @@ public class DataItemContainer : SerializedScriptableObject
         }
         return true;
     }
-    
+
+    [OnInspectorGUI]
+    public void AddRemainSeed()
+    {
+        foreach (var item in dataItems)
+        {
+            if(item.Value.type == ItemType.Seed)
+            {
+                if(!plants.ContainsKey(item.Key))
+                {
+                    Plant plant = new Plant();
+                    plant.namePlant = item.Key;
+                    plants.Add(item.Key, plant);
+                }
+            }
+        }
+    }
 #endif
 }
 [Serializable]
@@ -103,7 +122,6 @@ public class DataItem
     public string description;
     public Sprite icon;
     public Item prefab;
-    public ItemHolding prefabGameObject;
     public ItemType type;
     public bool isStackable;
     [ShowIf("@(isStackable)")]public int maxStack;
@@ -112,7 +130,8 @@ public enum ItemType
 {
     None,
     Food,
-    Ingredient
+    Ingredient,
+    Seed
 }
 [Serializable] 
 public class Recipe
@@ -151,9 +170,7 @@ public class Recipe
                 return false;
             }
         }
-        string firstChar = nameDish.Substring(0, 1).ToUpper();
-        string restChars = nameDish.Substring(1).ToLower();
-        string normalNameDish = firstChar + restChars;
+        string normalNameDish = nameDish.NormalizeString();
         if (CanGetItem(normalNameDish, out item))
         {
             time = this.time;
@@ -162,4 +179,54 @@ public class Recipe
         return false;
 
     }
+
+    public void GetIngredients(out List<DataItem> listIngredients, out List<int> listQuantity)
+    {
+        listIngredients = new List<DataItem>();
+        listQuantity = new List<int>();
+        string[] splitResult = ingredients.Split("/");
+        for (int i = 0 ; i < splitResult.Length; i++)
+        {
+            string[] split = splitResult[i].Split("*");
+            if(split.Length < 2) continue;
+            string nameObject = split[0];
+            nameObject = nameObject.NormalizeString();
+            int quantity = int.Parse(split[1]);
+            DataItem dataItem = SaveGameManager.GetDataItem(nameObject);
+            listIngredients.Add(dataItem);
+            listQuantity.Add(quantity);
+        }
+    }
+    public DataItem GetResult()
+    {
+        string temp = nameDish.NormalizeString();
+        return SaveGameManager.GetDataItem(temp);
+    }
+    
 }
+
+public struct OrderDetail
+{
+    public string order;
+    public int price;
+
+    public void GetItemInOrder(out List<DataItem> listItemInOrder, out List<int> listQuantity)
+    {
+        listItemInOrder = new List<DataItem>();
+        listQuantity = new List<int>();
+        string[] splitResult = order.Split("/");
+        for (int i = 0 ; i < splitResult.Length; i++)
+        {
+            string[] split = splitResult[i].Split("*");
+            if(split.Length < 2) continue;
+            string nameObject = split[0];
+            nameObject = nameObject.NormalizeString();
+            int quantity = int.Parse(split[1]);
+            DataItem dataItem = SaveGameManager.GetDataItem(nameObject);
+            listItemInOrder.Add(dataItem);
+            listQuantity.Add(quantity);
+        }
+    }
+    
+}
+

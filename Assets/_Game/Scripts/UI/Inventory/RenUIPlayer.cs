@@ -23,6 +23,12 @@ public class RenUIPlayer : MonoBehaviour
 
     private void Start()
     {
+        this.RegisterListener(EventID.OnHoldingItem, (param) =>
+        {
+            UIInventory inventory = UIManager.Instance.GetUI<UIInventory>();
+            this.HoldItem(inventory.CurrentSelectedItem.DataItem, 1);
+            this.Hold();
+        });
         if (listHoldItem.Count > 0) DOVirtual.DelayedCall(1, Hold);
         else this.ChangeToIdle();
     }
@@ -47,13 +53,14 @@ public class RenUIPlayer : MonoBehaviour
         {
             Destroy(currentItem);
         }
-        currentItem = dataItem.prefabGameObject.ItemFactory.GetObject(scale:Vector3.one * 0.3f);
+        currentItem = dataItem.prefab.ItemFactory.GetObject(scale:Vector3.one * 0.3f);
         currentItem.TF.localPosition = Vector3.zero;
         curremtDataItem = dataItem;
     }
     public void HoldItem(DataItem dataItem, int quantity)
     {
-        ItemHolding item = (ItemHolding)dataItem.prefabGameObject.ItemFactory.GetObject();
+        ItemInWorld item = (ItemInWorld)dataItem.prefab.ItemFactory.GetObject();
+        item.SetUp(false);
         listHoldItem.Add(new ItemStack(dataItem, quantity, item));
         int random = UnityEngine.Random.Range(0, 2);
         if (random == 0)
@@ -65,14 +72,14 @@ public class RenUIPlayer : MonoBehaviour
             HoldRightHand(item);
         }
     }
-    public void HoldLeftHand(ItemHolding item)
+    public void HoldLeftHand(ItemInWorld item)
     {
         item.TF.SetParent(leftHandTransform);
         float randomFactor = Random.value;
         item.TF.localPosition = Vector3.Lerp(Vector3.zero, leftHandPosition, randomFactor);
         item.TF.localScale = Vector3.one * 0.3f;
     }
-    public void HoldRightHand(ItemHolding item)
+    public void HoldRightHand(ItemInWorld item)
     {
         item.TF.SetParent(rightHandTransform);
         float randomFactor = Random.value;

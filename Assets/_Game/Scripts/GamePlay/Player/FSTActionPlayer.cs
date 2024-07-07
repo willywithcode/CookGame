@@ -10,6 +10,12 @@ public class FSTActionPlayer : StateMachine<Player>
     public KickState kickState = new KickState();
     public JumpAttackState jumpAttackState = new JumpAttackState();
     public HoldState holdState = new HoldState();
+    public FarmState farmState = new FarmState();
+    public PlantState plantState = new PlantState();
+    public WaterState waterState = new WaterState();
+    public HavestState havestState = new HavestState();
+    public StartFishingState startFishingState = new StartFishingState();
+    public PullFishState pullFishState = new PullFishState();
     private void Start()
     {
         if(owner.CheckHaveDataItem()) ChangeState(holdState);

@@ -99,6 +99,7 @@ MonoBehaviour:
   itemFactory: {fileID: 11400000, guid: c0a4f079b52150640a9f2042bbbcec4d, type: 2}
   itemType: 2
   itemName: Cheese
+  colliderObject: {fileID: 3983012030272578716}
 --- !u!1001 &1845905871233530044
 PrefabInstance:
   m_ObjectHideFlags: 0

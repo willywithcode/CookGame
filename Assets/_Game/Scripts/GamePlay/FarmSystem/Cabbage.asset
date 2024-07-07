@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff95e4ea11ccbd4e934235804d9fc56, type: 3}
+  m_Name: Cabbage
+  m_EditorClassIdentifier: 
+  namePlant: Cabbage
+  timeToGrow: 6
+  plantGrowStages:
+  - {fileID: 3799459366127789107, guid: 1392dbd2be3bbd04d8e5c57b904b42ae, type: 3}
+  - {fileID: 1621519921415231107, guid: f12845bb4d1709a499e97026b8068627, type: 3}
+  - {fileID: -8283754072244979179, guid: 98541326b56e6e14eb84d42aa2461bac, type: 3}
+  seed: {fileID: 3981179833069667087, guid: 924efc40ebabd5e4e902a3bfc5664e47, type: 3}
+  numberHarvest: 5

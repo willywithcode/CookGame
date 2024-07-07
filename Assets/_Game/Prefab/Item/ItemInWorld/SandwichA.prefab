@@ -182,3 +182,4 @@ MonoBehaviour:
   itemFactory: {fileID: 11400000, guid: fdb42975d4c11ef4eaa0cb1de35438e7, type: 2}
   itemType: 1
   itemName: Sandwicha
+  colliderObject: {fileID: 5177463086351590892}

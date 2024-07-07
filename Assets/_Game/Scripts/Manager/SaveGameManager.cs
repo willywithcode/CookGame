@@ -22,6 +22,19 @@ public class SaveGameManager : Singleton<SaveGameManager>
         Debug.LogError($"Item {name} not found");
         return null;
     }
+    public static Plant GetPlant(string name)
+    {
+        if (Instance.dataItemContainer.plants.ContainsKey(name))
+        {
+            return Instance.dataItemContainer.plants[name];
+        }
+        Debug.LogError($"Plant {name} not found");
+        return null;
+    }
+    public static List<OrderDetail> GetOrderDetail()
+    {
+        return Instance.dataItemContainer.orderDetails;
+    }
     #endregion
         // Key and IV for encrypt and decrypt
         private const string KEY = "dv0x4vsAQxffsxOrmBywQZELCS8k8InXeoju8xRK1NA=";
@@ -44,7 +57,9 @@ public class SaveGameManager : Singleton<SaveGameManager>
         // Data game
         private List<ItemData> inventoryItems;
         private List<ItemData> itemPlayerHold;
- 
+        private bool isSound;
+        private bool isFXSound;
+        private int currentCoin;
         
         public List<ItemData> InventoryItems
         {
@@ -64,6 +79,33 @@ public class SaveGameManager : Singleton<SaveGameManager>
                 SaveData();
             }
         }
+        public bool IsSound
+        {
+            get => isSound;
+            set
+            {
+                isSound = value;
+                SaveData();
+            }
+        }
+        public bool IsFXSound
+        {
+            get => isFXSound;
+            set
+            {
+                isFXSound = value;
+                SaveData();
+            }
+        }
+        public int CurrentCoin
+        {
+            get => currentCoin;
+            set
+            {
+                currentCoin = value;
+                SaveData();
+            }
+        }
         #endregion
         // Save data
         public void SaveData()
@@ -72,10 +114,12 @@ public class SaveGameManager : Singleton<SaveGameManager>
             GameData saveData = new GameData();
             saveData.inventoryDatas = this.inventoryItems;
             saveData.itemPlayerHold = this.itemPlayerHold;
+            saveData.isSound = this.isSound;
+            saveData.isFXSound = this.isFXSound;
+            saveData.currentCoin = this.currentCoin;
             string path = Application.persistentDataPath + PATH;
             if (SaveData(saveData, path))
             {
-                
             }
         }
         
@@ -86,6 +130,9 @@ public class SaveGameManager : Singleton<SaveGameManager>
             GameData defaultData = new GameData();
             defaultData.inventoryDatas = new List<ItemData>();
             defaultData.itemPlayerHold = new List<ItemData>();
+            defaultData.isSound = true;
+            defaultData.isFXSound = true;
+            defaultData.currentCoin = 10000;
             
             // Load data
             GameData data = LoadData(path, defaultData);
@@ -94,6 +141,9 @@ public class SaveGameManager : Singleton<SaveGameManager>
             //Custom properties
             this.inventoryItems = data.inventoryDatas;
             this.itemPlayerHold = data.itemPlayerHold;
+            this.isSound = data.isSound;
+            this.isFXSound = data.isFXSound;
+            this.currentCoin = data.currentCoin;
         }
 
         #region SaveAndLoadDataMoreDetail
@@ -173,6 +223,9 @@ public class GameData
 {
     public List<ItemData> inventoryDatas;
     public List<ItemData> itemPlayerHold;
+    public bool isSound;
+    public bool isFXSound;
+    public int currentCoin;
 }
 // Data item for saving
 public struct ItemData

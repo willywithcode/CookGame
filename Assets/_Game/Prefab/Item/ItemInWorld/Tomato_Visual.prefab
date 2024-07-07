@@ -96,9 +96,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quantity: 1
-  itemFactory: {fileID: 11400000, guid: 93a7b4df8b07d4642b5aa784595cf60f, type: 2}
+  itemFactory: {fileID: 11400000, guid: 98387bcde7fc4cf4c95235b8fc517eb2, type: 2}
   itemType: 2
   itemName: Tomato
+  colliderObject: {fileID: 3509737623651037452}
 --- !u!1001 &6808075614760819281
 PrefabInstance:
   m_ObjectHideFlags: 0

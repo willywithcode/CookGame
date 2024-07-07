@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc03e54f71aea34c913d63f0dad6acd, type: 3}
+  m_Name: DataSound
+  m_EditorClassIdentifier: 
+  soundPlant: {fileID: 8300000, guid: 3279f21d0e8b9734b964a5ed2daf832d, type: 3}
+  soundHarvest: {fileID: 8300000, guid: 0134509f02e60074a86bfa052d6e8cf8, type: 3}
+  soundWater: {fileID: 8300000, guid: 798a311c96e1d7a429fdcbce66360328, type: 3}
+  buttonClick: {fileID: 8300000, guid: dcd224192c3e9ee4ea768c4cc1674b7d, type: 3}
+  bgm: {fileID: 8300000, guid: da3f494b734ccde44831fa76a9d27720, type: 3}
+  soundFire: {fileID: 8300000, guid: 538f920a72e5cdb4ca34ce7eceaed8cd, type: 3}

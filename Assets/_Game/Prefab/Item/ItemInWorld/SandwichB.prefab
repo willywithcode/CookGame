@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quantity: 1
-  itemFactory: {fileID: 0}
+  itemFactory: {fileID: 11400000, guid: 2d1d0b79aa2947845be64d9e6eaa4fab, type: 2}
   itemType: 1
   itemName: Sandwichb
+  colliderObject: {fileID: 2563767419480493776}

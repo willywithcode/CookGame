@@ -23,9 +23,10 @@ public class GameManager : Singleton<GameManager>
     // Start game
     private void Start()
     {
-        UIManager.Instance.OpenUI<UIGamePlay>();
         UIManager.Instance.OpenUI<UIInventory>();
-        UIManager.Instance.GetUI<UIInventory>().Close(0);
+        UIManager.Instance.GetUI<UIInventory>().CloseDirectly();
+        UIManager.Instance.GetUI<UIGamePlay>().CloseDirectly();
+        UIManager.Instance.OpenUI<UILoading>();
         Application.targetFrameRate = 60;
     }
 
@@ -42,6 +43,7 @@ public class GameManager : Singleton<GameManager>
             else if (GameManager.CompareCurrentState(GameState.Inventory))
             {
                 GameManager.ChangeState(GameState.Gameplay);
+                UIManager.Instance.OpenUI<UIGamePlay>();
                 UIManager.Instance.GetUI<UIInventory>().Close(0);
             }
         }

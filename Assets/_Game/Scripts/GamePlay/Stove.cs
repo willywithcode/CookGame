@@ -8,10 +8,15 @@ public class Stove : ACacheMonoBehaviour
 {
     public UnityAction<Stove> OnDoneCooking;
     [SerializeField] private GameObject effectFire;
+    [SerializeField] private Transform pointCook;
+    [SerializeField] private GameObject effectDone;
+    [SerializeField] private Outline outline;
     private List<ItemStack> items = new List<ItemStack>();
     private bool isCooking = false;
+    private List<ItemInWorld> listItems = new List<ItemInWorld>();
     private DataItem result;
     public bool IsCooking => isCooking;
+    public void ToggleOutLine(bool state) => outline.enabled = state;
     public void ToggleFire(bool value)
     {
         effectFire.SetActive(value);
@@ -20,17 +25,20 @@ public class Stove : ACacheMonoBehaviour
     public void Cook(List<ItemStack> items)
     {
         if(isCooking) return;
+        listItems.Clear();
         isCooking = true;
         this.ToggleFire(true);
+        this.effectDone.SetActive(false);
         this.items = items;
         for(int i = 0 ; i < items.Count; i++)
         { 
-            Transform itemTF = items[i].itemObjectHolding.transform;
-           itemTF.SetParent(this.TF);
-           itemTF.DOLocalJump(Vector3.zero, 1, 1, 0.5f)
+            ItemInWorld itemTF = items[i].itemObjectHolding;
+            listItems.Add(itemTF);
+           itemTF.TF.SetParent(this.pointCook);
+           itemTF.TF.DOLocalJump(Vector3.zero, 1, 1, 0.5f)
                .OnComplete(() =>
            {
-               Destroy(itemTF.gameObject);
+               itemTF.TF.eulerAngles = Vector3.zero;
            });
         }
         this.GetResultFGetFromRecipe();
@@ -40,6 +48,7 @@ public class Stove : ACacheMonoBehaviour
         isCooking = false;
         OnDoneCooking?.Invoke(this);
         this.ToggleFire(false);
+        this.effectDone.SetActive(true);
         this.SpawnResult(result);
     }
 
@@ -68,12 +77,18 @@ public class Stove : ACacheMonoBehaviour
 
     public void SpawnResult(DataItem item)
     {
-        var obj = item.prefab.ItemFactory.GetObject(parent:TF);
-        var newPos = new Vector3( Random.Range(0f,2f)
-            , 1
-            , Random.Range(0f,2f));
+        var obj = item.prefab.ItemFactory.GetObject(parent: null, scale: Vector3.one);
+        obj.TF.SetParent(this.pointCook);
+        foreach (var ingredient in listItems)
+        {
+            ingredient.OnDespawn();
+        }
+        // var newPos = new Vector3( Random.Range(0f,2f)
+        //     , 1
+        //     , Random.Range(0f,2f));
         obj.TF.localPosition = Vector3.zero;
-        obj.TF.DOLocalJump(newPos, 1, 1, 0.5f);
+        obj.TF.eulerAngles = Vector3.zero;
+        // obj.TF.DOLocalJump(newPos, 1, 1, 0.5f);
     }
     public  Dictionary<string, int> ProcessIngredient()
     {

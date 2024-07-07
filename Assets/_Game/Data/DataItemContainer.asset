@@ -18,31 +18,32 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 21300000, guid: 91bf9054237c06247b2a47a8563b96c3, type: 3}
     - {fileID: 4800944208016091475, guid: 81e9fe7b3cd084242a088e945f531f38, type: 3}
-    - {fileID: 3855597776949664201, guid: 1613e500be0d548449ee1559e8133aa7, type: 3}
     - {fileID: 21300000, guid: 69ffff161ef869b428fc360527541055, type: 3}
     - {fileID: -7302580476561429133, guid: bc49891f572f1164e9938f845ec37ab0, type: 3}
-    - {fileID: -305848482686728811, guid: 4088692a16acacc4ebcaad08afa32b00, type: 3}
     - {fileID: 21300000, guid: a730ea8b5fc2f1149934efe3cdfb9632, type: 3}
     - {fileID: 6096043599489860052, guid: 259702638197d9246bfc6f2b0fe88c09, type: 3}
-    - {fileID: -789778125545238737, guid: 5c567c8e02e54644daeb3efc5a18242a, type: 3}
     - {fileID: 21300000, guid: f9006aaa02b00b3449f218311be275c2, type: 3}
     - {fileID: 8027845148961920590, guid: 44325c67017631342b5f02792113e57b, type: 3}
-    - {fileID: 2856075003311344850, guid: 4deea0c5a1d75c34fae10b05b51fa1b7, type: 3}
     - {fileID: 21300000, guid: c77b9d26b8ece83418040edf1768d165, type: 3}
     - {fileID: 7464194305539567434, guid: 21b2fcdae015b8c4c83ff4b68b31b06f, type: 3}
-    - {fileID: 2915719486398774137, guid: e2aa9d56799fdea4aaa81acd31520810, type: 3}
     - {fileID: 21300000, guid: 4c044e2bfa2330449ad7aa6a2a4a85b3, type: 3}
     - {fileID: 2767816732147052125, guid: 0df961a7e3870b44f9bbce7bdf930613, type: 3}
-    - {fileID: -1436426114776724717, guid: 5113db35e811ab043b9c9d35d6010a33, type: 3}
     - {fileID: 21300000, guid: 1be000525c90a4240938de14bd716e65, type: 3}
     - {fileID: -2632966024842373737, guid: d41d88fd6ee1ee54b92bcda056d98e4a, type: 3}
-    - {fileID: -5188388287378860922, guid: 5cf31908d889a1b4ab1be8d23f17bc00, type: 3}
     - {fileID: 21300000, guid: a4ba1470638282042b5474878fa1f41a, type: 3}
     - {fileID: -5331427563739194234, guid: 9292080c4545dad4c84d43504886abc3, type: 3}
-    - {fileID: -1726443462337967129, guid: a5135a99a1de74c4bb661c9cff69d432, type: 3}
     - {fileID: 21300000, guid: ca6ef3c94c5ad394d8aab5eac85e6f61, type: 3}
     - {fileID: -311511742068349724, guid: a850e5d840d823543913c3bc0f233474, type: 3}
-    - {fileID: -8148881932199873494, guid: 229bca7d7b772f24d9f2e3315aea4dc5, type: 3}
+    - {fileID: 21300000, guid: 7baa33d73136e5f438050eaf59f991dd, type: 3}
+    - {fileID: 3885131605525854548, guid: ff4399c5c516b6145b031f40e03b2334, type: 3}
+    - {fileID: 21300000, guid: 87e358fe72454694b898ec314f31d16b, type: 3}
+    - {fileID: -7313808485262892200, guid: fb403d1efda6baf4190c507841617408, type: 3}
+    - {fileID: 21300000, guid: d3beba5d4a569754aa391ff32f672df1, type: 3}
+    - {fileID: -5581047525449703343, guid: 44b7e90f95929c04c8394768d8bd1d14, type: 3}
+    - {fileID: 21300000, guid: cfff5773d2b879348a3a96c7376a5ff4, type: 3}
+    - {fileID: 4015277977083259396, guid: 17cb28a1a37fd7f44ae6e1ad2aa9da78, type: 3}
+    - {fileID: 11400000, guid: efb1d0cd052f5cc4a951cb1c379187f2, type: 2}
+    - {fileID: 11400000, guid: 13527e4e0de13074ebdc7b3911aa0352, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -61,7 +62,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 9
+      Data: 14
     - Name: 
       Entry: 7
       Data: 
@@ -86,9 +87,6 @@ MonoBehaviour:
     - Name: prefab
       Entry: 10
       Data: 1
-    - Name: prefabGameObject
-      Entry: 10
-      Data: 2
     - Name: type
       Entry: 3
       Data: 2
@@ -124,13 +122,10 @@ MonoBehaviour:
       Data: This is bread
     - Name: icon
       Entry: 10
-      Data: 3
+      Data: 2
     - Name: prefab
       Entry: 10
-      Data: 4
-    - Name: prefabGameObject
-      Entry: 10
-      Data: 5
+      Data: 3
     - Name: type
       Entry: 3
       Data: 2
@@ -166,13 +161,10 @@ MonoBehaviour:
       Data: This is cabbage
     - Name: icon
       Entry: 10
-      Data: 6
+      Data: 4
     - Name: prefab
       Entry: 10
-      Data: 7
-    - Name: prefabGameObject
-      Entry: 10
-      Data: 8
+      Data: 5
     - Name: type
       Entry: 3
       Data: 2
@@ -208,13 +200,10 @@ MonoBehaviour:
       Data: This is Cheesr
     - Name: icon
       Entry: 10
-      Data: 9
+      Data: 6
     - Name: prefab
       Entry: 10
-      Data: 10
-    - Name: prefabGameObject
-      Entry: 10
-      Data: 11
+      Data: 7
     - Name: type
       Entry: 3
       Data: 2
@@ -250,13 +239,10 @@ MonoBehaviour:
       Data: This is meat
     - Name: icon
       Entry: 10
-      Data: 12
+      Data: 8
     - Name: prefab
       Entry: 10
-      Data: 13
-    - Name: prefabGameObject
-      Entry: 10
-      Data: 14
+      Data: 9
     - Name: type
       Entry: 3
       Data: 2
@@ -292,13 +278,10 @@ MonoBehaviour:
       Data: Meat is burnt
     - Name: icon
       Entry: 10
-      Data: 15
+      Data: 10
     - Name: prefab
       Entry: 10
-      Data: 16
-    - Name: prefabGameObject
-      Entry: 10
-      Data: 17
+      Data: 11
     - Name: type
       Entry: 3
       Data: 1
@@ -334,13 +317,10 @@ MonoBehaviour:
       Data: This is sandwich
     - Name: icon
       Entry: 10
-      Data: 18
+      Data: 12
     - Name: prefab
       Entry: 10
-      Data: 19
-    - Name: prefabGameObject
-      Entry: 10
-      Data: 20
+      Data: 13
     - Name: type
       Entry: 3
       Data: 1
@@ -376,13 +356,10 @@ MonoBehaviour:
       Data: This is sanwich
     - Name: icon
       Entry: 10
-      Data: 21
+      Data: 14
     - Name: prefab
       Entry: 10
-      Data: 22
-    - Name: prefabGameObject
-      Entry: 10
-      Data: 23
+      Data: 15
     - Name: type
       Entry: 3
       Data: 1
@@ -418,13 +395,10 @@ MonoBehaviour:
       Data: This is sandwich
     - Name: icon
       Entry: 10
-      Data: 24
+      Data: 16
     - Name: prefab
       Entry: 10
-      Data: 25
-    - Name: prefabGameObject
-      Entry: 10
-      Data: 26
+      Data: 17
     - Name: type
       Entry: 3
       Data: 1
@@ -437,6 +411,361 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Seedtomato
+    - Name: $v
+      Entry: 7
+      Data: 11|DataItem, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Seedtomato
+    - Name: title
+      Entry: 1
+      Data: Tomato Seed
+    - Name: description
+      Entry: 1
+      Data: Use to plant tomato
+    - Name: icon
+      Entry: 10
+      Data: 18
+    - Name: prefab
+      Entry: 10
+      Data: 19
+    - Name: type
+      Entry: 3
+      Data: 3
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Seedcabbage
+    - Name: $v
+      Entry: 7
+      Data: 12|DataItem, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Seedcabbage
+    - Name: title
+      Entry: 1
+      Data: Cabbage Seed
+    - Name: description
+      Entry: 1
+      Data: Use to plant cabbage
+    - Name: icon
+      Entry: 10
+      Data: 18
+    - Name: prefab
+      Entry: 10
+      Data: 19
+    - Name: type
+      Entry: 3
+      Data: 3
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Slicetomato
+    - Name: $v
+      Entry: 7
+      Data: 13|DataItem, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Slicetomato
+    - Name: title
+      Entry: 1
+      Data: Sliced Tomato
+    - Name: description
+      Entry: 1
+      Data: Tomato is sliced
+    - Name: icon
+      Entry: 10
+      Data: 20
+    - Name: prefab
+      Entry: 10
+      Data: 21
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Slicecabbage
+    - Name: $v
+      Entry: 7
+      Data: 14|DataItem, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Slicecabbage
+    - Name: title
+      Entry: 1
+      Data: Sliced Cabbage
+    - Name: description
+      Entry: 1
+      Data: Cabbage is sliced
+    - Name: icon
+      Entry: 10
+      Data: 22
+    - Name: prefab
+      Entry: 10
+      Data: 23
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Slicecheese
+    - Name: $v
+      Entry: 7
+      Data: 15|DataItem, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: Slicecheese
+    - Name: title
+      Entry: 1
+      Data: Sliced Cheese
+    - Name: description
+      Entry: 1
+      Data: Cheese is sliced
+    - Name: icon
+      Entry: 10
+      Data: 24
+    - Name: prefab
+      Entry: 10
+      Data: 25
+    - Name: type
+      Entry: 3
+      Data: 2
+    - Name: isStackable
+      Entry: 5
+      Data: true
+    - Name: maxStack
+      Entry: 3
+      Data: 99
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: plants
+      Entry: 7
+      Data: 16|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[Plant,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 17|System.OrdinalIgnoreCaseComparer, mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Seedtomato
+    - Name: $v
+      Entry: 10
+      Data: 26
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Seedcabbage
+    - Name: $v
+      Entry: 10
+      Data: 27
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: orderDetails
+      Entry: 7
+      Data: 18|System.Collections.Generic.List`1[[OrderDetail, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: OrderDetail, Assembly-CSharp
+    - Name: order
+      Entry: 1
+      Data: Tomato*2/Sandwicha*1/Meat*1
+    - Name: price
+      Entry: 3
+      Data: 1000
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: OrderDetail, Assembly-CSharp
+    - Name: order
+      Entry: 1
+      Data: Sandwichc*2
+    - Name: price
+      Entry: 3
+      Data: 1000
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: OrderDetail, Assembly-CSharp
+    - Name: order
+      Entry: 1
+      Data: Sandwichb*1/Sandwichc*1/Sandwicha*1
+    - Name: price
+      Entry: 3
+      Data: 1500
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: OrderDetail, Assembly-CSharp
+    - Name: order
+      Entry: 1
+      Data: Sandwichb*2/Sandwichc*1/Cheese*1
+    - Name: price
+      Entry: 3
+      Data: 1000
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: cuttingBoards
+      Entry: 7
+      Data: 19|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 20|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Tomato
+    - Name: $v
+      Entry: 1
+      Data: Slicetomato
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Cabbage
+    - Name: $v
+      Entry: 1
+      Data: Slicecabbage
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: Cheese
+    - Name: $v
+      Entry: 1
+      Data: Slicecheese
     - Name: 
       Entry: 8
       Data: 

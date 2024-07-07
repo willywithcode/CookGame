@@ -26,6 +26,7 @@ public class ButtonCustom : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         button?.onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlayAudio(SoundManager.DataSound.buttonClick);
             customButtonOnClick?.Invoke();
         });
     }

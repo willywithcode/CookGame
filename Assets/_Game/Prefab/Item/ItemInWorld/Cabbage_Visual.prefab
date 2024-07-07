@@ -99,6 +99,7 @@ MonoBehaviour:
   itemFactory: {fileID: 11400000, guid: 46da40095dd615c4d82cbdda06843f83, type: 2}
   itemType: 2
   itemName: Cabbage
+  colliderObject: {fileID: 1294096424574671830}
 --- !u!1001 &7790586617283749605
 PrefabInstance:
   m_ObjectHideFlags: 0

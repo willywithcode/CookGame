@@ -12,6 +12,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     IEndDragHandler, IDropHandler, IDragHandler
 {
     public UnityAction<InventoryItem> onItemBeginDrag,onItemDropped, onItemClicked, onItemEndDrag, onItemDrag;
+    public UnityAction<DataItem, int> onChange;
     [SerializeField] protected Image contentItem;
     [SerializeField] protected TextMeshProUGUI quantityText;
     [SerializeField] protected Image borderImg;
@@ -26,6 +27,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     public void SetupItem(DataItem dataItemSetup , int quantity = 0)
     {
         if(quantity <= 0) return;
+        onChange?.Invoke(dataItemSetup, quantity);
         this.haveItem = true;
         this.contentItem.gameObject.SetActive(true);
         this.contentItem.sprite = dataItemSetup.icon;
@@ -46,7 +48,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         this.quantityText.gameObject.SetActive(false);
     }
 
-    public void RemoveItem()
+    public virtual void RemoveItem()
     {
         this.haveItem = false;
         this.dataItem = null;
@@ -81,7 +83,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         onItemDrag?.Invoke(this);
     }
 
-    public void ToggleBorder(bool state)
+    public virtual void ToggleBorder(bool state)
     {
         if (state && !isTweening)
         {
@@ -91,7 +93,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         borderImg.enabled = state;
     }
 
-    public void ThrowItem()
+    public virtual void ThrowItem()
     {
         Item item = dataItem.prefab.ItemFactory.GetObject(1);
         item.TF.position = new Vector3(GameManager.Instance.Player.TF.position.x + Random.Range(3f,4f)
@@ -108,7 +110,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         if(quantityItem == 1) quantityText.gameObject.SetActive(false);
     }
 
-    public void ThrowAllItem()
+    public virtual void ThrowAllItem()
     {
         Item item = dataItem.prefab.ItemFactory.GetObject(this.quantityItem);
         item.TF.position = new Vector3(GameManager.Instance.Player.TF.position.x + Random.Range(3f,4f)
@@ -117,7 +119,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         this.RemoveItem();
     }
 
-    public int SplitItem()
+    public virtual int SplitItem()
     {
         int temp = quantityItem / 2;
         quantityItem -= temp;
@@ -126,15 +128,42 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         return temp;
     }
 
-    public void Hold()
+    public virtual void Hold()
     {
-        if (this.quantityItem < 2)
+        
+        quantityItem -= 1;
+        quantityText.text = quantityItem.ToString();
+        if(quantityItem == 1) quantityText.gameObject.SetActive(false);
+        if (this.quantityItem < 1 || !this.dataItem.isStackable)
         {
             this.RemoveItem();
             return;
         }
-        quantityItem -= 1;
-        quantityText.text = quantityItem.ToString();
-        if(quantityItem == 1) quantityText.gameObject.SetActive(false);
+    }
+    public virtual void RemoveOneItem()
+    {
+        this.quantityItem -= 1;
+        this.quantityText.text = this.quantityItem.ToString();
+        if(this.quantityItem == 1) this.quantityText.gameObject.SetActive(false);
+        if(this.quantityItem < 1 || !this.dataItem.isStackable)
+        {
+            this.RemoveItem();
+            return;
+        }
+        UIManager.Instance.GetUI<UIInventory>().Save();
+    }
+
+    public virtual void RemoveSomeItem(int quantityItem)
+    {
+        this.quantityItem -= quantityItem;
+        this.quantityText.text = this.quantityItem.ToString();
+        if(this.quantityItem == 1) this.quantityText.gameObject.SetActive(false);
+        if(this.quantityItem < 1 || !this.dataItem.isStackable)
+        {
+            this.RemoveItem();
+            return;
+        }
+        onChange?.Invoke(this.dataItem, this.quantityItem);
+        UIManager.Instance.GetUI<UIInventory>().Save();
     }
 }

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9365af4b109f7524eb8427e4c917d69a, type: 3}
+  m_Name: SmallTomato
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3799459366127789107, guid: 1392dbd2be3bbd04d8e5c57b904b42ae, type: 3}
+  poolSize: 10

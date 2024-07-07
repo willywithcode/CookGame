@@ -26,6 +26,7 @@ public class DetailItemUI : MonoBehaviour
     private List<Tuple<Vector3, Vector3>> listPos = new List<Tuple<Vector3, Vector3>>();
     private CancellationTokenSource cancellationTypingToken;
     public bool IsButtonVisible => isButtonVisible;
+    public ButtonCustom SplitBtn => splitBtn;
     public void SetDetail(DataItem dataItem)
     {
         contentItemImg.gameObject.SetActive(true);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -49,6 +50,21 @@ public static class Helper
             Debug.LogError("Error: " + www.error);
             return "";
         }
+    }
+    public static string NormalizeString(this string input)
+    {
+        string firstChar = input.Substring(0, 1).ToUpper();
+        string restChars = input.Substring(1).ToLower();
+        return firstChar + restChars;
+    }
+    private static Tween tweenIncressCoin;
+    public static void TweenIncressCoin(this TextMeshProUGUI currentCoinTxt,int start, int end, float duration)
+    {
+        tweenIncressCoin?.Kill();
+        tweenIncressCoin = DOTween.To(
+            () => start, 
+            x => currentCoinTxt.text = x.ToString(), end, duration)
+            .OnKill(() => currentCoinTxt.text = end.ToString());
     }
 
 }

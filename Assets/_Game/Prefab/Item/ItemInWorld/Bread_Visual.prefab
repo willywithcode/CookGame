@@ -100,6 +100,7 @@ MonoBehaviour:
   itemFactory: {fileID: 11400000, guid: 100f1218d852c8040847d8ae9405db70, type: 2}
   itemType: 2
   itemName: Bread
+  colliderObject: {fileID: 562387427132623762}
 --- !u!1001 &1395028449477224493
 PrefabInstance:
   m_ObjectHideFlags: 0

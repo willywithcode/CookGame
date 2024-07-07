@@ -7,17 +7,6 @@ using UnityEngine;
 public class ItemHolding : Item
 {
     #if UNITY_EDITOR
-    [OnInspectorGUI]
-    public void OnInspectorGUI()
-    {
-        var dataItem = SaveGameManager.Instance.dataItemContainer.dataItems
-            .FirstOrDefault(e => e.Value.prefabGameObject == this);
-        if(dataItem.Value != null)
-        {
-            itemName = dataItem.Key;
-            itemType = dataItem.Value.type;
-        }
-    }
     public override void CreateSOPooling()
     {
         ItemFactory itemFactory = ScriptableObject.CreateInstance<ItemFactory>();
